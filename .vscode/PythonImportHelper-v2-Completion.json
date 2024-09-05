@@ -1,0 +1,1490 @@
+[
+    {
+        "label": "os",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "os",
+        "description": "os",
+        "detail": "os",
+        "documentation": {}
+    },
+    {
+        "label": "argparse",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "argparse",
+        "description": "argparse",
+        "detail": "argparse",
+        "documentation": {}
+    },
+    {
+        "label": "Config",
+        "importPath": "config.base_config",
+        "description": "config.base_config",
+        "isExtraImport": true,
+        "detail": "config.base_config",
+        "documentation": {}
+    },
+    {
+        "label": "Config",
+        "importPath": "config.base_config",
+        "description": "config.base_config",
+        "isExtraImport": true,
+        "detail": "config.base_config",
+        "documentation": {}
+    },
+    {
+        "label": "Config",
+        "importPath": "config.base_config",
+        "description": "config.base_config",
+        "isExtraImport": true,
+        "detail": "config.base_config",
+        "documentation": {}
+    },
+    {
+        "label": "Config",
+        "importPath": "config.base_config",
+        "description": "config.base_config",
+        "isExtraImport": true,
+        "detail": "config.base_config",
+        "documentation": {}
+    },
+    {
+        "label": "Config",
+        "importPath": "config.base_config",
+        "description": "config.base_config",
+        "isExtraImport": true,
+        "detail": "config.base_config",
+        "documentation": {}
+    },
+    {
+        "label": "Config",
+        "importPath": "config.base_config",
+        "description": "config.base_config",
+        "isExtraImport": true,
+        "detail": "config.base_config",
+        "documentation": {}
+    },
+    {
+        "label": "Config",
+        "importPath": "config.base_config",
+        "description": "config.base_config",
+        "isExtraImport": true,
+        "detail": "config.base_config",
+        "documentation": {}
+    },
+    {
+        "label": "Config",
+        "importPath": "config.base_config",
+        "description": "config.base_config",
+        "isExtraImport": true,
+        "detail": "config.base_config",
+        "documentation": {}
+    },
+    {
+        "label": "Config",
+        "importPath": "config.base_config",
+        "description": "config.base_config",
+        "isExtraImport": true,
+        "detail": "config.base_config",
+        "documentation": {}
+    },
+    {
+        "label": "Config",
+        "importPath": "config.base_config",
+        "description": "config.base_config",
+        "isExtraImport": true,
+        "detail": "config.base_config",
+        "documentation": {}
+    },
+    {
+        "label": "Config",
+        "importPath": "config.base_config",
+        "description": "config.base_config",
+        "isExtraImport": true,
+        "detail": "config.base_config",
+        "documentation": {}
+    },
+    {
+        "label": "mkdirp",
+        "importPath": "modules.basic_utils",
+        "description": "modules.basic_utils",
+        "isExtraImport": true,
+        "detail": "modules.basic_utils",
+        "documentation": {}
+    },
+    {
+        "label": "deletedir",
+        "importPath": "modules.basic_utils",
+        "description": "modules.basic_utils",
+        "isExtraImport": true,
+        "detail": "modules.basic_utils",
+        "documentation": {}
+    },
+    {
+        "label": "time",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "time",
+        "description": "time",
+        "detail": "time",
+        "documentation": {}
+    },
+    {
+        "label": "numpy",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "numpy",
+        "description": "numpy",
+        "detail": "numpy",
+        "documentation": {}
+    },
+    {
+        "label": "datetime",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "datetime",
+        "description": "datetime",
+        "detail": "datetime",
+        "documentation": {}
+    },
+    {
+        "label": "logging",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "logging",
+        "description": "logging",
+        "detail": "logging",
+        "documentation": {}
+    },
+    {
+        "label": "abstractmethod",
+        "importPath": "abc",
+        "description": "abc",
+        "isExtraImport": true,
+        "detail": "abc",
+        "documentation": {}
+    },
+    {
+        "label": "ABC",
+        "importPath": "abc",
+        "description": "abc",
+        "isExtraImport": true,
+        "detail": "abc",
+        "documentation": {}
+    },
+    {
+        "label": "abstractmethod",
+        "importPath": "abc",
+        "description": "abc",
+        "isExtraImport": true,
+        "detail": "abc",
+        "documentation": {}
+    },
+    {
+        "label": "torch",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "torch",
+        "description": "torch",
+        "detail": "torch",
+        "documentation": {}
+    },
+    {
+        "label": "nn",
+        "importPath": "torch",
+        "description": "torch",
+        "isExtraImport": true,
+        "detail": "torch",
+        "documentation": {}
+    },
+    {
+        "label": "json",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "json",
+        "description": "json",
+        "detail": "json",
+        "documentation": {}
+    },
+    {
+        "label": "pandas",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "pandas",
+        "description": "pandas",
+        "detail": "pandas",
+        "documentation": {}
+    },
+    {
+        "label": "torchvision.transforms",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "torchvision.transforms",
+        "description": "torchvision.transforms",
+        "detail": "torchvision.transforms",
+        "documentation": {}
+    },
+    {
+        "label": "Compose",
+        "importPath": "torchvision.transforms",
+        "description": "torchvision.transforms",
+        "isExtraImport": true,
+        "detail": "torchvision.transforms",
+        "documentation": {}
+    },
+    {
+        "label": "Resize",
+        "importPath": "torchvision.transforms",
+        "description": "torchvision.transforms",
+        "isExtraImport": true,
+        "detail": "torchvision.transforms",
+        "documentation": {}
+    },
+    {
+        "label": "CenterCrop",
+        "importPath": "torchvision.transforms",
+        "description": "torchvision.transforms",
+        "isExtraImport": true,
+        "detail": "torchvision.transforms",
+        "documentation": {}
+    },
+    {
+        "label": "ToTensor",
+        "importPath": "torchvision.transforms",
+        "description": "torchvision.transforms",
+        "isExtraImport": true,
+        "detail": "torchvision.transforms",
+        "documentation": {}
+    },
+    {
+        "label": "Normalize",
+        "importPath": "torchvision.transforms",
+        "description": "torchvision.transforms",
+        "isExtraImport": true,
+        "detail": "torchvision.transforms",
+        "documentation": {}
+    },
+    {
+        "label": "Image",
+        "importPath": "PIL",
+        "description": "PIL",
+        "isExtraImport": true,
+        "detail": "PIL",
+        "documentation": {}
+    },
+    {
+        "label": "Image",
+        "importPath": "PIL",
+        "description": "PIL",
+        "isExtraImport": true,
+        "detail": "PIL",
+        "documentation": {}
+    },
+    {
+        "label": "Image",
+        "importPath": "PIL",
+        "description": "PIL",
+        "isExtraImport": true,
+        "detail": "PIL",
+        "documentation": {}
+    },
+    {
+        "label": "Image",
+        "importPath": "PIL",
+        "description": "PIL",
+        "isExtraImport": true,
+        "detail": "PIL",
+        "documentation": {}
+    },
+    {
+        "label": "Dataset",
+        "importPath": "torch.utils.data",
+        "description": "torch.utils.data",
+        "isExtraImport": true,
+        "detail": "torch.utils.data",
+        "documentation": {}
+    },
+    {
+        "label": "DataLoader",
+        "importPath": "torch.utils.data",
+        "description": "torch.utils.data",
+        "isExtraImport": true,
+        "detail": "torch.utils.data",
+        "documentation": {}
+    },
+    {
+        "label": "torch.nn",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "torch.nn",
+        "description": "torch.nn",
+        "detail": "torch.nn",
+        "documentation": {}
+    },
+    {
+        "label": "functional",
+        "importPath": "torch.nn",
+        "description": "torch.nn",
+        "isExtraImport": true,
+        "detail": "torch.nn",
+        "documentation": {}
+    },
+    {
+        "label": "functional",
+        "importPath": "torch.nn",
+        "description": "torch.nn",
+        "isExtraImport": true,
+        "detail": "torch.nn",
+        "documentation": {}
+    },
+    {
+        "label": "clip",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "clip",
+        "description": "clip",
+        "detail": "clip",
+        "documentation": {}
+    },
+    {
+        "label": "sys",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "sys",
+        "description": "sys",
+        "detail": "sys",
+        "documentation": {}
+    },
+    {
+        "label": "CustomDataset",
+        "importPath": "datasets.aichallenge_dataset",
+        "description": "datasets.aichallenge_dataset",
+        "isExtraImport": true,
+        "detail": "datasets.aichallenge_dataset",
+        "documentation": {}
+    },
+    {
+        "label": "CustomDataset",
+        "importPath": "datasets.aichallenge_dataset",
+        "description": "datasets.aichallenge_dataset",
+        "isExtraImport": true,
+        "detail": "datasets.aichallenge_dataset",
+        "documentation": {}
+    },
+    {
+        "label": "CustomDataset",
+        "importPath": "datasets.aichallenge_dataset",
+        "description": "datasets.aichallenge_dataset",
+        "isExtraImport": true,
+        "detail": "datasets.aichallenge_dataset",
+        "documentation": {}
+    },
+    {
+        "label": "init_transform_dict",
+        "importPath": "datasets.model_transforms",
+        "description": "datasets.model_transforms",
+        "isExtraImport": true,
+        "detail": "datasets.model_transforms",
+        "documentation": {}
+    },
+    {
+        "label": "transforms",
+        "importPath": "torchvision",
+        "description": "torchvision",
+        "isExtraImport": true,
+        "detail": "torchvision",
+        "documentation": {}
+    },
+    {
+        "label": "cv2",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "cv2",
+        "description": "cv2",
+        "detail": "cv2",
+        "documentation": {}
+    },
+    {
+        "label": "random",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "random",
+        "description": "random",
+        "detail": "random",
+        "documentation": {}
+    },
+    {
+        "label": "Transformer",
+        "importPath": "modules.transformer",
+        "description": "modules.transformer",
+        "isExtraImport": true,
+        "detail": "modules.transformer",
+        "documentation": {}
+    },
+    {
+        "label": "StochasticText",
+        "importPath": "modules.stochastic_module",
+        "description": "modules.stochastic_module",
+        "isExtraImport": true,
+        "detail": "modules.stochastic_module",
+        "documentation": {}
+    },
+    {
+        "label": "RobertaModel",
+        "importPath": "transformers",
+        "description": "transformers",
+        "isExtraImport": true,
+        "detail": "transformers",
+        "documentation": {}
+    },
+    {
+        "label": "RobertaTokenizer",
+        "importPath": "transformers",
+        "description": "transformers",
+        "isExtraImport": true,
+        "detail": "transformers",
+        "documentation": {}
+    },
+    {
+        "label": "CLIPModel",
+        "importPath": "transformers",
+        "description": "transformers",
+        "isExtraImport": true,
+        "detail": "transformers",
+        "documentation": {}
+    },
+    {
+        "label": "CLIPStochastic",
+        "importPath": "model.clip_stochastic",
+        "description": "model.clip_stochastic",
+        "isExtraImport": true,
+        "detail": "model.clip_stochastic",
+        "documentation": {}
+    },
+    {
+        "label": "CLIPStochastic",
+        "importPath": "model.clip_stochastic",
+        "description": "model.clip_stochastic",
+        "isExtraImport": true,
+        "detail": "model.clip_stochastic",
+        "documentation": {}
+    },
+    {
+        "label": "CLIPStochastic",
+        "importPath": "model.clip_stochastic",
+        "description": "model.clip_stochastic",
+        "isExtraImport": true,
+        "detail": "model.clip_stochastic",
+        "documentation": {}
+    },
+    {
+        "label": "CLIPTransformer",
+        "importPath": "model.clip_transfomer",
+        "description": "model.clip_transfomer",
+        "isExtraImport": true,
+        "detail": "model.clip_transfomer",
+        "documentation": {}
+    },
+    {
+        "label": "torch.nn.functional",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "torch.nn.functional",
+        "description": "torch.nn.functional",
+        "detail": "torch.nn.functional",
+        "documentation": {}
+    },
+    {
+        "label": "ujson",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "ujson",
+        "description": "ujson",
+        "detail": "ujson",
+        "documentation": {}
+    },
+    {
+        "label": "zipfile",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "zipfile",
+        "description": "zipfile",
+        "detail": "zipfile",
+        "documentation": {}
+    },
+    {
+        "label": "pickle",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "pickle",
+        "description": "pickle",
+        "detail": "pickle",
+        "documentation": {}
+    },
+    {
+        "label": "shutil",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "shutil",
+        "description": "shutil",
+        "detail": "shutil",
+        "documentation": {}
+    },
+    {
+        "label": "scipy.stats",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "scipy.stats",
+        "description": "scipy.stats",
+        "detail": "scipy.stats",
+        "documentation": {}
+    },
+    {
+        "label": "gc",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "gc",
+        "description": "gc",
+        "detail": "gc",
+        "documentation": {}
+    },
+    {
+        "label": "math",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "math",
+        "description": "math",
+        "detail": "math",
+        "documentation": {}
+    },
+    {
+        "label": "Callable",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "Iterable",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "Optional",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "Tuple",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "Union",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "List",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "Optional",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "Tuple",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "Optimizer",
+        "importPath": "torch.optim",
+        "description": "torch.optim",
+        "isExtraImport": true,
+        "detail": "torch.optim",
+        "documentation": {}
+    },
+    {
+        "label": "LambdaLR",
+        "importPath": "torch.optim.lr_scheduler",
+        "description": "torch.optim.lr_scheduler",
+        "isExtraImport": true,
+        "detail": "torch.optim.lr_scheduler",
+        "documentation": {}
+    },
+    {
+        "label": "lru_cache",
+        "importPath": "functools",
+        "description": "functools",
+        "isExtraImport": true,
+        "detail": "functools",
+        "documentation": {}
+    },
+    {
+        "label": "regex",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "regex",
+        "description": "regex",
+        "detail": "regex",
+        "documentation": {}
+    },
+    {
+        "label": "BasicTokenizer",
+        "importPath": "transformers.models.bert.tokenization_bert",
+        "description": "transformers.models.bert.tokenization_bert",
+        "isExtraImport": true,
+        "detail": "transformers.models.bert.tokenization_bert",
+        "documentation": {}
+    },
+    {
+        "label": "AddedToken",
+        "importPath": "transformers.tokenization_utils",
+        "description": "transformers.tokenization_utils",
+        "isExtraImport": true,
+        "detail": "transformers.tokenization_utils",
+        "documentation": {}
+    },
+    {
+        "label": "PreTrainedTokenizer",
+        "importPath": "transformers.tokenization_utils",
+        "description": "transformers.tokenization_utils",
+        "isExtraImport": true,
+        "detail": "transformers.tokenization_utils",
+        "documentation": {}
+    },
+    {
+        "label": "logging",
+        "importPath": "transformers.utils",
+        "description": "transformers.utils",
+        "isExtraImport": true,
+        "detail": "transformers.utils",
+        "documentation": {}
+    },
+    {
+        "label": "subprocess",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "subprocess",
+        "description": "subprocess",
+        "detail": "subprocess",
+        "documentation": {}
+    },
+    {
+        "label": "multiprocessing",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "multiprocessing",
+        "description": "multiprocessing",
+        "detail": "multiprocessing",
+        "documentation": {}
+    },
+    {
+        "label": "Pool",
+        "importPath": "multiprocessing",
+        "description": "multiprocessing",
+        "isExtraImport": true,
+        "detail": "multiprocessing",
+        "documentation": {}
+    },
+    {
+        "label": "tqdm",
+        "importPath": "tqdm",
+        "description": "tqdm",
+        "isExtraImport": true,
+        "detail": "tqdm",
+        "documentation": {}
+    },
+    {
+        "label": "defaultdict",
+        "importPath": "collections",
+        "description": "collections",
+        "isExtraImport": true,
+        "detail": "collections",
+        "documentation": {}
+    },
+    {
+        "label": "deque",
+        "importPath": "collections",
+        "description": "collections",
+        "isExtraImport": true,
+        "detail": "collections",
+        "documentation": {}
+    },
+    {
+        "label": "BaseTrainer",
+        "importPath": "trainer.base_trainer",
+        "description": "trainer.base_trainer",
+        "isExtraImport": true,
+        "detail": "trainer.base_trainer",
+        "documentation": {}
+    },
+    {
+        "label": "sim_matrix_training",
+        "importPath": "modules.metrics",
+        "description": "modules.metrics",
+        "isExtraImport": true,
+        "detail": "modules.metrics",
+        "documentation": {}
+    },
+    {
+        "label": "sim_matrix_inference_stochastic",
+        "importPath": "modules.metrics",
+        "description": "modules.metrics",
+        "isExtraImport": true,
+        "detail": "modules.metrics",
+        "documentation": {}
+    },
+    {
+        "label": "sim_matrix_inference_stochastic_light_allops",
+        "importPath": "modules.metrics",
+        "description": "modules.metrics",
+        "isExtraImport": true,
+        "detail": "modules.metrics",
+        "documentation": {}
+    },
+    {
+        "label": "generate_embeds_per_video_id_stochastic",
+        "importPath": "modules.metrics",
+        "description": "modules.metrics",
+        "isExtraImport": true,
+        "detail": "modules.metrics",
+        "documentation": {}
+    },
+    {
+        "label": "np_softmax",
+        "importPath": "modules.metrics",
+        "description": "modules.metrics",
+        "isExtraImport": true,
+        "detail": "modules.metrics",
+        "documentation": {}
+    },
+    {
+        "label": "t2v_metrics",
+        "importPath": "modules.metrics",
+        "description": "modules.metrics",
+        "isExtraImport": true,
+        "detail": "modules.metrics",
+        "documentation": {}
+    },
+    {
+        "label": "v2t_metrics",
+        "importPath": "modules.metrics",
+        "description": "modules.metrics",
+        "isExtraImport": true,
+        "detail": "modules.metrics",
+        "documentation": {}
+    },
+    {
+        "label": "t2v_metrics",
+        "importPath": "modules.metrics",
+        "description": "modules.metrics",
+        "isExtraImport": true,
+        "detail": "modules.metrics",
+        "documentation": {}
+    },
+    {
+        "label": "v2t_metrics",
+        "importPath": "modules.metrics",
+        "description": "modules.metrics",
+        "isExtraImport": true,
+        "detail": "modules.metrics",
+        "documentation": {}
+    },
+    {
+        "label": "AllConfig",
+        "importPath": "config.all_config",
+        "description": "config.all_config",
+        "isExtraImport": true,
+        "detail": "config.all_config",
+        "documentation": {}
+    },
+    {
+        "label": "gen_log",
+        "importPath": "config.all_config",
+        "description": "config.all_config",
+        "isExtraImport": true,
+        "detail": "config.all_config",
+        "documentation": {}
+    },
+    {
+        "label": "gen_log",
+        "importPath": "config.all_config",
+        "description": "config.all_config",
+        "isExtraImport": true,
+        "detail": "config.all_config",
+        "documentation": {}
+    },
+    {
+        "label": "AllConfig",
+        "importPath": "config.all_config",
+        "description": "config.all_config",
+        "isExtraImport": true,
+        "detail": "config.all_config",
+        "documentation": {}
+    },
+    {
+        "label": "DataFactory",
+        "importPath": "datasets.data_factory",
+        "description": "datasets.data_factory",
+        "isExtraImport": true,
+        "detail": "datasets.data_factory",
+        "documentation": {}
+    },
+    {
+        "label": "DataFactory",
+        "importPath": "datasets.data_factory",
+        "description": "datasets.data_factory",
+        "isExtraImport": true,
+        "detail": "datasets.data_factory",
+        "documentation": {}
+    },
+    {
+        "label": "ModelFactory",
+        "importPath": "model.model_factory",
+        "description": "model.model_factory",
+        "isExtraImport": true,
+        "detail": "model.model_factory",
+        "documentation": {}
+    },
+    {
+        "label": "ModelFactory",
+        "importPath": "model.model_factory",
+        "description": "model.model_factory",
+        "isExtraImport": true,
+        "detail": "model.model_factory",
+        "documentation": {}
+    },
+    {
+        "label": "LossFactory",
+        "importPath": "modules.loss",
+        "description": "modules.loss",
+        "isExtraImport": true,
+        "detail": "modules.loss",
+        "documentation": {}
+    },
+    {
+        "label": "LossFactory",
+        "importPath": "modules.loss",
+        "description": "modules.loss",
+        "isExtraImport": true,
+        "detail": "modules.loss",
+        "documentation": {}
+    },
+    {
+        "label": "Trainer",
+        "importPath": "trainer.trainer_stochastic",
+        "description": "trainer.trainer_stochastic",
+        "isExtraImport": true,
+        "detail": "trainer.trainer_stochastic",
+        "documentation": {}
+    },
+    {
+        "label": "Trainer",
+        "importPath": "trainer.trainer_stochastic",
+        "description": "trainer.trainer_stochastic",
+        "isExtraImport": true,
+        "detail": "trainer.trainer_stochastic",
+        "documentation": {}
+    },
+    {
+        "label": "torch.multiprocessing",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "torch.multiprocessing",
+        "description": "torch.multiprocessing",
+        "detail": "torch.multiprocessing",
+        "documentation": {}
+    },
+    {
+        "label": "AdamW",
+        "importPath": "modules.optimization",
+        "description": "modules.optimization",
+        "isExtraImport": true,
+        "detail": "modules.optimization",
+        "documentation": {}
+    },
+    {
+        "label": "get_cosine_schedule_with_warmup",
+        "importPath": "modules.optimization",
+        "description": "modules.optimization",
+        "isExtraImport": true,
+        "detail": "modules.optimization",
+        "documentation": {}
+    },
+    {
+        "label": "AllConfig",
+        "kind": 6,
+        "importPath": "config.all_config",
+        "description": "config.all_config",
+        "peekOfCode": "class AllConfig(Config):\n    def __init__(self):\n        super().__init__()\n    # Ensure these are added from the Config class or define them directly\n        self.videos_dir = \"D:/Course_hoc_mien_phi_workshop/AI Hackkathon/Dataset/video\"\n        self.features_dir = \"D:/Course_hoc_mien_phi_workshop/AI Hackkathon/Dataset/clip-features-32\"\n        self.keyframes_dir = \"D:/Course_hoc_mien_phi_workshop/AI Hackkathon/Dataset/keyframes\"\n        self.metadata_dir = \"D:/Course_hoc_mien_phi_workshop/AI Hackkathon/Dataset/metadata\"\n        self.map_keyframes_dir = \"D:/Course_hoc_mien_phi_workshop/AI Hackkathon/Dataset/map-keyframes\"\n        # Add other parameters as needed",
+        "detail": "config.all_config",
+        "documentation": {}
+    },
+    {
+        "label": "gen_log",
+        "kind": 2,
+        "importPath": "config.all_config",
+        "description": "config.all_config",
+        "peekOfCode": "def gen_log(model_path, msg, log_name):\n    logger = logging.getLogger()\n    logger.setLevel(logging.INFO)\n    formatter = logging.Formatter(\"%(asctime)s - %(levelname)s: %(message)s\")\n    log_file = model_path + '/'+ log_name + '.txt'\n    fh = logging.FileHandler(log_file, mode='a')\n    fh.setLevel(logging.INFO)\n    fh.setFormatter(formatter)\n    ch = logging.StreamHandler()\n    ch.setLevel(logging.INFO)",
+        "detail": "config.all_config",
+        "documentation": {}
+    },
+    {
+        "label": "Config",
+        "kind": 6,
+        "importPath": "config.base_config",
+        "description": "config.base_config",
+        "peekOfCode": "class Config(ABC):\n    def __init__(self):\n        args = self.parse_args()\n        self.dataset_name = args.dataset_name\n        self.videos_dir = args.videos_dir\n        self.aichallenge_train_file = args.aichallenge_train_file\n        self.num_frames = args.num_frames\n        self.video_sample_type = args.video_sample_type\n        self.input_res = args.input_res\n        self.exp_name = args.exp_name",
+        "detail": "config.base_config",
+        "documentation": {}
+    },
+    {
+        "label": "CustomDataset",
+        "kind": 6,
+        "importPath": "datasets.aichallenge_dataset",
+        "description": "datasets.aichallenge_dataset",
+        "peekOfCode": "class CustomDataset(Dataset):\n    def __init__(self, config, split_type='train', img_transforms=None, clip_model_name=\"RN50x16\"):\n        self.config = config\n        self.split_type = split_type\n        self.img_transforms = img_transforms\n        # Load CLIP model and preprocess\n        self.device = \"cuda\" if torch.cuda.is_available() else \"cpu\"\n        self.clip_model, self.clip_preprocess = clip.load(clip_model_name, device=self.device)\n        # Define directories for your dataset\n        self.keyframes_dir = config.keyframes_dir",
+        "detail": "datasets.aichallenge_dataset",
+        "documentation": {}
+    },
+    {
+        "label": "Config",
+        "kind": 6,
+        "importPath": "datasets.aichallenge_dataset",
+        "description": "datasets.aichallenge_dataset",
+        "peekOfCode": "class Config:\n    def __init__(self):\n        self.keyframes_dir = \"D:/Course_hoc_mien_phi_workshop/AI Hackkathon/Dataset/keyframes\"\n        self.metadata_dir = \"D:/Course_hoc_mien_phi_workshop/AI Hackkathon/Dataset/metadata\"\n        self.map_keyframes_dir = \"D:/Course_hoc_mien_phi_workshop/AI Hackkathon/Dataset/map-keyframes\"\n# Example usage:\nconfig = Config()\n# Create dataset object\ndataset = CustomDataset(config, split_type='train')\n# Example of loading and processing the first 5 items",
+        "detail": "datasets.aichallenge_dataset",
+        "documentation": {}
+    },
+    {
+        "label": "device",
+        "kind": 5,
+        "importPath": "datasets.aichallenge_dataset",
+        "description": "datasets.aichallenge_dataset",
+        "peekOfCode": "device = \"cuda\" if torch.cuda.is_available() else \"cpu\"\n# Path to your ViT-B/32 checkpoint\ncheckpoint_path = \"D:/Course_hoc_mien_phi_workshop/AI Hackkathon/SourceCode/TextToVideo/data/CLIP/ViT-B-32.pt\"\n# Load the ViT-B/32 model architecture from Hugging Face and set the device\nmodel, preprocess = clip.load(\"ViT-B/32\", device=device)\n# Instead of using load_state_dict, directly load the TorchScript model\n# TorchScript models contain both the model and the weights\nmodel = torch.jit.load(checkpoint_path, map_location=device)\n# Ensure the model is in evaluation mode\nmodel.eval()",
+        "detail": "datasets.aichallenge_dataset",
+        "documentation": {}
+    },
+    {
+        "label": "checkpoint_path",
+        "kind": 5,
+        "importPath": "datasets.aichallenge_dataset",
+        "description": "datasets.aichallenge_dataset",
+        "peekOfCode": "checkpoint_path = \"D:/Course_hoc_mien_phi_workshop/AI Hackkathon/SourceCode/TextToVideo/data/CLIP/ViT-B-32.pt\"\n# Load the ViT-B/32 model architecture from Hugging Face and set the device\nmodel, preprocess = clip.load(\"ViT-B/32\", device=device)\n# Instead of using load_state_dict, directly load the TorchScript model\n# TorchScript models contain both the model and the weights\nmodel = torch.jit.load(checkpoint_path, map_location=device)\n# Ensure the model is in evaluation mode\nmodel.eval()\nprint(\"CLIP model loaded successfully from checkpoint!\")\nclass CustomDataset(Dataset):",
+        "detail": "datasets.aichallenge_dataset",
+        "documentation": {}
+    },
+    {
+        "label": "model",
+        "kind": 5,
+        "importPath": "datasets.aichallenge_dataset",
+        "description": "datasets.aichallenge_dataset",
+        "peekOfCode": "model = torch.jit.load(checkpoint_path, map_location=device)\n# Ensure the model is in evaluation mode\nmodel.eval()\nprint(\"CLIP model loaded successfully from checkpoint!\")\nclass CustomDataset(Dataset):\n    def __init__(self, config, split_type='train', img_transforms=None, clip_model_name=\"RN50x16\"):\n        self.config = config\n        self.split_type = split_type\n        self.img_transforms = img_transforms\n        # Load CLIP model and preprocess",
+        "detail": "datasets.aichallenge_dataset",
+        "documentation": {}
+    },
+    {
+        "label": "config",
+        "kind": 5,
+        "importPath": "datasets.aichallenge_dataset",
+        "description": "datasets.aichallenge_dataset",
+        "peekOfCode": "config = Config()\n# Create dataset object\ndataset = CustomDataset(config, split_type='train')\n# Example of loading and processing the first 5 items\nfor i in range(min(5, len(dataset))):\n    data = dataset[i]\n    print(f\"Video {data['video_id']}: CLIP feature shape = {data['clip_features'].shape}\")",
+        "detail": "datasets.aichallenge_dataset",
+        "documentation": {}
+    },
+    {
+        "label": "dataset",
+        "kind": 5,
+        "importPath": "datasets.aichallenge_dataset",
+        "description": "datasets.aichallenge_dataset",
+        "peekOfCode": "dataset = CustomDataset(config, split_type='train')\n# Example of loading and processing the first 5 items\nfor i in range(min(5, len(dataset))):\n    data = dataset[i]\n    print(f\"Video {data['video_id']}: CLIP feature shape = {data['clip_features'].shape}\")",
+        "detail": "datasets.aichallenge_dataset",
+        "documentation": {}
+    },
+    {
+        "label": "DataFactory",
+        "kind": 6,
+        "importPath": "datasets.data_factory",
+        "description": "datasets.data_factory",
+        "peekOfCode": "class DataFactory:\n    @staticmethod\n    def get_data_loader(config, split_type='train'):\n        # Initialize image transformations\n        img_transforms = init_transform_dict(config.input_res)\n        train_img_tfms = img_transforms['clip_train']\n        test_img_tfms = img_transforms['clip_test']\n        # Use CustomDataset for your custom dataset\n        if split_type == 'train':\n            print(f\"Initializing dataset for training with {split_type}\")",
+        "detail": "datasets.data_factory",
+        "documentation": {}
+    },
+    {
+        "label": "init_transform_dict",
+        "kind": 2,
+        "importPath": "datasets.model_transforms",
+        "description": "datasets.model_transforms",
+        "peekOfCode": "def init_transform_dict(input_res=224):\n    tsfm_dict = {\n        'clip_test': transforms.Compose([\n            transforms.Resize(input_res, interpolation=Image.BICUBIC),\n            transforms.CenterCrop(input_res),\n            transforms.ToTensor(),  # Chuyển đổi ảnh sang tensor\n            transforms.Normalize((0.48145466, 0.4578275, 0.40821073), (0.26862954, 0.26130258, 0.27577711)),\n        ]),\n        'clip_train': transforms.Compose([\n            transforms.RandomResizedCrop(input_res, scale=(0.5, 1.0)),",
+        "detail": "datasets.model_transforms",
+        "documentation": {}
+    },
+    {
+        "label": "RawVideoExtractorCV2",
+        "kind": 6,
+        "importPath": "datasets.rawvideo_util",
+        "description": "datasets.rawvideo_util",
+        "peekOfCode": "class RawVideoExtractorCV2():\n    def __init__(self, centercrop=False, size=224, framerate=-1):\n        self.centercrop = centercrop\n        self.size = size\n        self.framerate = framerate\n        self.transform = self._transform(self.size)\n    def _transform(self, n_px):\n        # Định nghĩa phép biến đổi hình ảnh cho từng frame\n        return Compose([\n            Resize(n_px, interpolation=Image.BICUBIC),",
+        "detail": "datasets.rawvideo_util",
+        "documentation": {}
+    },
+    {
+        "label": "RawVideoExtractor",
+        "kind": 5,
+        "importPath": "datasets.rawvideo_util",
+        "description": "datasets.rawvideo_util",
+        "peekOfCode": "RawVideoExtractor = RawVideoExtractorCV2",
+        "detail": "datasets.rawvideo_util",
+        "documentation": {}
+    },
+    {
+        "label": "VideoCapture",
+        "kind": 6,
+        "importPath": "datasets.video_capture",
+        "description": "datasets.video_capture",
+        "peekOfCode": "class VideoCapture:\n    @staticmethod\n    def load_frames_from_keyframes(keyframes_dir, video_id, num_frames, size=(224, 224), img_transforms=None, normalize=True):\n        \"\"\"\n        Load keyframes from the directory instead of extracting frames from video.\n        Args:\n            keyframes_dir (str): Path to the keyframes directory.\n            video_id (str): Video ID for which keyframes are to be loaded (e.g., 'L01_V001').\n            num_frames (int): Number of frames to load.\n            size (tuple): Desired size (width, height) for the frames.",
+        "detail": "datasets.video_capture",
+        "documentation": {}
+    },
+    {
+        "label": "CLIPStochastic",
+        "kind": 6,
+        "importPath": "model.clip_stochastic",
+        "description": "model.clip_stochastic",
+        "peekOfCode": "class CLIPStochastic(nn.Module):\n    def __init__(self, config: Config):\n        super(CLIPStochastic, self).__init__()\n        self.config = config\n        from transformers import CLIPModel\n        # Load CLIP model for video feature extraction\n        if config.clip_arch == 'ViT-B/32':\n            self.clip = CLIPModel.from_pretrained(\"openai/clip-vit-base-patch32\")\n        elif config.clip_arch == 'ViT-B/16':\n            self.clip = CLIPModel.from_pretrained(\"openai/clip-vit-base-patch16\")",
+        "detail": "model.clip_stochastic",
+        "documentation": {}
+    },
+    {
+        "label": "CLIPTransformer",
+        "kind": 6,
+        "importPath": "model.clip_transfomer",
+        "description": "model.clip_transfomer",
+        "peekOfCode": "class CLIPTransformer(nn.Module):\n    def __init__(self, config):\n        super(CLIPTransformer, self).__init__()\n        # Initialize CLIP model from Huggingface if using that\n        self.clip = CLIPModel.from_pretrained(\"openai/clip-vit-base-patch32\")\n        # Define additional layers or transformer layers based on your architecture\n        self.transformer = nn.Transformer(d_model=config.embed_dim)\n    def forward(self, text_inputs, video_inputs):\n        # Get text and video features using CLIP\n        text_features = self.clip.get_text_features(**text_inputs)",
+        "detail": "model.clip_transfomer",
+        "documentation": {}
+    },
+    {
+        "label": "ModelFactory",
+        "kind": 6,
+        "importPath": "model.model_factory",
+        "description": "model.model_factory",
+        "peekOfCode": "class ModelFactory:\n    @staticmethod\n    def get_model(config):\n        if config.arch == 'clip_transformer':\n            return CLIPTransformer(config)  # Newly added model\n        elif config.arch == 'clip_stochastic':\n            return CLIPStochastic(config)\n        else:\n            raise NotImplementedError(f\"Model architecture {config.arch} not implemented.\")",
+        "detail": "model.model_factory",
+        "documentation": {}
+    },
+    {
+        "label": "BaselinePooling",
+        "kind": 6,
+        "importPath": "modules.baseline_pooling",
+        "description": "modules.baseline_pooling",
+        "peekOfCode": "class BaselinePooling(nn.Module):\n    def __init__(self, pooling_type, config: Config):\n        super(BaselinePooling, self).__init__()\n        assert pooling_type is not None, \\\n                'Need to specify pooling type when using baseline model.'\n        if pooling_type == 'avg':\n            self.pooling_func = self._avg_pooling\n            print(\"Using average pooling\")\n        elif pooling_type == 'topk':\n            self.k = config.k",
+        "detail": "modules.baseline_pooling",
+        "documentation": {}
+    },
+    {
+        "label": "freeze_layers_clip",
+        "kind": 2,
+        "importPath": "modules.basic_utils",
+        "description": "modules.basic_utils",
+        "peekOfCode": "def freeze_layers_clip(model, freeze_layer_num):\n    assert hasattr(model, 'clip')\n    assert freeze_layer_num <= 12 and freeze_layer_num >= -1\n    if freeze_layer_num == -1:\n        return\n    for name, param in model.clip.named_parameters():\n        # top layers always need to train\n        if 'final_layer_norm' in name or 'text_projection' in name \\\n                or 'post_layernorm' in name or 'visual_projection' in name \\\n                or 'logit_scale' in name:",
+        "detail": "modules.basic_utils",
+        "documentation": {}
+    },
+    {
+        "label": "load_json",
+        "kind": 2,
+        "importPath": "modules.basic_utils",
+        "description": "modules.basic_utils",
+        "peekOfCode": "def load_json(filename):\n    with open(filename, \"r\") as f:\n        return json.load(f)\ndef read_lines(filepath):\n    with open(filepath, \"r\") as f:\n        return [e.strip(\"\\n\") for e in f.readlines()]\ndef mkdirp(p):\n    if not os.path.exists(p):\n        os.makedirs(p)\ndef deletedir(p):",
+        "detail": "modules.basic_utils",
+        "documentation": {}
+    },
+    {
+        "label": "read_lines",
+        "kind": 2,
+        "importPath": "modules.basic_utils",
+        "description": "modules.basic_utils",
+        "peekOfCode": "def read_lines(filepath):\n    with open(filepath, \"r\") as f:\n        return [e.strip(\"\\n\") for e in f.readlines()]\ndef mkdirp(p):\n    if not os.path.exists(p):\n        os.makedirs(p)\ndef deletedir(p):\n    if os.path.exists(p):\n        shutil.rmtree(p)",
+        "detail": "modules.basic_utils",
+        "documentation": {}
+    },
+    {
+        "label": "mkdirp",
+        "kind": 2,
+        "importPath": "modules.basic_utils",
+        "description": "modules.basic_utils",
+        "peekOfCode": "def mkdirp(p):\n    if not os.path.exists(p):\n        os.makedirs(p)\ndef deletedir(p):\n    if os.path.exists(p):\n        shutil.rmtree(p)",
+        "detail": "modules.basic_utils",
+        "documentation": {}
+    },
+    {
+        "label": "deletedir",
+        "kind": 2,
+        "importPath": "modules.basic_utils",
+        "description": "modules.basic_utils",
+        "peekOfCode": "def deletedir(p):\n    if os.path.exists(p):\n        shutil.rmtree(p)",
+        "detail": "modules.basic_utils",
+        "documentation": {}
+    },
+    {
+        "label": "CLIPLoss",
+        "kind": 6,
+        "importPath": "modules.loss",
+        "description": "modules.loss",
+        "peekOfCode": "class CLIPLoss(nn.Module):\n    def __init__(self):\n        super().__init__()\n    def forward(self, sims, logit_scale):\n        \"\"\"\n        Inputs: cosine similarities\n            sims: n x n (text is dim-0)\n            logit_scale: 1 x 1\n        \"\"\"\n        logit_scale = logit_scale.exp()",
+        "detail": "modules.loss",
+        "documentation": {}
+    },
+    {
+        "label": "LossFactory",
+        "kind": 6,
+        "importPath": "modules.loss",
+        "description": "modules.loss",
+        "peekOfCode": "class LossFactory:\n    @staticmethod\n    def get_loss(config_loss):\n        if config_loss == 'clip':\n            return CLIPLoss()\n        else:\n            raise NotImplemented",
+        "detail": "modules.loss",
+        "documentation": {}
+    },
+    {
+        "label": "np_softmax",
+        "kind": 2,
+        "importPath": "modules.metrics",
+        "description": "modules.metrics",
+        "peekOfCode": "def np_softmax(X, theta = 1.0, axis = None):\n    \"\"\"\n    Compute the softmax of each element along an axis of X.\n    Parameters\n    ----------\n    X: ND-Array. Probably should be floats.\n    theta (optional): float parameter, used as a multiplier\n        prior to exponentiation. Default = 1.0\n    axis (optional): axis to compute values along. Default is the\n        first non-singleton axis.",
+        "detail": "modules.metrics",
+        "documentation": {}
+    },
+    {
+        "label": "sim_matrix_training",
+        "kind": 2,
+        "importPath": "modules.metrics",
+        "description": "modules.metrics",
+        "peekOfCode": "def sim_matrix_training(text_embeds, vid_embeds_pooled, pooling_type):\n    \"\"\"\n    Computes the similarity matrix using pooled video frames\n    Output\n        sims: num_texts x num_vids\n    \"\"\"\n    text_embeds = text_embeds / text_embeds.norm(dim=-1, keepdim=True)\n    vid_embeds_pooled = vid_embeds_pooled / vid_embeds_pooled.norm(dim=-1, keepdim=True)\n    if pooling_type == 'avg':\n        sims = torch.mm(text_embeds, vid_embeds_pooled.t())",
+        "detail": "modules.metrics",
+        "documentation": {}
+    },
+    {
+        "label": "sim_matrix_inference_stochastic",
+        "kind": 2,
+        "importPath": "modules.metrics",
+        "description": "modules.metrics",
+        "peekOfCode": "def sim_matrix_inference_stochastic(text_embeds_per_video_id, vid_embeds_pooled_per_video_id, pooling_type):\n    text_embeds_per_video_id = text_embeds_per_video_id / text_embeds_per_video_id.norm(dim=-1, keepdim=True)\n    vid_embeds_pooled_per_video_id = vid_embeds_pooled_per_video_id / vid_embeds_pooled_per_video_id.norm(dim=-1,\n                                                                                                          keepdim=True)\n    if pooling_type == 'avg':\n        print(f'for this case, have not tried')\n        raise NotImplementedError\n    else:\n        num_txts, num_vids, max_text_per_vid, embed_dim = text_embeds_per_video_id.shape\n        vid_embeds_pooled_per_video_id = vid_embeds_pooled_per_video_id.permute(1, 2, 3, 0)",
+        "detail": "modules.metrics",
+        "documentation": {}
+    },
+    {
+        "label": "sim_matrix_inference_stochastic_light_allops",
+        "kind": 2,
+        "importPath": "modules.metrics",
+        "description": "modules.metrics",
+        "peekOfCode": "def sim_matrix_inference_stochastic_light_allops(text_embeds_per_video_id, vid_embeds_pooled_per_video_id, pooling_type,\n                                                 batch_size_split, config):\n    # @WJM: perform batch-wise torch.norm to save memory\n    text_embeds_per_video_id = text_embeds_per_video_id / text_embeds_per_video_id.norm(dim=-1, keepdim=True)\n    gen_log(model_path=config.model_path, log_name='log_trntst',\n            msg=f'text_embeds_per_video_id={text_embeds_per_video_id.shape}')\n    vid_embeds_pooled_per_video_id = vid_embeds_pooled_per_video_id / vid_embeds_pooled_per_video_id.norm(dim=-1,\n                                                                                                          keepdim=True)\n    gen_log(model_path=config.model_path, log_name='log_trntst',\n            msg=f'vid_embeds_pooled_per_video_id={vid_embeds_pooled_per_video_id.shape}')",
+        "detail": "modules.metrics",
+        "documentation": {}
+    },
+    {
+        "label": "generate_embeds_per_video_id_stochastic",
+        "kind": 2,
+        "importPath": "modules.metrics",
+        "description": "modules.metrics",
+        "peekOfCode": "def generate_embeds_per_video_id_stochastic(text_embeds_stochastic_allpairs, vid_embeds_pooled, all_vid_ids,\n                                            pooling_type):\n    # Construct dictionary of text embeds per unique video id\n    if pooling_type == 'avg':\n        # num_vids x embed_dim\n        text_embeds_per_video_id = text_embeds_stochastic_allpairs\n    else:\n        # Construct dictionary of video embeds for each text per video_id\n        text_embeds_per_video_id = []\n        for i in range(text_embeds_stochastic_allpairs.shape[0]):",
+        "detail": "modules.metrics",
+        "documentation": {}
+    },
+    {
+        "label": "t2v_metrics",
+        "kind": 2,
+        "importPath": "modules.metrics",
+        "description": "modules.metrics",
+        "peekOfCode": "def t2v_metrics(sims):\n    # Permute sims so it represents a sequence of text-video similarity matrices.\n    # Then obtain the double argsort to position the rank on the diagonal\n    stacked_sims = sims.permute(1,0,2)\n    sims_sort = torch.argsort(stacked_sims, dim=-1, descending=True)\n    sims_sort_2 = torch.argsort(sims_sort, dim=-1, descending=False)\n    ranks = torch.flatten(torch.diagonal(sims_sort_2, dim1=1, dim2=2))\n    # Now we need to extract valid ranks, as some belong to inf padding values\n    valid_check = torch.flatten(torch.diagonal(sims, dim1 = 0, dim2 = 2))\n    mask = ~ torch.logical_or(torch.isinf(valid_check), torch.isnan(valid_check))",
+        "detail": "modules.metrics",
+        "documentation": {}
+    },
+    {
+        "label": "v2t_metrics",
+        "kind": 2,
+        "importPath": "modules.metrics",
+        "description": "modules.metrics",
+        "peekOfCode": "def v2t_metrics(sims):\n    # Code to avoid nans\n    sims[sims!=sims] = float('-inf')\n    # Forms a similarity matrix\n    sims, _ = torch.max(sims, dim = 1)\n    sims = sims.t()\n    sims_sort = torch.argsort(sims, dim=-1, descending=True)\n    sims_sort_2 = torch.argsort(sims_sort, dim=-1, descending=False)\n    ranks = torch.diag(sims_sort_2).numpy() # diagonal\n    return compute_metrics(ranks)",
+        "detail": "modules.metrics",
+        "documentation": {}
+    },
+    {
+        "label": "compute_metrics",
+        "kind": 2,
+        "importPath": "modules.metrics",
+        "description": "modules.metrics",
+        "peekOfCode": "def compute_metrics(lst):\n    metrics = {}\n    metrics[\"R1\"] = 100 * float(np.sum(lst == 0)) / len(lst)\n    metrics[\"R5\"] = 100 * float(np.sum(lst < 5)) / len(lst)\n    metrics[\"R10\"] = 100 * float(np.sum(lst < 10)) / len(lst)\n    metrics[\"R50\"] = 100 * float(np.sum(lst < 50)) / len(lst)\n    metrics[\"R100\"] = 100 * float(np.sum(lst < 100)) / len(lst)\n    metrics[\"MedR\"] = np.median(lst) + 1\n    metrics[\"MeanR\"] = np.mean(lst) + 1\n    #stats = [metrics[x] for x in (\"R1\", \"R5\", \"R10\")]",
+        "detail": "modules.metrics",
+        "documentation": {}
+    },
+    {
+        "label": "pad_and_stack_dict_to_tensor",
+        "kind": 2,
+        "importPath": "modules.metrics",
+        "description": "modules.metrics",
+        "peekOfCode": "def pad_and_stack_dict_to_tensor(input, order, d=512):\n    max_length = max([input[k].shape[0] for k in input])\n    padded_input = {k: torch.cat([input[k], torch.full((max_length - input[k].shape[0], d), \n                                                        float(\"-inf\"), device = input[k].device)]) for k in input}\n    padded_stacked_input = torch.stack([padded_input[k] for k in order], dim = 0)\n    return padded_stacked_input",
+        "detail": "modules.metrics",
+        "documentation": {}
+    },
+    {
+        "label": "AdamW",
+        "kind": 6,
+        "importPath": "modules.optimization",
+        "description": "modules.optimization",
+        "peekOfCode": "class AdamW(Optimizer):\n    \"\"\"\n    Implements Adam algorithm with weight decay fix as introduced in `Decoupled Weight Decay Regularization\n    <https://arxiv.org/abs/1711.05101>`__.\n    Parameters:\n        params (:obj:`Iterable[nn.parameter.Parameter]`):\n            Iterable of parameters to optimize or dictionaries defining parameter groups.\n        lr (:obj:`float`, `optional`, defaults to 1e-3):\n            The learning rate to use.\n        betas (:obj:`Tuple[float,float]`, `optional`, defaults to (0.9, 0.999)):",
+        "detail": "modules.optimization",
+        "documentation": {}
+    },
+    {
+        "label": "get_linear_schedule_with_warmup",
+        "kind": 2,
+        "importPath": "modules.optimization",
+        "description": "modules.optimization",
+        "peekOfCode": "def get_linear_schedule_with_warmup(optimizer, num_warmup_steps, num_training_steps, last_epoch=-1):\n    \"\"\"\n    Create a schedule with a learning rate that decreases linearly from the initial lr set in the optimizer to 0, after\n    a warmup period during which it increases linearly from 0 to the initial lr set in the optimizer.\n    Args:\n        optimizer (:class:`~torch.optim.Optimizer`):\n            The optimizer for which to schedule the learning rate.\n        num_warmup_steps (:obj:`int`):\n            The number of steps for the warmup phase.\n        num_training_steps (:obj:`int`):",
+        "detail": "modules.optimization",
+        "documentation": {}
+    },
+    {
+        "label": "get_cosine_schedule_with_warmup",
+        "kind": 2,
+        "importPath": "modules.optimization",
+        "description": "modules.optimization",
+        "peekOfCode": "def get_cosine_schedule_with_warmup(\n    optimizer: Optimizer, num_warmup_steps: int, num_training_steps: int, num_cycles: float = 0.5, last_epoch: int = -1\n):\n    \"\"\"\n    Create a schedule with a learning rate that decreases following the values of the cosine function between the\n    initial lr set in the optimizer to 0, after a warmup period during which it increases linearly between 0 and the\n    initial lr set in the optimizer.\n    Args:\n        optimizer (:class:`~torch.optim.Optimizer`):\n            The optimizer for which to schedule the learning rate.",
+        "detail": "modules.optimization",
+        "documentation": {}
+    },
+    {
+        "label": "LinearCosRadius",
+        "kind": 6,
+        "importPath": "modules.stochastic_module",
+        "description": "modules.stochastic_module",
+        "peekOfCode": "class LinearCosRadius(nn.Module):\n    '''\n    Define the radius (R) as the linear function of the cos-similarity (t, v)\n    '''\n    def __init__(self, config: Config):\n        super(LinearCosRadius, self).__init__()\n        self.num_frames = config.num_frames\n        self.embed_dim = config.embed_dim\n        self.linear_proj = nn.Linear(self.num_frames, self.embed_dim)\n        self.learnable_scalar = nn.Parameter(torch.Tensor(1))",
+        "detail": "modules.stochastic_module",
+        "documentation": {}
+    },
+    {
+        "label": "StochasticText",
+        "kind": 6,
+        "importPath": "modules.stochastic_module",
+        "description": "modules.stochastic_module",
+        "peekOfCode": "class StochasticText(nn.Module):\n    def __init__(self, config: Config):\n        super(StochasticText, self).__init__()\n        self.config = config\n        self.std_branch = LinearCosRadius(config)\n    def forward(self, text_features, video_features):\n        \"\"\"\n        Input\n            text_embeds: num_texts x embed_dim\n            video_embeds: num_vids x num_frames x embed_dim",
+        "detail": "modules.stochastic_module",
+        "documentation": {}
+    },
+    {
+        "label": "CLIPTokenizer",
+        "kind": 6,
+        "importPath": "modules.tokenization_clip",
+        "description": "modules.tokenization_clip",
+        "peekOfCode": "class CLIPTokenizer(PreTrainedTokenizer):\n    \"\"\"\n    Construct a CLIP tokenizer. Based on byte-level Byte-Pair-Encoding.\n    This tokenizer has been trained to treat spaces like parts of the tokens (a bit like sentencepiece) so a word will\n    be encoded differently whether it is at the beginning of the sentence (without space) or not:\n    You can get around that behavior by passing ``add_prefix_space=True`` when instantiating this tokenizer or when you\n    call it on some text, but since the model was not pretrained this way, it might yield a decrease in performance.\n    .. note::\n        When used with ``is_split_into_words=True``, this tokenizer will add a space before each word (even the first\n        one).",
+        "detail": "modules.tokenization_clip",
+        "documentation": {}
+    },
+    {
+        "label": "bytes_to_unicode",
+        "kind": 2,
+        "importPath": "modules.tokenization_clip",
+        "description": "modules.tokenization_clip",
+        "peekOfCode": "def bytes_to_unicode():\n    \"\"\"\n    Returns list of utf-8 byte and a mapping to unicode strings. We specifically avoids mapping to whitespace/control\n    characters the bpe code barfs on.\n    The reversible bpe codes work on unicode strings. This means you need a large # of unicode characters in your vocab\n    if you want to avoid UNKs. When you're at something like a 10B token dataset you end up needing around 5K for\n    decent coverage. This is a signficant percentage of your normal, say, 32K bpe vocab. To avoid that, we want lookup\n    tables between utf-8 bytes and unicode strings.\n    \"\"\"\n    bs = (",
+        "detail": "modules.tokenization_clip",
+        "documentation": {}
+    },
+    {
+        "label": "get_pairs",
+        "kind": 2,
+        "importPath": "modules.tokenization_clip",
+        "description": "modules.tokenization_clip",
+        "peekOfCode": "def get_pairs(word):\n    \"\"\"\n    Return set of symbol pairs in a word.\n    Word is represented as tuple of symbols (symbols being variable-length strings).\n    \"\"\"\n    pairs = set()\n    prev_char = word[0]\n    for char in word[1:]:\n        pairs.add((prev_char, char))\n        prev_char = char",
+        "detail": "modules.tokenization_clip",
+        "documentation": {}
+    },
+    {
+        "label": "whitespace_clean",
+        "kind": 2,
+        "importPath": "modules.tokenization_clip",
+        "description": "modules.tokenization_clip",
+        "peekOfCode": "def whitespace_clean(text):\n    text = re.sub(r\"\\s+\", \" \", text)\n    text = text.strip()\n    return text\nclass CLIPTokenizer(PreTrainedTokenizer):\n    \"\"\"\n    Construct a CLIP tokenizer. Based on byte-level Byte-Pair-Encoding.\n    This tokenizer has been trained to treat spaces like parts of the tokens (a bit like sentencepiece) so a word will\n    be encoded differently whether it is at the beginning of the sentence (without space) or not:\n    You can get around that behavior by passing ``add_prefix_space=True`` when instantiating this tokenizer or when you",
+        "detail": "modules.tokenization_clip",
+        "documentation": {}
+    },
+    {
+        "label": "logger",
+        "kind": 5,
+        "importPath": "modules.tokenization_clip",
+        "description": "modules.tokenization_clip",
+        "peekOfCode": "logger = logging.get_logger(__name__)\nVOCAB_FILES_NAMES = {\n    \"vocab_file\": \"vocab.json\",\n    \"merges_file\": \"merges.txt\",\n}\nPRETRAINED_VOCAB_FILES_MAP = {\n    \"vocab_file\": {\n        \"openai/clip-vit-base-patch32\": \"https://huggingface.co/openai/clip-vit-base-patch32/resolve/main/vocab.json\",\n    },\n    \"merges_file\": {",
+        "detail": "modules.tokenization_clip",
+        "documentation": {}
+    },
+    {
+        "label": "VOCAB_FILES_NAMES",
+        "kind": 5,
+        "importPath": "modules.tokenization_clip",
+        "description": "modules.tokenization_clip",
+        "peekOfCode": "VOCAB_FILES_NAMES = {\n    \"vocab_file\": \"vocab.json\",\n    \"merges_file\": \"merges.txt\",\n}\nPRETRAINED_VOCAB_FILES_MAP = {\n    \"vocab_file\": {\n        \"openai/clip-vit-base-patch32\": \"https://huggingface.co/openai/clip-vit-base-patch32/resolve/main/vocab.json\",\n    },\n    \"merges_file\": {\n        \"openai/clip-vit-base-patch32\": \"https://huggingface.co/openai/clip-vit-base-patch32/resolve/main/merges.txt\",",
+        "detail": "modules.tokenization_clip",
+        "documentation": {}
+    },
+    {
+        "label": "PRETRAINED_VOCAB_FILES_MAP",
+        "kind": 5,
+        "importPath": "modules.tokenization_clip",
+        "description": "modules.tokenization_clip",
+        "peekOfCode": "PRETRAINED_VOCAB_FILES_MAP = {\n    \"vocab_file\": {\n        \"openai/clip-vit-base-patch32\": \"https://huggingface.co/openai/clip-vit-base-patch32/resolve/main/vocab.json\",\n    },\n    \"merges_file\": {\n        \"openai/clip-vit-base-patch32\": \"https://huggingface.co/openai/clip-vit-base-patch32/resolve/main/merges.txt\",\n    },\n}\nPRETRAINED_POSITIONAL_EMBEDDINGS_SIZES = {\n    \"openai/clip-vit-base-patch32\": 77,",
+        "detail": "modules.tokenization_clip",
+        "documentation": {}
+    },
+    {
+        "label": "PRETRAINED_POSITIONAL_EMBEDDINGS_SIZES",
+        "kind": 5,
+        "importPath": "modules.tokenization_clip",
+        "description": "modules.tokenization_clip",
+        "peekOfCode": "PRETRAINED_POSITIONAL_EMBEDDINGS_SIZES = {\n    \"openai/clip-vit-base-patch32\": 77,\n}\nPRETRAINED_INIT_CONFIGURATION = {\n    \"openai/clip-vit-base-patch32\": {\"do_lower_case\": True},\n}\n@lru_cache()\ndef bytes_to_unicode():\n    \"\"\"\n    Returns list of utf-8 byte and a mapping to unicode strings. We specifically avoids mapping to whitespace/control",
+        "detail": "modules.tokenization_clip",
+        "documentation": {}
+    },
+    {
+        "label": "PRETRAINED_INIT_CONFIGURATION",
+        "kind": 5,
+        "importPath": "modules.tokenization_clip",
+        "description": "modules.tokenization_clip",
+        "peekOfCode": "PRETRAINED_INIT_CONFIGURATION = {\n    \"openai/clip-vit-base-patch32\": {\"do_lower_case\": True},\n}\n@lru_cache()\ndef bytes_to_unicode():\n    \"\"\"\n    Returns list of utf-8 byte and a mapping to unicode strings. We specifically avoids mapping to whitespace/control\n    characters the bpe code barfs on.\n    The reversible bpe codes work on unicode strings. This means you need a large # of unicode characters in your vocab\n    if you want to avoid UNKs. When you're at something like a 10B token dataset you end up needing around 5K for",
+        "detail": "modules.tokenization_clip",
+        "documentation": {}
+    },
+    {
+        "label": "MultiHeadedAttention",
+        "kind": 6,
+        "importPath": "modules.transformer",
+        "description": "modules.transformer",
+        "peekOfCode": "class MultiHeadedAttention(nn.Module):\n    def __init__(self, config: Config):\n        super(MultiHeadedAttention, self).__init__()\n        self.embed_dim = config.embed_dim\n        self.num_heads = config.num_mha_heads\n        assert self.embed_dim % self.num_heads == 0\n        self.head_dim = self.embed_dim // self.num_heads\n        self.q_proj = nn.Linear(self.embed_dim, self.embed_dim)\n        self.k_proj = nn.Linear(self.embed_dim, self.embed_dim)\n        self.v_proj = nn.Linear(self.embed_dim, self.embed_dim)",
+        "detail": "modules.transformer",
+        "documentation": {}
+    },
+    {
+        "label": "Transformer",
+        "kind": 6,
+        "importPath": "modules.transformer",
+        "description": "modules.transformer",
+        "peekOfCode": "class Transformer(nn.Module):\n    def __init__(self, config: Config):\n        super(Transformer, self).__init__()\n        self.embed_dim = config.embed_dim\n        dropout = config.transformer_dropout\n        self.cross_attn = MultiHeadedAttention(config)\n        self.linear_proj = nn.Linear(self.embed_dim, self.embed_dim)\n        self.layer_norm1 = nn.LayerNorm(self.embed_dim)\n        self.layer_norm2 = nn.LayerNorm(self.embed_dim)\n        self.layer_norm3 = nn.LayerNorm(self.embed_dim)",
+        "detail": "modules.transformer",
+        "documentation": {}
+    },
+    {
+        "label": "compress",
+        "kind": 2,
+        "importPath": "preprocess.compress_video",
+        "description": "preprocess.compress_video",
+        "peekOfCode": "def compress(paras):\n    input_video_path, output_video_path = paras\n    try:\n        command = ['ffmpeg',\n                   '-y',  # (optional) overwrite output file if it exists\n                   '-i', input_video_path,\n                   '-filter:v',\n                   'scale=\\'if(gt(a,1),trunc(oh*a/2)*2,224)\\':\\'if(gt(a,1),224,trunc(ow*a/2)*2)\\'',  # scale to 224\n                   '-map', '0:v',\n                   '-r', '3',  # frames per second",
+        "detail": "preprocess.compress_video",
+        "documentation": {}
+    },
+    {
+        "label": "prepare_input_output_pairs",
+        "kind": 2,
+        "importPath": "preprocess.compress_video",
+        "description": "preprocess.compress_video",
+        "peekOfCode": "def prepare_input_output_pairs(input_root, output_root):\n    input_video_path_list = []\n    output_video_path_list = []\n    for root, dirs, files in os.walk(input_root):\n        for file_name in files:\n            input_video_path = os.path.join(root, file_name)\n            output_video_path = os.path.join(output_root, file_name)\n            if os.path.exists(output_video_path):\n                pass\n            else:",
+        "detail": "preprocess.compress_video",
+        "documentation": {}
+    },
+    {
+        "label": "BaseTrainer",
+        "kind": 6,
+        "importPath": "trainer.base_trainer",
+        "description": "trainer.base_trainer",
+        "peekOfCode": "class BaseTrainer:\n    \"\"\"\n    Base class for all trainers\n    \"\"\"\n    def __init__(self, model, loss, metrics, optimizer, config: Config, writer=None):\n        self.config = config\n        # setup GPU device if available, move model into configured device\n        self.device = self._prepare_device()\n        self.model = model.to(self.device)\n        self.loss = loss.to(self.device)",
+        "detail": "trainer.base_trainer",
+        "documentation": {}
+    },
+    {
+        "label": "Trainer",
+        "kind": 6,
+        "importPath": "trainer.trainer_stochastic",
+        "description": "trainer.trainer_stochastic",
+        "peekOfCode": "class Trainer(BaseTrainer):\n    def __init__(self, model, loss, metrics, optimizer, config: Config, train_data_loader,\n                 valid_data_loader, tokenizer, lr_scheduler=None, writer=None):\n        super().__init__(model, loss, metrics, optimizer, config, writer)\n        self.train_data_loader = train_data_loader\n        self.valid_data_loader = valid_data_loader\n        self.lr_scheduler = lr_scheduler\n        self.tokenizer = tokenizer\n        self.pooling_type = config.pooling_type\n        self.window_metric = defaultdict(lambda: deque(maxlen=config.eval_window_size))",
+        "detail": "trainer.trainer_stochastic",
+        "documentation": {}
+    },
+    {
+        "label": "pad_collate_fn",
+        "kind": 2,
+        "importPath": "trainer.trainer_stochastic",
+        "description": "trainer.trainer_stochastic",
+        "peekOfCode": "def pad_collate_fn(batch):\n    \"\"\"\n    Custom collate function to resize and/or pad images and clip features in a batch to have the same size.\n    \"\"\"\n    # Extract all images and other data\n    keyframes = [item['keyframe_image'] for item in batch]\n    clip_features = [torch.tensor(item['clip_features']) for item in batch]\n    metadata = [item['metadata'] for item in batch]\n    video_ids = [item['video_id'] for item in batch]\n    keyframes_data = [item['keyframes'] for item in batch]",
+        "detail": "trainer.trainer_stochastic",
+        "documentation": {}
+    },
+    {
+        "label": "InferenceHandler",
+        "kind": 6,
+        "importPath": "inference_result",
+        "description": "inference_result",
+        "peekOfCode": "class InferenceHandler:\n    def __init__(self, config):\n        self.map_keyframes_dir = config.map_keyframes_dir\n        self.metadata_dir = config.metadata_dir\n        self.output_dir = config.output_dir\n        os.makedirs(self.output_dir, exist_ok=True)\n    def run_inference(self, model, dataset, tokenizer=None):\n        \"\"\"\n        Perform inference and save the output results to an Excel file.\n        \"\"\"",
+        "detail": "inference_result",
+        "documentation": {}
+    },
+    {
+        "label": "extract_keyframe_info",
+        "kind": 2,
+        "importPath": "test",
+        "description": "test",
+        "peekOfCode": "def extract_keyframe_info(map_keyframes_dir, video_id, subdir):\n    \"\"\"\n    Extract frame index information from map-keyframes CSV file for a specific video_id.\n    Adjusted to reflect the subdirectory structure.\n    \"\"\"\n    map_keyframes_path = os.path.join(map_keyframes_dir, subdir, f\"{video_id}.csv\")\n    if os.path.exists(map_keyframes_path):\n        df = pd.read_csv(map_keyframes_path)\n        return df['frame_idx'].tolist()\n    else:",
+        "detail": "test",
+        "documentation": {}
+    },
+    {
+        "label": "extract_metadata",
+        "kind": 2,
+        "importPath": "test",
+        "description": "test",
+        "peekOfCode": "def extract_metadata(metadata_dir, video_id):\n    \"\"\"\n    Extract description information from metadata JSON file for a specific video_id.\n    \"\"\"\n    metadata_path = os.path.join(metadata_dir, f\"{video_id}.json\")\n    if os.path.exists(metadata_path):\n        with open(metadata_path, 'r', encoding='utf-8') as f:\n            metadata = json.load(f)\n        return metadata.get('title', 'No description')\n    else:",
+        "detail": "test",
+        "documentation": {}
+    },
+    {
+        "label": "main",
+        "kind": 2,
+        "importPath": "test",
+        "description": "test",
+        "peekOfCode": "def main():\n    # config\n    config = AllConfig()\n    os.environ['TOKENIZERS_PARALLELISM'] = \"false\"\n    writer = None\n    # GPU\n    if config.gpu is not None and config.gpu != '99':\n        print('set GPU')\n        os.environ[\"CUDA_VISIBLE_DEVICES\"] = config.gpu\n        torch.backends.cudnn.enabled = True",
+        "detail": "test",
+        "documentation": {}
+    },
+    {
+        "label": "main",
+        "kind": 2,
+        "importPath": "train",
+        "description": "train",
+        "peekOfCode": "def main():\n    # config\n    config = AllConfig()\n    os.environ['TOKENIZERS_PARALLELISM'] = \"false\"\n    writer = None\n    # GPU\n    if config.gpu is not None and config.gpu != '99':\n        print('set GPU')\n        os.environ[\"CUDA_VISIBLE_DEVICES\"] = config.gpu\n        torch.backends.cudnn.enabled = True",
+        "detail": "train",
+        "documentation": {}
+    }
+]
