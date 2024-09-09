@@ -8,7 +8,7 @@ from modules.optimization import AdamW, get_cosine_schedule_with_warmup
 import sys
 import os
 
-sys.path.append('D:/Course_hoc_mien_phi_workshop/AI Hackkathon/SourceCode/TextToVideo')
+sys.path.append('/content/TextToVideo')
 from modules.loss import LossFactory
 from config.all_config import gen_log
 from config.all_config import AllConfig
@@ -114,3 +114,5 @@ def main():
 
 if __name__ == '__main__':
     main()
+
+

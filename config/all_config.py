@@ -32,13 +32,14 @@ def gen_log(model_path, msg, log_name):
 class AllConfig(Config):
     def __init__(self):
         super().__init__()
+        self.max_token_length = 256  # You can adjust this value based on your needs
         
     # Ensure these are added from the Config class or define them directly
-        self.videos_dir = "D:/Course_hoc_mien_phi_workshop/AI Hackkathon/Dataset/video"
-        self.features_dir = "D:/Course_hoc_mien_phi_workshop/AI Hackkathon/Dataset/clip-features-32"
-        self.keyframes_dir = "D:/Course_hoc_mien_phi_workshop/AI Hackkathon/Dataset/keyframes"
-        self.metadata_dir = "D:/Course_hoc_mien_phi_workshop/AI Hackkathon/Dataset/metadata"
-        self.map_keyframes_dir = "D:/Course_hoc_mien_phi_workshop/AI Hackkathon/Dataset/map-keyframes"
+        self.videos_dir = "/content/drive/MyDrive/AI_Hackkathon/Dataset/video"
+        self.features_dir = "/content/drive/MyDrive/AI_Hackkathon/Dataset/clip-features-32"
+        self.keyframes_dir = "/content/drive/MyDrive/AI_Hackkathon/Dataset/keyframes"
+        self.metadata_dir = "/content/drive/MyDrive/AI_Hackkathon/Dataset/metadata"
+        self.map_keyframes_dir = "/content/drive/MyDrive/AI_Hackkathon/Dataset/map-keyframes"
         
         # Add other parameters as needed
         self.num_frames = 500
@@ -60,7 +61,7 @@ class AllConfig(Config):
         
         # data parameters
         parser.add_argument('--dataset_name', type=str, default='aichallenge', help="Dataset name")
-        parser.add_argument('--videos_dir', type=str, default='data/aichallenge/vids', help="Location of videos")
+        parser.add_argument('--keyframes_dir', type=str, default='/content/drive/MyDrive/AI_Hackkathon/Dataset/keyframes', help="Location of videos")
         parser.add_argument('--aichallenge_train_file', type=str, default='aichallenge-dataset', help="Training file for Aichallenge dataset")
         parser.add_argument('--num_frames', type=int, default=12)
         parser.add_argument('--video_sample_type', default='uniform', help="'rand'/'uniform'")
@@ -68,7 +69,7 @@ class AllConfig(Config):
 
         # experiment parameters
         parser.add_argument('--exp_name', type=str, required=True, help="Name of the current experiment")
-        parser.add_argument('--output_dir', type=str, default='./outputs')
+        parser.add_argument('--output_dir', type=str, default='/content/drive/MyDrive/AI_Hackkathon/output')
         parser.add_argument('--save_every', type=int, default=1, help="Save model every n epochs")
         parser.add_argument('--log_step', type=int, default=10, help="Print training log every n steps")
         parser.add_argument('--evals_per_epoch', type=int, default=10, help="Number of times to evaluate per epoch")
@@ -99,7 +100,7 @@ class AllConfig(Config):
         parser.add_argument('--transformer_dropout', type=float, default=0.3, help='Dropout prob. in the transformer pooling')
 
         # system parameters
-        parser.add_argument('--num_workers', type=int, default=8)
+        parser.add_argument('--num_workers', type=int, default=0)
         parser.add_argument('--seed', type=int, default=24, help='Random seed')
         parser.add_argument('--no_tensorboard', action='store_true', default=False)
         parser.add_argument('--tb_log_dir', type=str, default='logs')
@@ -140,3 +141,4 @@ class AllConfig(Config):
         mkdirp(args.tb_log_dir)
 
         return args
+

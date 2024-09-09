@@ -29,7 +29,7 @@ from transformers.utils import logging
 logger = logging.get_logger(__name__)
 
 VOCAB_FILES_NAMES = {
-    "vocab_file": "vocab.json",
+    "vocab_file": "vocab.txt",
     "merges_file": "merges.txt",
 }
 
@@ -372,3 +372,4 @@ class CLIPTokenizer(PreTrainedTokenizer):
         if is_split_into_words or add_prefix_space:
             text = " " + text
         return (text, kwargs)
+

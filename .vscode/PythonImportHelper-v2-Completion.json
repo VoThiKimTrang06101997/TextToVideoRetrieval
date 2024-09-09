@@ -208,64 +208,6 @@
         "documentation": {}
     },
     {
-        "label": "pandas",
-        "kind": 6,
-        "isExtraImport": true,
-        "importPath": "pandas",
-        "description": "pandas",
-        "detail": "pandas",
-        "documentation": {}
-    },
-    {
-        "label": "torchvision.transforms",
-        "kind": 6,
-        "isExtraImport": true,
-        "importPath": "torchvision.transforms",
-        "description": "torchvision.transforms",
-        "detail": "torchvision.transforms",
-        "documentation": {}
-    },
-    {
-        "label": "Compose",
-        "importPath": "torchvision.transforms",
-        "description": "torchvision.transforms",
-        "isExtraImport": true,
-        "detail": "torchvision.transforms",
-        "documentation": {}
-    },
-    {
-        "label": "Resize",
-        "importPath": "torchvision.transforms",
-        "description": "torchvision.transforms",
-        "isExtraImport": true,
-        "detail": "torchvision.transforms",
-        "documentation": {}
-    },
-    {
-        "label": "CenterCrop",
-        "importPath": "torchvision.transforms",
-        "description": "torchvision.transforms",
-        "isExtraImport": true,
-        "detail": "torchvision.transforms",
-        "documentation": {}
-    },
-    {
-        "label": "ToTensor",
-        "importPath": "torchvision.transforms",
-        "description": "torchvision.transforms",
-        "isExtraImport": true,
-        "detail": "torchvision.transforms",
-        "documentation": {}
-    },
-    {
-        "label": "Normalize",
-        "importPath": "torchvision.transforms",
-        "description": "torchvision.transforms",
-        "isExtraImport": true,
-        "detail": "torchvision.transforms",
-        "documentation": {}
-    },
-    {
         "label": "Image",
         "importPath": "PIL",
         "description": "PIL",
@@ -314,28 +256,11 @@
         "documentation": {}
     },
     {
-        "label": "torch.nn",
-        "kind": 6,
+        "label": "DataLoader",
+        "importPath": "torch.utils.data",
+        "description": "torch.utils.data",
         "isExtraImport": true,
-        "importPath": "torch.nn",
-        "description": "torch.nn",
-        "detail": "torch.nn",
-        "documentation": {}
-    },
-    {
-        "label": "functional",
-        "importPath": "torch.nn",
-        "description": "torch.nn",
-        "isExtraImport": true,
-        "detail": "torch.nn",
-        "documentation": {}
-    },
-    {
-        "label": "functional",
-        "importPath": "torch.nn",
-        "description": "torch.nn",
-        "isExtraImport": true,
-        "detail": "torch.nn",
+        "detail": "torch.utils.data",
         "documentation": {}
     },
     {
@@ -345,6 +270,87 @@
         "importPath": "clip",
         "description": "clip",
         "detail": "clip",
+        "documentation": {}
+    },
+    {
+        "label": "AutoTokenizer",
+        "importPath": "transformers",
+        "description": "transformers",
+        "isExtraImport": true,
+        "detail": "transformers",
+        "documentation": {}
+    },
+    {
+        "label": "AutoModel",
+        "importPath": "transformers",
+        "description": "transformers",
+        "isExtraImport": true,
+        "detail": "transformers",
+        "documentation": {}
+    },
+    {
+        "label": "RobertaModel",
+        "importPath": "transformers",
+        "description": "transformers",
+        "isExtraImport": true,
+        "detail": "transformers",
+        "documentation": {}
+    },
+    {
+        "label": "RobertaTokenizer",
+        "importPath": "transformers",
+        "description": "transformers",
+        "isExtraImport": true,
+        "detail": "transformers",
+        "documentation": {}
+    },
+    {
+        "label": "CLIPModel",
+        "importPath": "transformers",
+        "description": "transformers",
+        "isExtraImport": true,
+        "detail": "transformers",
+        "documentation": {}
+    },
+    {
+        "label": "CLIPModel",
+        "importPath": "transformers",
+        "description": "transformers",
+        "isExtraImport": true,
+        "detail": "transformers",
+        "documentation": {}
+    },
+    {
+        "label": "AutoTokenizer",
+        "importPath": "transformers",
+        "description": "transformers",
+        "isExtraImport": true,
+        "detail": "transformers",
+        "documentation": {}
+    },
+    {
+        "label": "AutoModel",
+        "importPath": "transformers",
+        "description": "transformers",
+        "isExtraImport": true,
+        "detail": "transformers",
+        "documentation": {}
+    },
+    {
+        "label": "torch.nn.functional",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "torch.nn.functional",
+        "description": "torch.nn.functional",
+        "detail": "torch.nn.functional",
+        "documentation": {}
+    },
+    {
+        "label": "checkpoint",
+        "importPath": "torch.utils.checkpoint",
+        "description": "torch.utils.checkpoint",
+        "isExtraImport": true,
+        "detail": "torch.utils.checkpoint",
         "documentation": {}
     },
     {
@@ -397,6 +403,46 @@
         "documentation": {}
     },
     {
+        "label": "Compose",
+        "importPath": "torchvision.transforms",
+        "description": "torchvision.transforms",
+        "isExtraImport": true,
+        "detail": "torchvision.transforms",
+        "documentation": {}
+    },
+    {
+        "label": "Resize",
+        "importPath": "torchvision.transforms",
+        "description": "torchvision.transforms",
+        "isExtraImport": true,
+        "detail": "torchvision.transforms",
+        "documentation": {}
+    },
+    {
+        "label": "CenterCrop",
+        "importPath": "torchvision.transforms",
+        "description": "torchvision.transforms",
+        "isExtraImport": true,
+        "detail": "torchvision.transforms",
+        "documentation": {}
+    },
+    {
+        "label": "ToTensor",
+        "importPath": "torchvision.transforms",
+        "description": "torchvision.transforms",
+        "isExtraImport": true,
+        "detail": "torchvision.transforms",
+        "documentation": {}
+    },
+    {
+        "label": "Normalize",
+        "importPath": "torchvision.transforms",
+        "description": "torchvision.transforms",
+        "isExtraImport": true,
+        "detail": "torchvision.transforms",
+        "documentation": {}
+    },
+    {
         "label": "cv2",
         "kind": 6,
         "isExtraImport": true,
@@ -412,6 +458,15 @@
         "importPath": "random",
         "description": "random",
         "detail": "random",
+        "documentation": {}
+    },
+    {
+        "label": "torch.nn",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "torch.nn",
+        "description": "torch.nn",
+        "detail": "torch.nn",
         "documentation": {}
     },
     {
@@ -431,27 +486,11 @@
         "documentation": {}
     },
     {
-        "label": "RobertaModel",
-        "importPath": "transformers",
-        "description": "transformers",
+        "label": "CLIPTokenizer",
+        "importPath": "modules.tokenization_clip",
+        "description": "modules.tokenization_clip",
         "isExtraImport": true,
-        "detail": "transformers",
-        "documentation": {}
-    },
-    {
-        "label": "RobertaTokenizer",
-        "importPath": "transformers",
-        "description": "transformers",
-        "isExtraImport": true,
-        "detail": "transformers",
-        "documentation": {}
-    },
-    {
-        "label": "CLIPModel",
-        "importPath": "transformers",
-        "description": "transformers",
-        "isExtraImport": true,
-        "detail": "transformers",
+        "detail": "modules.tokenization_clip",
         "documentation": {}
     },
     {
@@ -484,15 +523,6 @@
         "description": "model.clip_transfomer",
         "isExtraImport": true,
         "detail": "model.clip_transfomer",
-        "documentation": {}
-    },
-    {
-        "label": "torch.nn.functional",
-        "kind": 6,
-        "isExtraImport": true,
-        "importPath": "torch.nn.functional",
-        "description": "torch.nn.functional",
-        "detail": "torch.nn.functional",
         "documentation": {}
     },
     {
@@ -714,6 +744,15 @@
         "documentation": {}
     },
     {
+        "label": "pandas",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "pandas",
+        "description": "pandas",
+        "detail": "pandas",
+        "documentation": {}
+    },
+    {
         "label": "tqdm",
         "importPath": "tqdm",
         "description": "tqdm",
@@ -735,6 +774,46 @@
         "description": "collections",
         "isExtraImport": true,
         "detail": "collections",
+        "documentation": {}
+    },
+    {
+        "label": "gen_log",
+        "importPath": "config.all_config",
+        "description": "config.all_config",
+        "isExtraImport": true,
+        "detail": "config.all_config",
+        "documentation": {}
+    },
+    {
+        "label": "AllConfig",
+        "importPath": "config.all_config",
+        "description": "config.all_config",
+        "isExtraImport": true,
+        "detail": "config.all_config",
+        "documentation": {}
+    },
+    {
+        "label": "gen_log",
+        "importPath": "config.all_config",
+        "description": "config.all_config",
+        "isExtraImport": true,
+        "detail": "config.all_config",
+        "documentation": {}
+    },
+    {
+        "label": "gen_log",
+        "importPath": "config.all_config",
+        "description": "config.all_config",
+        "isExtraImport": true,
+        "detail": "config.all_config",
+        "documentation": {}
+    },
+    {
+        "label": "AllConfig",
+        "importPath": "config.all_config",
+        "description": "config.all_config",
+        "isExtraImport": true,
+        "detail": "config.all_config",
         "documentation": {}
     },
     {
@@ -818,108 +897,76 @@
         "documentation": {}
     },
     {
-        "label": "AllConfig",
-        "importPath": "config.all_config",
-        "description": "config.all_config",
-        "isExtraImport": true,
-        "detail": "config.all_config",
-        "documentation": {}
-    },
-    {
-        "label": "gen_log",
-        "importPath": "config.all_config",
-        "description": "config.all_config",
-        "isExtraImport": true,
-        "detail": "config.all_config",
-        "documentation": {}
-    },
-    {
-        "label": "gen_log",
-        "importPath": "config.all_config",
-        "description": "config.all_config",
-        "isExtraImport": true,
-        "detail": "config.all_config",
-        "documentation": {}
-    },
-    {
-        "label": "AllConfig",
-        "importPath": "config.all_config",
-        "description": "config.all_config",
-        "isExtraImport": true,
-        "detail": "config.all_config",
-        "documentation": {}
-    },
-    {
-        "label": "DataFactory",
-        "importPath": "datasets.data_factory",
-        "description": "datasets.data_factory",
-        "isExtraImport": true,
-        "detail": "datasets.data_factory",
-        "documentation": {}
-    },
-    {
-        "label": "DataFactory",
-        "importPath": "datasets.data_factory",
-        "description": "datasets.data_factory",
-        "isExtraImport": true,
-        "detail": "datasets.data_factory",
-        "documentation": {}
-    },
-    {
-        "label": "ModelFactory",
-        "importPath": "model.model_factory",
-        "description": "model.model_factory",
-        "isExtraImport": true,
-        "detail": "model.model_factory",
-        "documentation": {}
-    },
-    {
-        "label": "ModelFactory",
-        "importPath": "model.model_factory",
-        "description": "model.model_factory",
-        "isExtraImport": true,
-        "detail": "model.model_factory",
-        "documentation": {}
-    },
-    {
-        "label": "LossFactory",
-        "importPath": "modules.loss",
-        "description": "modules.loss",
-        "isExtraImport": true,
-        "detail": "modules.loss",
-        "documentation": {}
-    },
-    {
-        "label": "LossFactory",
-        "importPath": "modules.loss",
-        "description": "modules.loss",
-        "isExtraImport": true,
-        "detail": "modules.loss",
-        "documentation": {}
-    },
-    {
-        "label": "Trainer",
-        "importPath": "trainer.trainer_stochastic",
-        "description": "trainer.trainer_stochastic",
-        "isExtraImport": true,
-        "detail": "trainer.trainer_stochastic",
-        "documentation": {}
-    },
-    {
-        "label": "Trainer",
-        "importPath": "trainer.trainer_stochastic",
-        "description": "trainer.trainer_stochastic",
-        "isExtraImport": true,
-        "detail": "trainer.trainer_stochastic",
-        "documentation": {}
-    },
-    {
         "label": "torch.multiprocessing",
         "kind": 6,
         "isExtraImport": true,
         "importPath": "torch.multiprocessing",
         "description": "torch.multiprocessing",
         "detail": "torch.multiprocessing",
+        "documentation": {}
+    },
+    {
+        "label": "DataFactory",
+        "importPath": "datasets.data_factory",
+        "description": "datasets.data_factory",
+        "isExtraImport": true,
+        "detail": "datasets.data_factory",
+        "documentation": {}
+    },
+    {
+        "label": "DataFactory",
+        "importPath": "datasets.data_factory",
+        "description": "datasets.data_factory",
+        "isExtraImport": true,
+        "detail": "datasets.data_factory",
+        "documentation": {}
+    },
+    {
+        "label": "ModelFactory",
+        "importPath": "model.model_factory",
+        "description": "model.model_factory",
+        "isExtraImport": true,
+        "detail": "model.model_factory",
+        "documentation": {}
+    },
+    {
+        "label": "ModelFactory",
+        "importPath": "model.model_factory",
+        "description": "model.model_factory",
+        "isExtraImport": true,
+        "detail": "model.model_factory",
+        "documentation": {}
+    },
+    {
+        "label": "LossFactory",
+        "importPath": "modules.loss",
+        "description": "modules.loss",
+        "isExtraImport": true,
+        "detail": "modules.loss",
+        "documentation": {}
+    },
+    {
+        "label": "LossFactory",
+        "importPath": "modules.loss",
+        "description": "modules.loss",
+        "isExtraImport": true,
+        "detail": "modules.loss",
+        "documentation": {}
+    },
+    {
+        "label": "Trainer",
+        "importPath": "trainer.trainer_stochastic",
+        "description": "trainer.trainer_stochastic",
+        "isExtraImport": true,
+        "detail": "trainer.trainer_stochastic",
+        "documentation": {}
+    },
+    {
+        "label": "Trainer",
+        "importPath": "trainer.trainer_stochastic",
+        "description": "trainer.trainer_stochastic",
+        "isExtraImport": true,
+        "detail": "trainer.trainer_stochastic",
         "documentation": {}
     },
     {
@@ -943,7 +990,7 @@
         "kind": 6,
         "importPath": "config.all_config",
         "description": "config.all_config",
-        "peekOfCode": "class AllConfig(Config):\n    def __init__(self):\n        super().__init__()\n    # Ensure these are added from the Config class or define them directly\n        self.videos_dir = \"D:/Course_hoc_mien_phi_workshop/AI Hackkathon/Dataset/video\"\n        self.features_dir = \"D:/Course_hoc_mien_phi_workshop/AI Hackkathon/Dataset/clip-features-32\"\n        self.keyframes_dir = \"D:/Course_hoc_mien_phi_workshop/AI Hackkathon/Dataset/keyframes\"\n        self.metadata_dir = \"D:/Course_hoc_mien_phi_workshop/AI Hackkathon/Dataset/metadata\"\n        self.map_keyframes_dir = \"D:/Course_hoc_mien_phi_workshop/AI Hackkathon/Dataset/map-keyframes\"\n        # Add other parameters as needed",
+        "peekOfCode": "class AllConfig(Config):\n    def __init__(self):\n        super().__init__()\n        self.max_token_length = 256  # You can adjust this value based on your needs\n    # Ensure these are added from the Config class or define them directly\n        self.videos_dir = \"/content/drive/MyDrive/AI_Hackkathon/Dataset/video\"\n        self.features_dir = \"/content/drive/MyDrive/AI_Hackkathon/Dataset/clip-features-32\"\n        self.keyframes_dir = \"/content/drive/MyDrive/AI_Hackkathon/Dataset/keyframes\"\n        self.metadata_dir = \"/content/drive/MyDrive/AI_Hackkathon/Dataset/metadata\"\n        self.map_keyframes_dir = \"/content/drive/MyDrive/AI_Hackkathon/Dataset/map-keyframes\"",
         "detail": "config.all_config",
         "documentation": {}
     },
@@ -966,20 +1013,38 @@
         "documentation": {}
     },
     {
-        "label": "CustomDataset",
-        "kind": 6,
-        "importPath": "datasets.aichallenge_dataset",
-        "description": "datasets.aichallenge_dataset",
-        "peekOfCode": "class CustomDataset(Dataset):\n    def __init__(self, config, split_type='train', img_transforms=None, clip_model_name=\"RN50x16\"):\n        self.config = config\n        self.split_type = split_type\n        self.img_transforms = img_transforms\n        # Load CLIP model and preprocess\n        self.device = \"cuda\" if torch.cuda.is_available() else \"cpu\"\n        self.clip_model, self.clip_preprocess = clip.load(clip_model_name, device=self.device)\n        # Define directories for your dataset\n        self.keyframes_dir = config.keyframes_dir",
-        "detail": "datasets.aichallenge_dataset",
-        "documentation": {}
-    },
-    {
         "label": "Config",
         "kind": 6,
         "importPath": "datasets.aichallenge_dataset",
         "description": "datasets.aichallenge_dataset",
-        "peekOfCode": "class Config:\n    def __init__(self):\n        self.keyframes_dir = \"D:/Course_hoc_mien_phi_workshop/AI Hackkathon/Dataset/keyframes\"\n        self.metadata_dir = \"D:/Course_hoc_mien_phi_workshop/AI Hackkathon/Dataset/metadata\"\n        self.map_keyframes_dir = \"D:/Course_hoc_mien_phi_workshop/AI Hackkathon/Dataset/map-keyframes\"\n# Example usage:\nconfig = Config()\n# Create dataset object\ndataset = CustomDataset(config, split_type='train')\n# Example of loading and processing the first 5 items",
+        "peekOfCode": "class Config:\n    def __init__(self):\n        self.keyframes_dir = \"/content/drive/MyDrive/AI_Hackkathon/Dataset/keyframes\"\n        self.metadata_dir = \"/content/drive/MyDrive/AI_Hackkathon/Dataset/metadata\"\n        self.map_keyframes_dir = \"/content/drive/MyDrive/AI_Hackkathon/Dataset/map-keyframes\"\n        self.clip_arch = 'ViT-B/32'  # Model architecture\n        self.device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')  # Use GPU if available\n        self.input_res = 224  # Input resolution for images\n        self.num_frames = 16  # Number of frames to use\n        self.max_token_length = 256  # Set max token length for PhoBERT embeddings",
+        "detail": "datasets.aichallenge_dataset",
+        "documentation": {}
+    },
+    {
+        "label": "CustomDataset",
+        "kind": 6,
+        "importPath": "datasets.aichallenge_dataset",
+        "description": "datasets.aichallenge_dataset",
+        "peekOfCode": "class CustomDataset(Dataset):\n    def __init__(self, config, split_type='train', img_transforms=None, clip_model_name=\"ViT-B/32\"):\n        self.config = config\n        self.split_type = split_type\n        self.img_transforms = img_transforms\n        # Load CLIP model and preprocess\n        self.device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')  # Set to GPU if available\n        print(f\"Using device: {self.device}\")\n        self.clip_model, self.clip_preprocess = clip.load(clip_model_name, device=self.device)\n        # Load PhoBERT model and tokenizer",
+        "detail": "datasets.aichallenge_dataset",
+        "documentation": {}
+    },
+    {
+        "label": "logger",
+        "kind": 5,
+        "importPath": "datasets.aichallenge_dataset",
+        "description": "datasets.aichallenge_dataset",
+        "peekOfCode": "logger = logging.getLogger(__name__)\nlogging.basicConfig(level=logging.INFO)\nimport os\nos.environ['TORCH_USE_CUDA_DSA'] = '1'\n# Set device to GPU if available, otherwise use CPU\ndevice = torch.device('cuda' if torch.cuda.is_available() else 'cpu')\ndevice = \"cuda\" \nprint(f'Using device: {device}')\n# Load CLIP model and ensure it runs on the chosen device (GPU or CPU)\nclip_model, clip_preprocess = clip.load(\"ViT-B/32\", device=device)",
+        "detail": "datasets.aichallenge_dataset",
+        "documentation": {}
+    },
+    {
+        "label": "os.environ['TORCH_USE_CUDA_DSA']",
+        "kind": 5,
+        "importPath": "datasets.aichallenge_dataset",
+        "description": "datasets.aichallenge_dataset",
+        "peekOfCode": "os.environ['TORCH_USE_CUDA_DSA'] = '1'\n# Set device to GPU if available, otherwise use CPU\ndevice = torch.device('cuda' if torch.cuda.is_available() else 'cpu')\ndevice = \"cuda\" \nprint(f'Using device: {device}')\n# Load CLIP model and ensure it runs on the chosen device (GPU or CPU)\nclip_model, clip_preprocess = clip.load(\"ViT-B/32\", device=device)\nprint(\"CLIP model loaded successfully!\")\n# Load PhoBERT tokenizer and model\nphobert_model = AutoModel.from_pretrained(\"vinai/phobert-base-v2\")",
         "detail": "datasets.aichallenge_dataset",
         "documentation": {}
     },
@@ -988,25 +1053,34 @@
         "kind": 5,
         "importPath": "datasets.aichallenge_dataset",
         "description": "datasets.aichallenge_dataset",
-        "peekOfCode": "device = \"cuda\" if torch.cuda.is_available() else \"cpu\"\n# Path to your ViT-B/32 checkpoint\ncheckpoint_path = \"D:/Course_hoc_mien_phi_workshop/AI Hackkathon/SourceCode/TextToVideo/data/CLIP/ViT-B-32.pt\"\n# Load the ViT-B/32 model architecture from Hugging Face and set the device\nmodel, preprocess = clip.load(\"ViT-B/32\", device=device)\n# Instead of using load_state_dict, directly load the TorchScript model\n# TorchScript models contain both the model and the weights\nmodel = torch.jit.load(checkpoint_path, map_location=device)\n# Ensure the model is in evaluation mode\nmodel.eval()",
+        "peekOfCode": "device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')\ndevice = \"cuda\" \nprint(f'Using device: {device}')\n# Load CLIP model and ensure it runs on the chosen device (GPU or CPU)\nclip_model, clip_preprocess = clip.load(\"ViT-B/32\", device=device)\nprint(\"CLIP model loaded successfully!\")\n# Load PhoBERT tokenizer and model\nphobert_model = AutoModel.from_pretrained(\"vinai/phobert-base-v2\")\nphobert_tokenizer = AutoTokenizer.from_pretrained(\"vinai/phobert-base-v2\")\nclass Config:",
         "detail": "datasets.aichallenge_dataset",
         "documentation": {}
     },
     {
-        "label": "checkpoint_path",
+        "label": "device",
         "kind": 5,
         "importPath": "datasets.aichallenge_dataset",
         "description": "datasets.aichallenge_dataset",
-        "peekOfCode": "checkpoint_path = \"D:/Course_hoc_mien_phi_workshop/AI Hackkathon/SourceCode/TextToVideo/data/CLIP/ViT-B-32.pt\"\n# Load the ViT-B/32 model architecture from Hugging Face and set the device\nmodel, preprocess = clip.load(\"ViT-B/32\", device=device)\n# Instead of using load_state_dict, directly load the TorchScript model\n# TorchScript models contain both the model and the weights\nmodel = torch.jit.load(checkpoint_path, map_location=device)\n# Ensure the model is in evaluation mode\nmodel.eval()\nprint(\"CLIP model loaded successfully from checkpoint!\")\nclass CustomDataset(Dataset):",
+        "peekOfCode": "device = \"cuda\" \nprint(f'Using device: {device}')\n# Load CLIP model and ensure it runs on the chosen device (GPU or CPU)\nclip_model, clip_preprocess = clip.load(\"ViT-B/32\", device=device)\nprint(\"CLIP model loaded successfully!\")\n# Load PhoBERT tokenizer and model\nphobert_model = AutoModel.from_pretrained(\"vinai/phobert-base-v2\")\nphobert_tokenizer = AutoTokenizer.from_pretrained(\"vinai/phobert-base-v2\")\nclass Config:\n    def __init__(self):",
         "detail": "datasets.aichallenge_dataset",
         "documentation": {}
     },
     {
-        "label": "model",
+        "label": "phobert_model",
         "kind": 5,
         "importPath": "datasets.aichallenge_dataset",
         "description": "datasets.aichallenge_dataset",
-        "peekOfCode": "model = torch.jit.load(checkpoint_path, map_location=device)\n# Ensure the model is in evaluation mode\nmodel.eval()\nprint(\"CLIP model loaded successfully from checkpoint!\")\nclass CustomDataset(Dataset):\n    def __init__(self, config, split_type='train', img_transforms=None, clip_model_name=\"RN50x16\"):\n        self.config = config\n        self.split_type = split_type\n        self.img_transforms = img_transforms\n        # Load CLIP model and preprocess",
+        "peekOfCode": "phobert_model = AutoModel.from_pretrained(\"vinai/phobert-base-v2\")\nphobert_tokenizer = AutoTokenizer.from_pretrained(\"vinai/phobert-base-v2\")\nclass Config:\n    def __init__(self):\n        self.keyframes_dir = \"/content/drive/MyDrive/AI_Hackkathon/Dataset/keyframes\"\n        self.metadata_dir = \"/content/drive/MyDrive/AI_Hackkathon/Dataset/metadata\"\n        self.map_keyframes_dir = \"/content/drive/MyDrive/AI_Hackkathon/Dataset/map-keyframes\"\n        self.clip_arch = 'ViT-B/32'  # Model architecture\n        self.device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')  # Use GPU if available\n        self.input_res = 224  # Input resolution for images",
+        "detail": "datasets.aichallenge_dataset",
+        "documentation": {}
+    },
+    {
+        "label": "phobert_tokenizer",
+        "kind": 5,
+        "importPath": "datasets.aichallenge_dataset",
+        "description": "datasets.aichallenge_dataset",
+        "peekOfCode": "phobert_tokenizer = AutoTokenizer.from_pretrained(\"vinai/phobert-base-v2\")\nclass Config:\n    def __init__(self):\n        self.keyframes_dir = \"/content/drive/MyDrive/AI_Hackkathon/Dataset/keyframes\"\n        self.metadata_dir = \"/content/drive/MyDrive/AI_Hackkathon/Dataset/metadata\"\n        self.map_keyframes_dir = \"/content/drive/MyDrive/AI_Hackkathon/Dataset/map-keyframes\"\n        self.clip_arch = 'ViT-B/32'  # Model architecture\n        self.device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')  # Use GPU if available\n        self.input_res = 224  # Input resolution for images\n        self.num_frames = 16  # Number of frames to use",
         "detail": "datasets.aichallenge_dataset",
         "documentation": {}
     },
@@ -1015,7 +1089,16 @@
         "kind": 5,
         "importPath": "datasets.aichallenge_dataset",
         "description": "datasets.aichallenge_dataset",
-        "peekOfCode": "config = Config()\n# Create dataset object\ndataset = CustomDataset(config, split_type='train')\n# Example of loading and processing the first 5 items\nfor i in range(min(5, len(dataset))):\n    data = dataset[i]\n    print(f\"Video {data['video_id']}: CLIP feature shape = {data['clip_features'].shape}\")",
+        "peekOfCode": "config = Config()\n# Set seed for reproducibility\ntorch.manual_seed(config.seed)  # Use instance attribute 'config.seed'\nif torch.cuda.is_available():\n    torch.cuda.manual_seed_all(config.seed)\nclass CustomDataset(Dataset):\n    def __init__(self, config, split_type='train', img_transforms=None, clip_model_name=\"ViT-B/32\"):\n        self.config = config\n        self.split_type = split_type\n        self.img_transforms = img_transforms",
+        "detail": "datasets.aichallenge_dataset",
+        "documentation": {}
+    },
+    {
+        "label": "config",
+        "kind": 5,
+        "importPath": "datasets.aichallenge_dataset",
+        "description": "datasets.aichallenge_dataset",
+        "peekOfCode": "config = Config()\n# Create dataset object\ndataset = CustomDataset(config, split_type='train')\nprint(f\"Number of videos in dataset: {len(dataset)}\")\n# Load a few examples from the dataset\nfor i in range(min(5, len(dataset))):\n    data = dataset[i]\n    if data is None:\n        print(f\"Warning: Data at index {i} is None.\")\n    else:",
         "detail": "datasets.aichallenge_dataset",
         "documentation": {}
     },
@@ -1024,7 +1107,7 @@
         "kind": 5,
         "importPath": "datasets.aichallenge_dataset",
         "description": "datasets.aichallenge_dataset",
-        "peekOfCode": "dataset = CustomDataset(config, split_type='train')\n# Example of loading and processing the first 5 items\nfor i in range(min(5, len(dataset))):\n    data = dataset[i]\n    print(f\"Video {data['video_id']}: CLIP feature shape = {data['clip_features'].shape}\")",
+        "peekOfCode": "dataset = CustomDataset(config, split_type='train')\nprint(f\"Number of videos in dataset: {len(dataset)}\")\n# Load a few examples from the dataset\nfor i in range(min(5, len(dataset))):\n    data = dataset[i]\n    if data is None:\n        print(f\"Warning: Data at index {i} is None.\")\n    else:\n        print(f\"Data at index {i} loaded successfully: {data['video_id']}\")",
         "detail": "datasets.aichallenge_dataset",
         "documentation": {}
     },
@@ -1078,7 +1161,16 @@
         "kind": 6,
         "importPath": "model.clip_stochastic",
         "description": "model.clip_stochastic",
-        "peekOfCode": "class CLIPStochastic(nn.Module):\n    def __init__(self, config: Config):\n        super(CLIPStochastic, self).__init__()\n        self.config = config\n        from transformers import CLIPModel\n        # Load CLIP model for video feature extraction\n        if config.clip_arch == 'ViT-B/32':\n            self.clip = CLIPModel.from_pretrained(\"openai/clip-vit-base-patch32\")\n        elif config.clip_arch == 'ViT-B/16':\n            self.clip = CLIPModel.from_pretrained(\"openai/clip-vit-base-patch16\")",
+        "peekOfCode": "class CLIPStochastic(nn.Module):\n    def __init__(self, config: Config):\n        super(CLIPStochastic, self).__init__()\n        self.config = config\n        # Load CLIP model for video feature extraction\n        if config.clip_arch == 'ViT-B/32':\n            self.clip = CLIPModel.from_pretrained(\"openai/clip-vit-base-patch32\")\n        elif config.clip_arch == 'ViT-B/16':\n            self.clip = CLIPModel.from_pretrained(\"openai/clip-vit-base-patch16\")\n        else:",
+        "detail": "model.clip_stochastic",
+        "documentation": {}
+    },
+    {
+        "label": "os.environ['TORCH_USE_CUDA_DSA']",
+        "kind": 5,
+        "importPath": "model.clip_stochastic",
+        "description": "model.clip_stochastic",
+        "peekOfCode": "os.environ['TORCH_USE_CUDA_DSA'] = '1'\nclass CLIPStochastic(nn.Module):\n    def __init__(self, config: Config):\n        super(CLIPStochastic, self).__init__()\n        self.config = config\n        # Load CLIP model for video feature extraction\n        if config.clip_arch == 'ViT-B/32':\n            self.clip = CLIPModel.from_pretrained(\"openai/clip-vit-base-patch32\")\n        elif config.clip_arch == 'ViT-B/16':\n            self.clip = CLIPModel.from_pretrained(\"openai/clip-vit-base-patch16\")",
         "detail": "model.clip_stochastic",
         "documentation": {}
     },
@@ -1087,7 +1179,7 @@
         "kind": 6,
         "importPath": "model.clip_transfomer",
         "description": "model.clip_transfomer",
-        "peekOfCode": "class CLIPTransformer(nn.Module):\n    def __init__(self, config):\n        super(CLIPTransformer, self).__init__()\n        # Initialize CLIP model from Huggingface if using that\n        self.clip = CLIPModel.from_pretrained(\"openai/clip-vit-base-patch32\")\n        # Define additional layers or transformer layers based on your architecture\n        self.transformer = nn.Transformer(d_model=config.embed_dim)\n    def forward(self, text_inputs, video_inputs):\n        # Get text and video features using CLIP\n        text_features = self.clip.get_text_features(**text_inputs)",
+        "peekOfCode": "class CLIPTransformer(nn.Module):\n    def __init__(self, config):\n        super(CLIPTransformer, self).__init__()\n        # Initialize CLIP model from Huggingface if using that\n        self.clip = CLIPModel.from_pretrained(\"openai/clip-vit-base-patch32\")\n        # Define additional layers or transformer layers based on your architecture\n        self.transformer = nn.Transformer(d_model=config.embed_dim)\n    def forward(self, text_inputs, video_inputs, is_train=True):\n        # Get text and video features using CLIP\n        text_features = self.clip.get_text_features(**text_inputs)",
         "detail": "model.clip_transfomer",
         "documentation": {}
     },
@@ -1339,7 +1431,7 @@
         "kind": 5,
         "importPath": "modules.tokenization_clip",
         "description": "modules.tokenization_clip",
-        "peekOfCode": "logger = logging.get_logger(__name__)\nVOCAB_FILES_NAMES = {\n    \"vocab_file\": \"vocab.json\",\n    \"merges_file\": \"merges.txt\",\n}\nPRETRAINED_VOCAB_FILES_MAP = {\n    \"vocab_file\": {\n        \"openai/clip-vit-base-patch32\": \"https://huggingface.co/openai/clip-vit-base-patch32/resolve/main/vocab.json\",\n    },\n    \"merges_file\": {",
+        "peekOfCode": "logger = logging.get_logger(__name__)\nVOCAB_FILES_NAMES = {\n    \"vocab_file\": \"vocab.txt\",\n    \"merges_file\": \"merges.txt\",\n}\nPRETRAINED_VOCAB_FILES_MAP = {\n    \"vocab_file\": {\n        \"openai/clip-vit-base-patch32\": \"https://huggingface.co/openai/clip-vit-base-patch32/resolve/main/vocab.json\",\n    },\n    \"merges_file\": {",
         "detail": "modules.tokenization_clip",
         "documentation": {}
     },
@@ -1348,7 +1440,7 @@
         "kind": 5,
         "importPath": "modules.tokenization_clip",
         "description": "modules.tokenization_clip",
-        "peekOfCode": "VOCAB_FILES_NAMES = {\n    \"vocab_file\": \"vocab.json\",\n    \"merges_file\": \"merges.txt\",\n}\nPRETRAINED_VOCAB_FILES_MAP = {\n    \"vocab_file\": {\n        \"openai/clip-vit-base-patch32\": \"https://huggingface.co/openai/clip-vit-base-patch32/resolve/main/vocab.json\",\n    },\n    \"merges_file\": {\n        \"openai/clip-vit-base-patch32\": \"https://huggingface.co/openai/clip-vit-base-patch32/resolve/main/merges.txt\",",
+        "peekOfCode": "VOCAB_FILES_NAMES = {\n    \"vocab_file\": \"vocab.txt\",\n    \"merges_file\": \"merges.txt\",\n}\nPRETRAINED_VOCAB_FILES_MAP = {\n    \"vocab_file\": {\n        \"openai/clip-vit-base-patch32\": \"https://huggingface.co/openai/clip-vit-base-patch32/resolve/main/vocab.json\",\n    },\n    \"merges_file\": {\n        \"openai/clip-vit-base-patch32\": \"https://huggingface.co/openai/clip-vit-base-patch32/resolve/main/merges.txt\",",
         "detail": "modules.tokenization_clip",
         "documentation": {}
     },
@@ -1429,7 +1521,16 @@
         "kind": 6,
         "importPath": "trainer.trainer_stochastic",
         "description": "trainer.trainer_stochastic",
-        "peekOfCode": "class Trainer(BaseTrainer):\n    def __init__(self, model, loss, metrics, optimizer, config: Config, train_data_loader,\n                 valid_data_loader, tokenizer, lr_scheduler=None, writer=None):\n        super().__init__(model, loss, metrics, optimizer, config, writer)\n        self.train_data_loader = train_data_loader\n        self.valid_data_loader = valid_data_loader\n        self.lr_scheduler = lr_scheduler\n        self.tokenizer = tokenizer\n        self.pooling_type = config.pooling_type\n        self.window_metric = defaultdict(lambda: deque(maxlen=config.eval_window_size))",
+        "peekOfCode": "class Trainer(BaseTrainer):\n    \"\"\"\n    Trainer class\n    Note:\n        Inherited from BaseTrainer.\n    \"\"\"\n    def __init__(self, model, loss, metrics, optimizer, config: Config, train_data_loader,\n                 valid_data_loader, tokenizer=None, lr_scheduler=None, writer=None):\n        super().__init__(model, loss, metrics, optimizer, config, writer)\n        self.train_data_loader = train_data_loader",
+        "detail": "trainer.trainer_stochastic",
+        "documentation": {}
+    },
+    {
+        "label": "tokenize_text",
+        "kind": 2,
+        "importPath": "trainer.trainer_stochastic",
+        "description": "trainer.trainer_stochastic",
+        "peekOfCode": "def tokenize_text(description_text, tokenizer, max_length=256):\n    input_ids = tokenizer(description_text, return_tensors='pt', truncation=True, padding='max_length', max_length=max_length)\n    return input_ids\nimport torch\nimport logging\n# Logger setup\nlogger = logging.getLogger(__name__)\ndef pad_collate_fn(batch):\n    # Lọc bỏ các giá trị None khỏi batch\n    batch = [item for item in batch if item is not None]",
         "detail": "trainer.trainer_stochastic",
         "documentation": {}
     },
@@ -1438,7 +1539,61 @@
         "kind": 2,
         "importPath": "trainer.trainer_stochastic",
         "description": "trainer.trainer_stochastic",
-        "peekOfCode": "def pad_collate_fn(batch):\n    \"\"\"\n    Custom collate function to resize and/or pad images and clip features in a batch to have the same size.\n    \"\"\"\n    # Extract all images and other data\n    keyframes = [item['keyframe_image'] for item in batch]\n    clip_features = [torch.tensor(item['clip_features']) for item in batch]\n    metadata = [item['metadata'] for item in batch]\n    video_ids = [item['video_id'] for item in batch]\n    keyframes_data = [item['keyframes'] for item in batch]",
+        "peekOfCode": "def pad_collate_fn(batch):\n    # Lọc bỏ các giá trị None khỏi batch\n    batch = [item for item in batch if item is not None]\n    # Nếu batch rỗng sau khi lọc, trả về None\n    if len(batch) == 0:\n        return None\n    try:\n        # Extract clip features, description embeddings, metadata, and video IDs\n        clip_features = [torch.tensor(item['clip_features']) for item in batch]\n        description_embeddings = [torch.tensor(item['description_embeddings']) for item in batch]",
+        "detail": "trainer.trainer_stochastic",
+        "documentation": {}
+    },
+    {
+        "label": "resize_clip_features",
+        "kind": 2,
+        "importPath": "trainer.trainer_stochastic",
+        "description": "trainer.trainer_stochastic",
+        "peekOfCode": "def resize_clip_features(clip_features, target_size):\n    # Resize or truncate the clip features to the target size\n    current_size = clip_features.shape[0]\n    if current_size > target_size:\n        clip_features = clip_features[:target_size]  # Truncate\n    elif current_size < target_size:\n        padding_size = target_size - current_size\n        clip_features = F.pad(clip_features, (0, 0, 0, padding_size))  # Pad along the appropriate dimensions\n    return clip_features\ndef resize_text_embeddings(text_embeddings, target_size):",
+        "detail": "trainer.trainer_stochastic",
+        "documentation": {}
+    },
+    {
+        "label": "resize_text_embeddings",
+        "kind": 2,
+        "importPath": "trainer.trainer_stochastic",
+        "description": "trainer.trainer_stochastic",
+        "peekOfCode": "def resize_text_embeddings(text_embeddings, target_size):\n    # Resize or pad the text embeddings to the target size\n    current_size = text_embeddings.shape[1]\n    if current_size > target_size:\n        text_embeddings = text_embeddings[:, :target_size]  # Truncate\n    elif current_size < target_size:\n        padding_size = target_size - current_size\n        text_embeddings = F.pad(text_embeddings, (0, 0, 0, padding_size))  # Pad along the appropriate dimensions\n    return text_embeddings\nif __name__ == \"__main__\":",
+        "detail": "trainer.trainer_stochastic",
+        "documentation": {}
+    },
+    {
+        "label": "os.environ[\"CUDA_LAUNCH_BLOCKING\"]",
+        "kind": 5,
+        "importPath": "trainer.trainer_stochastic",
+        "description": "trainer.trainer_stochastic",
+        "peekOfCode": "os.environ[\"CUDA_LAUNCH_BLOCKING\"] = \"1\"\n# Set up logger\nlogger = logging.getLogger(__name__)\nlogging.basicConfig(level=logging.INFO)\n# Load PhoBERT tokenizer\nphobert_tokenizer = AutoTokenizer.from_pretrained(\"vinai/phobert-base-v2\")\nclass Trainer(BaseTrainer):\n    \"\"\"\n    Trainer class\n    Note:",
+        "detail": "trainer.trainer_stochastic",
+        "documentation": {}
+    },
+    {
+        "label": "logger",
+        "kind": 5,
+        "importPath": "trainer.trainer_stochastic",
+        "description": "trainer.trainer_stochastic",
+        "peekOfCode": "logger = logging.getLogger(__name__)\nlogging.basicConfig(level=logging.INFO)\n# Load PhoBERT tokenizer\nphobert_tokenizer = AutoTokenizer.from_pretrained(\"vinai/phobert-base-v2\")\nclass Trainer(BaseTrainer):\n    \"\"\"\n    Trainer class\n    Note:\n        Inherited from BaseTrainer.\n    \"\"\"",
+        "detail": "trainer.trainer_stochastic",
+        "documentation": {}
+    },
+    {
+        "label": "phobert_tokenizer",
+        "kind": 5,
+        "importPath": "trainer.trainer_stochastic",
+        "description": "trainer.trainer_stochastic",
+        "peekOfCode": "phobert_tokenizer = AutoTokenizer.from_pretrained(\"vinai/phobert-base-v2\")\nclass Trainer(BaseTrainer):\n    \"\"\"\n    Trainer class\n    Note:\n        Inherited from BaseTrainer.\n    \"\"\"\n    def __init__(self, model, loss, metrics, optimizer, config: Config, train_data_loader,\n                 valid_data_loader, tokenizer=None, lr_scheduler=None, writer=None):\n        super().__init__(model, loss, metrics, optimizer, config, writer)",
+        "detail": "trainer.trainer_stochastic",
+        "documentation": {}
+    },
+    {
+        "label": "logger",
+        "kind": 5,
+        "importPath": "trainer.trainer_stochastic",
+        "description": "trainer.trainer_stochastic",
+        "peekOfCode": "logger = logging.getLogger(__name__)\ndef pad_collate_fn(batch):\n    # Lọc bỏ các giá trị None khỏi batch\n    batch = [item for item in batch if item is not None]\n    # Nếu batch rỗng sau khi lọc, trả về None\n    if len(batch) == 0:\n        return None\n    try:\n        # Extract clip features, description embeddings, metadata, and video IDs\n        clip_features = [torch.tensor(item['clip_features']) for item in batch]",
         "detail": "trainer.trainer_stochastic",
         "documentation": {}
     },
