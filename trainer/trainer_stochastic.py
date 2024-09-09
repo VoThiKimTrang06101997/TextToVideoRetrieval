@@ -67,7 +67,7 @@ class Trainer(BaseTrainer):
         num_steps = len(self.train_data_loader)
         eval_steps = np.linspace(0, num_steps - 1, self.evals_per_epoch + 1, dtype=int)[1:]
 
-        for batch_idx, data in enumerate(self.train_data_loader):
+        for batch_idx, data in enumerate(self.train_data_loader):       
             video_ids = data.get('video_ids', 'Unknown')
             logger.info(f"Batch {batch_idx}: Processing video IDs {video_ids}")
 
@@ -383,34 +383,62 @@ import logging
 logger = logging.getLogger(__name__)
 
 def pad_collate_fn(batch):
-    # Lọc bỏ các giá trị None khỏi batch
+   # Filter out 'None' data points
     batch = [item for item in batch if item is not None]
     
-    # Nếu batch rỗng sau khi lọc, trả về None
     if len(batch) == 0:
-        return None
+      print("Warning: All items in the batch are None. Skipping this batch.")
+      return None  # Optionally, return None or raise an error
+      
+    return torch.utils.data.dataloader.default_collate(batch)
 
+  
     try:
         # Extract clip features, description embeddings, metadata, and video IDs
-        clip_features = [torch.tensor(item['clip_features']) for item in batch]
-        description_embeddings = [torch.tensor(item['description_embeddings']) for item in batch]
-        metadata = [item['metadata'] for item in batch]
-        video_ids = [item['video_id'] for item in batch]
+        keyframe_images = [item['keyframe_image'] for item in batch if item is not None]
+        clip_features = [torch.tensor(item['clip_features']) for item in batch if item is not None]
+        description_embeddings = [torch.tensor(item['description_embeddings']) for item in batch if item is not None]
+        metadata = [item['metadata'] for item in batch if item is not None]
+        video_ids = [item['video_id'] for item in batch if item is not None]
 
-        # Resize embeddings
-        resized_clip_features = [resize_clip_features(feat, target_size=258) for feat in clip_features]
-        resized_description_embeddings = [resize_text_embeddings(desc, target_size=258) for desc in description_embeddings]
+        # Determine the maximum length for description embeddings and clip features
+        max_clip_len = max([feat.shape[0] for feat in clip_features])
+        max_desc_len = max([desc.shape[1] for desc in description_embeddings])
+
+        # Pad or truncate the clip features and description embeddings to the same length
+        padded_clip_features = [torch.nn.functional.pad(feat, (0, 0, 0, max_clip_len - feat.shape[0])) for feat in clip_features]
+        padded_description_embeddings = [torch.nn.functional.pad(desc, (0, 0, 0, max_desc_len - desc.shape[1])) for desc in description_embeddings]
 
         # Stack all the tensors into batches
-        clip_features_batch = torch.stack(resized_clip_features)
-        description_embeddings_batch = torch.stack(resized_description_embeddings)
+        keyframe_images_batch = torch.stack(keyframe_images)
+        clip_features_batch = torch.stack(padded_clip_features)
+        description_embeddings_batch = torch.stack(padded_description_embeddings)
+
+        # # Resize embeddings
+        # resized_clip_features = [resize_clip_features(feat, target_size=258) for feat in clip_features]
+        # resized_description_embeddings = [resize_text_embeddings(desc, target_size=258) for desc in description_embeddings]
+
+        # # Ensure description embeddings have the same shape by padding or truncating
+        # # max_len = max([emb.shape[1] for emb in description_embeddings])
+        # # description_embeddings = [torch.nn.functional.pad(emb, (0, 0, 0, max_len - emb.shape[1])) for emb in description_embeddings]
+        # # description_embeddings = torch.stack(description_embeddings)
+
+        # # Stack all the tensors into batches
+        # keyframe_images = torch.stack(keyframe_images)
+        # clip_features_batch = torch.stack(resized_clip_features)        
+        # description_embeddings_batch = torch.stack(resized_description_embeddings)
+
+        # Print the processed video IDs in the batch
+        print(f"Batch contains video IDs: {video_ids}")
 
         # Return the collated batch
         return {
-            'clip_features': clip_features_batch,
-            'description_embeddings': description_embeddings_batch,
-            'metadata': metadata,
             'video_ids': video_ids,
+            'keyframe_image': keyframe_images_batch,
+            'clip_features': clip_features_batch,
+            'metadata': metadata,
+            'description_embeddings': description_embeddings_batch,
+         
         }
 
     except Exception as e:
@@ -457,7 +485,7 @@ if __name__ == "__main__":
         train_dataset,
         batch_size=config.batch_size,
         shuffle=True,
-        num_workers=0,
+        num_workers=4,
         collate_fn=pad_collate_fn,
         pin_memory=True,
         persistent_workers=True,
@@ -468,7 +496,7 @@ if __name__ == "__main__":
         valid_dataset,
         batch_size=config.batch_size,
         shuffle=False,
-        num_workers=0,
+        num_workers=4,
         collate_fn=pad_collate_fn,
         pin_memory=True,
         persistent_workers=True,

@@ -40,7 +40,8 @@ class AllConfig(Config):
         self.keyframes_dir = "/content/drive/MyDrive/AI_Hackkathon/Dataset/keyframes"
         self.metadata_dir = "/content/drive/MyDrive/AI_Hackkathon/Dataset/metadata"
         self.map_keyframes_dir = "/content/drive/MyDrive/AI_Hackkathon/Dataset/map-keyframes"
-        
+        self.output_dir = "/content/drive/MyDrive/AI_Hackkathon/output"  
+
         # Add other parameters as needed
         self.num_frames = 500
         self.video_sample_type = 'uniform'
@@ -61,7 +62,8 @@ class AllConfig(Config):
         
         # data parameters
         parser.add_argument('--dataset_name', type=str, default='aichallenge', help="Dataset name")
-        parser.add_argument('--keyframes_dir', type=str, default='/content/drive/MyDrive/AI_Hackkathon/Dataset/keyframes', help="Location of videos")
+        parser.add_argument('--videos_dir', type=str, default='/content/drive/MyDrive/AI_Hackkathon/Dataset/video', help="Location of videos")
+        parser.add_argument('--keyframes_dir', type=str, default='/content/drive/MyDrive/AI_Hackkathon/Dataset/keyframes', help="Location of keyframes")
         parser.add_argument('--aichallenge_train_file', type=str, default='aichallenge-dataset', help="Training file for Aichallenge dataset")
         parser.add_argument('--num_frames', type=int, default=12)
         parser.add_argument('--video_sample_type', default='uniform', help="'rand'/'uniform'")
@@ -141,4 +143,5 @@ class AllConfig(Config):
         mkdirp(args.tb_log_dir)
 
         return args
+
 

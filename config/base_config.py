@@ -7,6 +7,7 @@ class Config(ABC):
         
         self.dataset_name = args.dataset_name
         self.videos_dir = args.videos_dir
+        self.keyframes_dir = args.keyframes_dir
         self.aichallenge_train_file = args.aichallenge_train_file
         self.num_frames = args.num_frames
         self.video_sample_type = args.video_sample_type
