@@ -18,6 +18,10 @@ from model.clip_stochastic import CLIPStochastic
 
 import torch.nn.functional as F
 
+from tqdm import tqdm
+
+import time
+
 import logging
 
 from torch.utils.data import DataLoader
@@ -67,7 +71,28 @@ class Trainer(BaseTrainer):
         num_steps = len(self.train_data_loader)
         eval_steps = np.linspace(0, num_steps - 1, self.evals_per_epoch + 1, dtype=int)[1:]
 
-        for batch_idx, data in enumerate(self.train_data_loader):       
+        for batch_idx, data in tqdm (enumerate(self.train_data_loader), total=len(self.train_data_loader)): 
+            # Calculate total batches
+            total_batches = len(self.train_data_loader)
+
+            # Log progress
+            print(f"Processing batch {batch_idx + 1}/{total_batches}")
+
+            # Record time for each batch
+            if batch_idx > 0:
+                start_time = time.time()
+                elapsed_time = time.time() - start_time
+                batches_processed = batch_idx + 1
+                avg_time_per_batch = elapsed_time / batches_processed
+                remaining_batches = total_batches - batches_processed
+                estimated_time_remaining = avg_time_per_batch * remaining_batches
+
+                print(f"Processed {batches_processed}/{total_batches} batches.")
+                print(f"Estimated time remaining: {estimated_time_remaining / 60:.2f} minutes")
+
+            if batch_idx + 1 == total_batches:
+                print(f"Preprocessing complete. Total batches: {total_batches}")
+                
             video_ids = data.get('video_ids', 'Unknown')
             logger.info(f"Batch {batch_idx}: Processing video IDs {video_ids}")
 
@@ -516,7 +541,7 @@ if __name__ == "__main__":
         optimizer=optimizer,
         config=config,
         train_data_loader=train_loader,
-        # valid_data_loader=valid_loader,
+        valid_data_loader=valid_loader,
         tokenizer=None
     )
 

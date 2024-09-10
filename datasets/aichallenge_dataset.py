@@ -303,7 +303,7 @@ class CustomDataset(Dataset):
           with torch.no_grad():
               clip_features = self.clip_model.encode_image(keyframe_image).squeeze(0).cpu().numpy()
 
-          # Load metadata based on the correct video ID (use `video_subdir` instead of hardcoding)
+          # Load metadata based on the correct video ID (use video_subdir instead of hardcoding)
           metadata_path = os.path.join(self.metadata_dir, f"{video_subdir}.json")
           # Load metadata
           with open(metadata_path, 'r', encoding='utf-8') as f:
@@ -337,7 +337,7 @@ class CustomDataset(Dataset):
 
           input_ids = input_ids.to(self.device)
           # Ensure the inputs and the model are on the same device
-          input_ids = {key: val.to(self.device) for key, val in input_ids.items()}
+          input_ids = {key: val.to(self.device) if isinstance(val, torch.Tensor) else val for key, val in input_ids.items()}
           self.phobert_model = self.phobert_model.to(self.device)  # Move model to the correct device
           print(f"Shape of input_ids['input_ids']: {input_ids['input_ids'].shape}")
 
@@ -443,6 +443,4 @@ for i in range(min(5, len(dataset))):
         print(f"Warning: Data at index {i} is None.")
     else:
         print(f"Data at index {i} loaded successfully: {data['video_id']}")
-
     
-
