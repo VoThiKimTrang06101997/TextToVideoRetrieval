@@ -26,8 +26,8 @@ device = "cuda"
 print(f'Using device: {device}')
 
 # Load CLIP model and ensure it runs on the chosen device (GPU or CPU)
-clip_model, clip_preprocess = clip.load("ViT-B/32", device=device)
-print("CLIP model loaded successfully!")
+# clip_model, clip_preprocess = clip.load("ViT-B/32", device=device)
+# print("CLIP model loaded successfully!")
 
 from transformers import AutoTokenizer, AutoModel
 
@@ -78,6 +78,20 @@ from youtube_transcript_api import YouTubeTranscriptApi, CouldNotRetrieveTranscr
 from pytube import YouTube
 import torch
 from PIL import Image
+
+# Function to load already processed keyframes
+def load_processed_keyframes(processed_keyframes_file):
+    if os.path.exists(processed_keyframes_file):
+        with open(processed_keyframes_file, 'r') as f:
+            return set(json.load(f))  # Load as a set for faster lookups
+    else:
+        return set()
+
+# Function to save processed keyframe
+def save_processed_keyframe(keyframe_id, processed_keyframes_file, processed_keyframes):
+    processed_keyframes.add(keyframe_id)
+    with open(processed_keyframes_file, 'w') as f:
+        json.dump(list(processed_keyframes), f)
 
 def download_youtube_transcription_from_json(json_path, output_dir):
     """Download a YouTube video transcription from a JSON file's 'watch_url' field."""
@@ -159,14 +173,16 @@ class CustomDataset(Dataset):
     def __init__(self, config, split_type='train', img_transforms=None, clip_model_name="ViT-B/32"):
         self.config = config
         self.split_type = split_type
-        self.img_transforms = img_transforms
+        self.img_transforms = img_transforms        
 
         # Load CLIP model and preprocess
         self.device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')  # Set to GPU if available
         print(f"Using device: {self.device}")
 
+        # Load the CLIP model and its preprocess function
         self.clip_model, self.clip_preprocess = clip.load(clip_model_name, device=self.device)
-
+        print("CLIP model and preprocess function loaded.")
+        
         # Load PhoBERT model and tokenizer
         self.phobert_tokenizer = AutoTokenizer.from_pretrained("vinai/phobert-base-v2")
         self.phobert_model = AutoModel.from_pretrained("vinai/phobert-base-v2")
@@ -176,9 +192,12 @@ class CustomDataset(Dataset):
         self.metadata_dir = config.metadata_dir
         self.map_keyframes_dir = config.map_keyframes_dir
 
+        # Load processed videos
+        self.processed_keyframes_file = os.path.join(config.output_dir, '/content/drive/MyDrive/AI_Hackkathon/save_processed_keyframes/processed_keyframes.json')  # Path to save processed keyframes
+        self.processed_videos = load_processed_keyframes(self.processed_keyframes_file)
+
         # Automatically load keyframe list from the directory
         self.video_list = self._load_keyframe_list()
-
         print(f"Loaded {len(self.video_list)} keyframe sequences for split: {split_type}")
         
     def _load_keyframe_list(self):
@@ -281,6 +300,11 @@ class CustomDataset(Dataset):
               raise ValueError(f"No attribute 'video_list' found in dataset")
               
           subdir, video_subdir, keyframe_file = self.video_list[index]
+          # Check if the video has already been processed
+          if video_subdir in self.processed_videos:
+              print(f"Video {video_subdir} already processed. Skipping.")
+              return None
+
           keyframe_path = os.path.join(self.keyframes_dir, subdir, video_subdir, keyframe_file)
           
           keyframe_image = Image.open(keyframe_path).convert('RGB')
@@ -303,7 +327,7 @@ class CustomDataset(Dataset):
           with torch.no_grad():
               clip_features = self.clip_model.encode_image(keyframe_image).squeeze(0).cpu().numpy()
 
-          # Load metadata based on the correct video ID (use video_subdir instead of hardcoding)
+          # Load metadata based on the correct video ID (use `video_subdir` instead of hardcoding)
           metadata_path = os.path.join(self.metadata_dir, f"{video_subdir}.json")
           # Load metadata
           with open(metadata_path, 'r', encoding='utf-8') as f:
@@ -337,7 +361,7 @@ class CustomDataset(Dataset):
 
           input_ids = input_ids.to(self.device)
           # Ensure the inputs and the model are on the same device
-          input_ids = {key: val.to(self.device) if isinstance(val, torch.Tensor) else val for key, val in input_ids.items()}
+          input_ids = {key: val.to(self.device) for key, val in input_ids.items()}
           self.phobert_model = self.phobert_model.to(self.device)  # Move model to the correct device
           print(f"Shape of input_ids['input_ids']: {input_ids['input_ids'].shape}")
 
@@ -410,6 +434,10 @@ class CustomDataset(Dataset):
            # Print the video ID being processed
           print(f"Processing video ID: {video_subdir}, at index: {index}")
 
+          # Save processed keyframe ID
+          keyframe_id = f"{subdir}_{video_subdir}_{keyframe_file}"
+          save_processed_keyframe(keyframe_id, self.processed_keyframes_file, self.processed_videos)
+
           return {
               'video_id': video_subdir,
               'keyframe_image': keyframe_image,
@@ -422,6 +450,8 @@ class CustomDataset(Dataset):
           print(f"Keyframe image shape: {keyframe_image.shape}")
           print(f"Description embeddings shape: {description_embeddings.shape}")
 
+          
+
       except Exception as e:
           logger.error(f"Error processing item {index}: {e}", exc_info=True)
           return None
@@ -429,18 +459,22 @@ class CustomDataset(Dataset):
 
 
 # Example usage:
-config = Config()
+if __name__ == "__main__":
+    processed_keyframes_file = "/content/drive/MyDrive/AI_Hackkathon/save_processed_keyframes/processed_keyframes.json"
+    config = Config()
 
-# Create dataset object
-dataset = CustomDataset(config, split_type='train')
+    # Create dataset object
+    dataset = CustomDataset(config, split_type='train')
 
-print(f"Number of videos in dataset: {len(dataset)}")
+    print(f"Number of videos in dataset: {len(dataset)}")
 
-# Load a few examples from the dataset
-for i in range(min(5, len(dataset))):
-    data = dataset[i]
-    if data is None:
-        print(f"Warning: Data at index {i} is None.")
-    else:
-        print(f"Data at index {i} loaded successfully: {data['video_id']}")
+    # Load a few examples from the dataset
+    for i in range(min(5, len(dataset))):
+        data = dataset[i]
+        if data is None:
+            print(f"Warning: Data at index {i} is None.")
+        else:
+            print(f"Data at index {i} loaded successfully: {data['video_id']}")
+
     
+

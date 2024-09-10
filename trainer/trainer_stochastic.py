@@ -18,9 +18,11 @@ from model.clip_stochastic import CLIPStochastic
 
 import torch.nn.functional as F
 
+import time
 from tqdm import tqdm
 
-import time
+# Initialize the start time before the loop starts
+start_time = time.time()
 
 import logging
 
@@ -71,7 +73,10 @@ class Trainer(BaseTrainer):
         num_steps = len(self.train_data_loader)
         eval_steps = np.linspace(0, num_steps - 1, self.evals_per_epoch + 1, dtype=int)[1:]
 
-        for batch_idx, data in tqdm (enumerate(self.train_data_loader), total=len(self.train_data_loader)): 
+        # for batch_idx, data in tqdm(enumerate(self.train_data_loader), total=num_steps):
+        for batch_idx, data in tqdm (enumerate(self.train_data_loader), total=len(self.train_data_loader)):  
+            start_time = time.time()  # Start time for the batch processing     
+
             # Calculate total batches
             total_batches = len(self.train_data_loader)
 
@@ -80,19 +85,28 @@ class Trainer(BaseTrainer):
 
             # Record time for each batch
             if batch_idx > 0:
-                start_time = time.time()
+                # Elapsed time since the start
                 elapsed_time = time.time() - start_time
+                
+                # Number of batches processed
                 batches_processed = batch_idx + 1
+                
+                # Average time per batch
                 avg_time_per_batch = elapsed_time / batches_processed
+                
+                # Remaining batches
                 remaining_batches = total_batches - batches_processed
+                
+                # Estimated time remaining
                 estimated_time_remaining = avg_time_per_batch * remaining_batches
 
                 print(f"Processed {batches_processed}/{total_batches} batches.")
                 print(f"Estimated time remaining: {estimated_time_remaining / 60:.2f} minutes")
 
-            if batch_idx + 1 == total_batches:
+            # Indicate when preprocessing is complete
+            if batch_idx + 1 == num_steps:
                 print(f"Preprocessing complete. Total batches: {total_batches}")
-                
+
             video_ids = data.get('video_ids', 'Unknown')
             logger.info(f"Batch {batch_idx}: Processing video IDs {video_ids}")
 
@@ -104,6 +118,10 @@ class Trainer(BaseTrainer):
               continue
 
             logger.info(f"Batch {batch_idx}: Processing video IDs {data['video_id']}")
+
+             # Calculate time taken for the batch
+            batch_time = time.time() - start_time
+            print(f"Batch {batch_idx} processed in {batch_time:.2f} seconds.")
             
             try:
               # Forward pass
@@ -502,8 +520,8 @@ if __name__ == "__main__":
     os.makedirs(config.model_path, exist_ok=True)
 
     # Initialize datasets
-    train_dataset = CustomDataset(config, split_type='train')
-    valid_dataset = CustomDataset(config, split_type='valid')
+    train_dataset = CustomDataset(config, split_type='train', processed_keyframes_file="/content/drive/MyDrive/AI_Hackkathon/save_processed_keyframes/processed_keyframes.json")
+    valid_dataset = CustomDataset(config, split_type='valid', processed_keyframes_file="/content/drive/MyDrive/AI_Hackkathon/save_processed_keyframes/processed_keyframes.json")
 
     # Create data loaders
     train_loader = DataLoader(

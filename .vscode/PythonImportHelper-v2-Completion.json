@@ -1108,7 +1108,7 @@
         "kind": 6,
         "importPath": "datasets.aichallenge_dataset",
         "description": "datasets.aichallenge_dataset",
-        "peekOfCode": "class CustomDataset(Dataset):\n    def __init__(self, config, split_type='train', img_transforms=None, clip_model_name=\"ViT-B/32\"):\n        self.config = config\n        self.split_type = split_type\n        self.img_transforms = img_transforms\n        # Load CLIP model and preprocess\n        self.device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')  # Set to GPU if available\n        print(f\"Using device: {self.device}\")\n        self.clip_model, self.clip_preprocess = clip.load(clip_model_name, device=self.device)\n        # Load PhoBERT model and tokenizer",
+        "peekOfCode": "class CustomDataset(Dataset):\n    def __init__(self, config, split_type='train', img_transforms=None, clip_model_name=\"ViT-B/32\"):\n        self.config = config\n        self.split_type = split_type\n        self.img_transforms = img_transforms        \n        # Load CLIP model and preprocess\n        self.device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')  # Set to GPU if available\n        print(f\"Using device: {self.device}\")\n        # Load the CLIP model and its preprocess function\n        self.clip_model, self.clip_preprocess = clip.load(clip_model_name, device=self.device)",
         "detail": "datasets.aichallenge_dataset",
         "documentation": {}
     },
@@ -1118,6 +1118,24 @@
         "importPath": "datasets.aichallenge_dataset",
         "description": "datasets.aichallenge_dataset",
         "peekOfCode": "def initialize_phobert_tokenizer():\n    \"\"\"Initialize the PhoBERT tokenizer with caching for faster loads.\"\"\"\n    tokenizer = AutoTokenizer.from_pretrained(\"vinai/phobert-base-v2\", cache_dir='./cache')\n    model = AutoModel.from_pretrained(\"vinai/phobert-base-v2\", cache_dir='./cache')\n    return tokenizer, model\n# Initialize PhoBERT model and tokenizer\nphobert_tokenizer, phobert_model = initialize_phobert_tokenizer()\nclass Config:\n    def __init__(self):\n        self.videos_dir = \"/content/drive/MyDrive/AI_Hackkathon/Dataset/video\"",
+        "detail": "datasets.aichallenge_dataset",
+        "documentation": {}
+    },
+    {
+        "label": "load_processed_keyframes",
+        "kind": 2,
+        "importPath": "datasets.aichallenge_dataset",
+        "description": "datasets.aichallenge_dataset",
+        "peekOfCode": "def load_processed_keyframes(processed_keyframes_file):\n    if os.path.exists(processed_keyframes_file):\n        with open(processed_keyframes_file, 'r') as f:\n            return set(json.load(f))  # Load as a set for faster lookups\n    else:\n        return set()\n# Function to save processed keyframe\ndef save_processed_keyframe(keyframe_id, processed_keyframes_file, processed_keyframes):\n    processed_keyframes.add(keyframe_id)\n    with open(processed_keyframes_file, 'w') as f:",
+        "detail": "datasets.aichallenge_dataset",
+        "documentation": {}
+    },
+    {
+        "label": "save_processed_keyframe",
+        "kind": 2,
+        "importPath": "datasets.aichallenge_dataset",
+        "description": "datasets.aichallenge_dataset",
+        "peekOfCode": "def save_processed_keyframe(keyframe_id, processed_keyframes_file, processed_keyframes):\n    processed_keyframes.add(keyframe_id)\n    with open(processed_keyframes_file, 'w') as f:\n        json.dump(list(processed_keyframes), f)\ndef download_youtube_transcription_from_json(json_path, output_dir):\n    \"\"\"Download a YouTube video transcription from a JSON file's 'watch_url' field.\"\"\"\n    try:\n        # Check if the metadata file exists\n        if not os.path.exists(json_path):\n            raise FileNotFoundError(f\"Metadata file does not exist: {json_path}\")",
         "detail": "datasets.aichallenge_dataset",
         "documentation": {}
     },
@@ -1135,7 +1153,7 @@
         "kind": 5,
         "importPath": "datasets.aichallenge_dataset",
         "description": "datasets.aichallenge_dataset",
-        "peekOfCode": "logger = logging.getLogger(__name__)\nlogging.basicConfig(level=logging.INFO)\nimport os\nos.environ['TORCH_USE_CUDA_DSA'] = '1'\n# Set device to GPU if available, otherwise use CPU\ndevice = torch.device('cuda' if torch.cuda.is_available() else 'cpu')\ndevice = \"cuda\" \nprint(f'Using device: {device}')\n# Load CLIP model and ensure it runs on the chosen device (GPU or CPU)\nclip_model, clip_preprocess = clip.load(\"ViT-B/32\", device=device)",
+        "peekOfCode": "logger = logging.getLogger(__name__)\nlogging.basicConfig(level=logging.INFO)\nimport os\nos.environ['TORCH_USE_CUDA_DSA'] = '1'\n# Set device to GPU if available, otherwise use CPU\ndevice = torch.device('cuda' if torch.cuda.is_available() else 'cpu')\ndevice = \"cuda\" \nprint(f'Using device: {device}')\n# Load CLIP model and ensure it runs on the chosen device (GPU or CPU)\n# clip_model, clip_preprocess = clip.load(\"ViT-B/32\", device=device)",
         "detail": "datasets.aichallenge_dataset",
         "documentation": {}
     },
@@ -1144,7 +1162,7 @@
         "kind": 5,
         "importPath": "datasets.aichallenge_dataset",
         "description": "datasets.aichallenge_dataset",
-        "peekOfCode": "os.environ['TORCH_USE_CUDA_DSA'] = '1'\n# Set device to GPU if available, otherwise use CPU\ndevice = torch.device('cuda' if torch.cuda.is_available() else 'cpu')\ndevice = \"cuda\" \nprint(f'Using device: {device}')\n# Load CLIP model and ensure it runs on the chosen device (GPU or CPU)\nclip_model, clip_preprocess = clip.load(\"ViT-B/32\", device=device)\nprint(\"CLIP model loaded successfully!\")\nfrom transformers import AutoTokenizer, AutoModel\n# Use cached tokenizers",
+        "peekOfCode": "os.environ['TORCH_USE_CUDA_DSA'] = '1'\n# Set device to GPU if available, otherwise use CPU\ndevice = torch.device('cuda' if torch.cuda.is_available() else 'cpu')\ndevice = \"cuda\" \nprint(f'Using device: {device}')\n# Load CLIP model and ensure it runs on the chosen device (GPU or CPU)\n# clip_model, clip_preprocess = clip.load(\"ViT-B/32\", device=device)\n# print(\"CLIP model loaded successfully!\")\nfrom transformers import AutoTokenizer, AutoModel\n# Use cached tokenizers",
         "detail": "datasets.aichallenge_dataset",
         "documentation": {}
     },
@@ -1153,7 +1171,7 @@
         "kind": 5,
         "importPath": "datasets.aichallenge_dataset",
         "description": "datasets.aichallenge_dataset",
-        "peekOfCode": "device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')\ndevice = \"cuda\" \nprint(f'Using device: {device}')\n# Load CLIP model and ensure it runs on the chosen device (GPU or CPU)\nclip_model, clip_preprocess = clip.load(\"ViT-B/32\", device=device)\nprint(\"CLIP model loaded successfully!\")\nfrom transformers import AutoTokenizer, AutoModel\n# Use cached tokenizers\ndef initialize_phobert_tokenizer():\n    \"\"\"Initialize the PhoBERT tokenizer with caching for faster loads.\"\"\"",
+        "peekOfCode": "device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')\ndevice = \"cuda\" \nprint(f'Using device: {device}')\n# Load CLIP model and ensure it runs on the chosen device (GPU or CPU)\n# clip_model, clip_preprocess = clip.load(\"ViT-B/32\", device=device)\n# print(\"CLIP model loaded successfully!\")\nfrom transformers import AutoTokenizer, AutoModel\n# Use cached tokenizers\ndef initialize_phobert_tokenizer():\n    \"\"\"Initialize the PhoBERT tokenizer with caching for faster loads.\"\"\"",
         "detail": "datasets.aichallenge_dataset",
         "documentation": {}
     },
@@ -1162,7 +1180,7 @@
         "kind": 5,
         "importPath": "datasets.aichallenge_dataset",
         "description": "datasets.aichallenge_dataset",
-        "peekOfCode": "device = \"cuda\" \nprint(f'Using device: {device}')\n# Load CLIP model and ensure it runs on the chosen device (GPU or CPU)\nclip_model, clip_preprocess = clip.load(\"ViT-B/32\", device=device)\nprint(\"CLIP model loaded successfully!\")\nfrom transformers import AutoTokenizer, AutoModel\n# Use cached tokenizers\ndef initialize_phobert_tokenizer():\n    \"\"\"Initialize the PhoBERT tokenizer with caching for faster loads.\"\"\"\n    tokenizer = AutoTokenizer.from_pretrained(\"vinai/phobert-base-v2\", cache_dir='./cache')",
+        "peekOfCode": "device = \"cuda\" \nprint(f'Using device: {device}')\n# Load CLIP model and ensure it runs on the chosen device (GPU or CPU)\n# clip_model, clip_preprocess = clip.load(\"ViT-B/32\", device=device)\n# print(\"CLIP model loaded successfully!\")\nfrom transformers import AutoTokenizer, AutoModel\n# Use cached tokenizers\ndef initialize_phobert_tokenizer():\n    \"\"\"Initialize the PhoBERT tokenizer with caching for faster loads.\"\"\"\n    tokenizer = AutoTokenizer.from_pretrained(\"vinai/phobert-base-v2\", cache_dir='./cache')",
         "detail": "datasets.aichallenge_dataset",
         "documentation": {}
     },
@@ -1172,24 +1190,6 @@
         "importPath": "datasets.aichallenge_dataset",
         "description": "datasets.aichallenge_dataset",
         "peekOfCode": "config = Config()\n# Set seed for reproducibility\ntorch.manual_seed(config.seed)  # Use instance attribute 'config.seed'\nif torch.cuda.is_available():\n    torch.cuda.manual_seed_all(config.seed)\n# Function to download transcription from YouTube\nimport os\nimport json\nimport urllib.error\nfrom youtube_transcript_api import YouTubeTranscriptApi, CouldNotRetrieveTranscript",
-        "detail": "datasets.aichallenge_dataset",
-        "documentation": {}
-    },
-    {
-        "label": "config",
-        "kind": 5,
-        "importPath": "datasets.aichallenge_dataset",
-        "description": "datasets.aichallenge_dataset",
-        "peekOfCode": "config = Config()\n# Create dataset object\ndataset = CustomDataset(config, split_type='train')\nprint(f\"Number of videos in dataset: {len(dataset)}\")\n# Load a few examples from the dataset\nfor i in range(min(5, len(dataset))):\n    data = dataset[i]\n    if data is None:\n        print(f\"Warning: Data at index {i} is None.\")\n    else:",
-        "detail": "datasets.aichallenge_dataset",
-        "documentation": {}
-    },
-    {
-        "label": "dataset",
-        "kind": 5,
-        "importPath": "datasets.aichallenge_dataset",
-        "description": "datasets.aichallenge_dataset",
-        "peekOfCode": "dataset = CustomDataset(config, split_type='train')\nprint(f\"Number of videos in dataset: {len(dataset)}\")\n# Load a few examples from the dataset\nfor i in range(min(5, len(dataset))):\n    data = dataset[i]\n    if data is None:\n        print(f\"Warning: Data at index {i} is None.\")\n    else:\n        print(f\"Data at index {i} loaded successfully: {data['video_id']}\")",
         "detail": "datasets.aichallenge_dataset",
         "documentation": {}
     },
@@ -1640,6 +1640,15 @@
         "importPath": "trainer.trainer_stochastic",
         "description": "trainer.trainer_stochastic",
         "peekOfCode": "def resize_text_embeddings(text_embeddings, target_size):\n    # Resize or pad the text embeddings to the target size\n    current_size = text_embeddings.shape[1]\n    if current_size > target_size:\n        text_embeddings = text_embeddings[:, :target_size]  # Truncate\n    elif current_size < target_size:\n        padding_size = target_size - current_size\n        text_embeddings = F.pad(text_embeddings, (0, 0, 0, padding_size))  # Pad along the appropriate dimensions\n    return text_embeddings\nif __name__ == \"__main__\":",
+        "detail": "trainer.trainer_stochastic",
+        "documentation": {}
+    },
+    {
+        "label": "start_time",
+        "kind": 5,
+        "importPath": "trainer.trainer_stochastic",
+        "description": "trainer.trainer_stochastic",
+        "peekOfCode": "start_time = time.time()\nimport logging\nfrom torch.utils.data import DataLoader\nimport torch.multiprocessing as mp\nmp.set_start_method('spawn', force=True)\nimport os\nos.environ[\"CUDA_LAUNCH_BLOCKING\"] = \"1\"\n# Set up logger\nlogger = logging.getLogger(__name__)\nlogging.basicConfig(level=logging.INFO)",
         "detail": "trainer.trainer_stochastic",
         "documentation": {}
     },
