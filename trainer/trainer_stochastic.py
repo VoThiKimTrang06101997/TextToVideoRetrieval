@@ -1,581 +1,494 @@
 import os
-import gc
-import time
 import torch
-import numpy as np
-import pandas as pd  # For writing the CSV
-from tqdm import tqdm
-from collections import defaultdict, deque
+import json
+from PIL import Image
+from torch.utils.data import Dataset
+import clip
 from transformers import AutoTokenizer, AutoModel
-
-from config.all_config import gen_log
-from config.base_config import Config
-from trainer.base_trainer import BaseTrainer
-from modules.metrics import sim_matrix_training, sim_matrix_inference_stochastic, sim_matrix_inference_stochastic_light_allops, generate_embeds_per_video_id_stochastic, np_softmax
-
-from datasets.aichallenge_dataset import CustomDataset 
-from model.clip_stochastic import CLIPStochastic
-
+import logging
 import torch.nn.functional as F
+import torchvision.transforms as transforms
+
+from pytube import YouTube
 
 import time
 from tqdm import tqdm
 
-# Initialize the start time before the loop starts
-start_time = time.time()
-
-import logging
-
-from torch.utils.data import DataLoader
-import torch.multiprocessing as mp
-mp.set_start_method('spawn', force=True)
-
-import os
-os.environ["CUDA_LAUNCH_BLOCKING"] = "1"
+from torch.utils.checkpoint import checkpoint
 
 # Set up logger
 logger = logging.getLogger(__name__)
 logging.basicConfig(level=logging.INFO)
 
-# Load PhoBERT tokenizer
-phobert_tokenizer = AutoTokenizer.from_pretrained("vinai/phobert-base-v2")
-
-class Trainer(BaseTrainer):
-    """
-    Trainer class
-    Note:
-        Inherited from BaseTrainer.
-    """
-
-    def __init__(self, model, loss, metrics, optimizer, config: Config, train_data_loader,
-                 valid_data_loader, tokenizer=None, lr_scheduler=None, writer=None):
-
-        super().__init__(model, loss, metrics, optimizer, config, writer)
-        self.train_data_loader = train_data_loader
-        self.valid_data_loader = valid_data_loader
-        self.lr_scheduler = lr_scheduler
-        self.tokenizer = tokenizer
-
-        # Load PhoBERT tokenizer and model
-        self.phobert_tokenizer = AutoTokenizer.from_pretrained("vinai/phobert-base-v2")
-        self.phobert_model = AutoModel.from_pretrained("vinai/phobert-base-v2").to(self.device)
-
-        self.pooling_type = config.pooling_type
-        self.window_metric = defaultdict(lambda: deque(maxlen=config.eval_window_size))
-        self.best_window = -1.0
-        self.best = -1.0
-        self.loss_log = []  # Store loss for logging
-
-
-    def _train_epoch(self, epoch):
-        self.model.train()
-        total_loss = 0.0
-        num_steps = len(self.train_data_loader)
-        eval_steps = np.linspace(0, num_steps - 1, self.evals_per_epoch + 1, dtype=int)[1:]
-
-        # for batch_idx, data in tqdm(enumerate(self.train_data_loader), total=num_steps):
-        for batch_idx, data in tqdm (enumerate(self.train_data_loader), total=len(self.train_data_loader)):  
-            start_time = time.time()  # Start time for the batch processing     
-
-            # Calculate total batches
-            total_batches = len(self.train_data_loader)
-
-            # Log progress
-            print(f"Processing batch {batch_idx}")
-            print(f"Processing batch {batch_idx + 1}/{total_batches}")
-
-            # Record time for each batch
-            if batch_idx > 0:
-                # Elapsed time since the start
-                elapsed_time = time.time() - start_time
-                
-                # Number of batches processed
-                batches_processed = batch_idx + 1
-                
-                # Average time per batch
-                avg_time_per_batch = elapsed_time / batches_processed
-                
-                # Remaining batches
-                remaining_batches = total_batches - batches_processed
-                
-                # Estimated time remaining
-                estimated_time_remaining = avg_time_per_batch * remaining_batches
-
-                print(f"Processed {batches_processed}/{total_batches} batches.")
-                print(f"Estimated time remaining: {estimated_time_remaining / 60:.2f} minutes")
-
-            # Indicate when preprocessing is complete
-            if batch_idx + 1 == num_steps:
-                print(f"Preprocessing complete. Total batches: {total_batches}")
-
-            video_ids = data.get('video_ids', 'Unknown')
-            logger.info(f"Batch {batch_idx}: Processing video IDs {video_ids}")
-
-            print(f"Data keys: {data.keys()}")  # This will show all keys in the 'data' dict
-            logger.info(f"Batch {batch_idx}: Processing video IDs {data['video_id']}")
-            
-            if data is None:
-              logger.warning(f"Batch {batch_idx} is None")
-              continue
-
-            logger.info(f"Batch {batch_idx}: Processing video IDs {data['video_id']}")
-
-             # Calculate time taken for the batch
-            batch_time = time.time() - start_time
-            print(f"Batch {batch_idx} processed in {batch_time:.2f} seconds.")
-
-            if batch_idx % 100 == 0:
-              logging.info(f"Processed batch {batch_idx}/{total_batches}")
-            
-            try:
-              # Forward pass
-              video = data['clip_features'].to(self.device)
-              text_embeds = data['description_embeddings'].to(self.device)
-
-              logger.info(f"Clip features shape: {video.shape}, Text embeddings shape: {text_embeds.shape}")
-
-              # text_embeds, video_embeds_pooled, text_embeds_stochastic, text_mean, text_log_var = self.model(
-              #     {'text_embeds': text_embeds, 'video': video}, is_train=True
-              # )
-
-              # Ensure both 'text_embeds' and 'video' are present in data
-              if 'text_embeds' not in data or 'video' not in data:
-                  logger.error(f"Missing required data keys at batch {batch_idx}. Skipping this batch.")
-                  continue
-
-              text_inputs = data['text_embeds']  # Replace 'text_embeds' with your actual text input key if necessary
-              video_inputs = data['video']       # Replace 'video' with your actual video input key
-
-              # Ensure inputs are on the correct device
-              text_inputs = text_inputs.to(self.device)
-              video_inputs = video_inputs.to(self.device)
-
-              # Forward pass through the model with both text and video inputs
-              text_embeds, video_embeds_pooled, text_embeds_stochastic, text_mean, text_log_var = self.model(
-                  text_inputs, video_inputs, is_train=True  # Pass both inputs and other necessary arguments
-              )
-              
-              # Compute loss
-              output = sim_matrix_training(text_embeds_stochastic, video_embeds_pooled, self.pooling_type)
-              loss = self.loss(output, self.model.clip.logit_scale)
-
-              # Support text embedding regularization
-              video_embeds_pooled_avg = torch.mean(video_embeds_pooled, dim=1).squeeze()
-              pointer = video_embeds_pooled_avg - text_embeds
-              text_support = pointer / pointer.norm(dim=-1, keepdim=True) * torch.exp(text_log_var) + text_embeds
-              output_support = sim_matrix_training(text_support, video_embeds_pooled, self.pooling_type)
-              loss_support = self.loss(output_support, self.model.clip.logit_scale)
-
-              loss_all = loss + loss_support * self.config.support_loss_weight
-              loss_all.backward()
-
-              torch.nn.utils.clip_grad_norm_(self.model.parameters(), 1.0)
-              self.optimizer.step()
-              if self.lr_scheduler is not None:
-                self.lr_scheduler.step()
-                self.optimizer.zero_grad()
-              
-
-              # Backward pass and optimization step
-              loss.backward()
-              self.optimizer.step()
-              
-
-              torch.clamp_(self.model.clip.logit_scale.data, max=np.log(100))
-              self.global_step += 1
-              total_loss += loss_all.detach().item()
-
-              # Log loss
-              if batch_idx % self.log_step == 0:
-                msg = (f'Train Epoch: {epoch} dl: {batch_idx}/{num_steps - 1} '
-                    f'Total Loss: {loss_all.item()}, Original Loss: {loss.item()}, Support Loss: {loss_support.item()}')
-                gen_log(model_path=self.config.model_path, log_name='log_trntst', msg=msg)
-
-              # Perform validation at eval steps
-              if batch_idx in eval_steps:
-                val_res = self._valid_epoch_step(epoch, batch_idx, num_steps - 1)
-                self.model.train()
-                if val_res['R1-window'] > self.best_window:
-                  self.best_window = val_res['R1-window']
-                  self._save_checkpoint(epoch, save_best=True)
-                if val_res['R1'] > self.best:
-                  self.best = val_res['R1']
-
-            except Exception as e:
-                logger.error(f"Error processing batch {batch_idx}: {e}", exc_info=True)
-
-        avg_loss = total_loss / num_steps
-        return avg_loss
-         
-    def _valid_epoch_step(self, epoch, step, num_steps):
-      self.model.eval()
-      total_val_loss = 0.0
-      text_embed_arr = []
-      vid_embed_arr = []
-      all_vid_ids = []
-
-      with torch.no_grad():
-          for idx, data in tqdm(enumerate(self.valid_data_loader)):
-              try:
-                  # Ensure that the required keys are present in the data
-                  required_keys = ['video_id', 'keyframe_image', 'clip_features', 'metadata', 'description_embeddings']
-                  for key in required_keys:
-                      if key not in data:
-                          logger.error(f"Missing required data key: {key} at batch {idx}. Skipping this batch.")
-                          continue  # Skip this batch if any required key is missing
-
-                  # Validate data
-                  if data is None or any([d is None for d in data.values()]):
-                      logger.warning(f"Data at index {idx} is None or invalid. Skipping.")
-                      continue
-
-                  # Extract description text and video features
-                  description_text = data['description_embeddings']
-                  video = data['clip_features'].to(self.device)
-                  
-                  # Skip batch if description text is invalid
-                  if description_text is None or len(description_text.strip()) == 0:
-                      logger.error(f"Invalid description text at index {idx}. Skipping this entry.")
-                      continue
-
-                  # Tokenize description text using the tokenizer
-                  input_ids = self.tokenizer(
-                      description_text,
-                      return_tensors='pt',
-                      truncation=True,
-                      padding='max_length',  # Ensure padding to max_length
-                      max_length=256         # Set max_length to 256
-                  )
-                  if not self.validate_tokens(input_ids):
-                    print("Invalid tokens or sequence length. Skipping this sample.")
-
-                  # Log the shape of the tokenized input
-                  logger.info(f"Tokenized input_ids shape: {input_ids['input_ids'].shape}")                
-
-                  # Check token ID validity before passing to PhoBERT
-                  max_token_id = torch.max(input_ids)
-                  vocab_size = self.phobert_model.config.vocab_size
-                  if torch.max(input_ids) >= vocab_size:
-                      raise ValueError(f"Token ID {torch.max(input_ids)} vượt quá kích thước từ vựng {vocab_size}")
-
-                  # Log to check if any token exceeds the vocabulary size
-                  if max_token_id >= vocab_size:
-                      logger.error(f"Token ID exceeds vocabulary size: {max_token_id} >= {vocab_size}. Skipping batch.")
-                      continue
-                  else:
-                      logger.info(f"All token IDs are within the valid range.")
-
-                  max_length = self.phobert_model.config.max_position_embeddings
-                  if input_ids.size(1) > max_length:
-                      raise ValueError(f"Input token length {input_ids.size(1)} vượt quá giới hạn {max_length}")
-
-                  self.phobert_model.config.use_nested_tensor = False
-
-
-                  # Move the tokenized inputs to the appropriate device
-                  input_ids = input_ids['input_ids'].to(self.device)
-
-                  # Ensure the input tensor has a valid shape
-                  if input_ids.shape[1] > 256:
-                      logger.warning(f"Input shape exceeds expected length: {input_ids.shape}. Truncating.")
-                      input_ids = input_ids[:, :256]  # Truncate to 256 tokens
-
-                  # Use the tokenized inputs for the PhoBERT model
-                  model_output = self.phobert_model(input_ids)
-                  
-                  if input_ids is None or input_ids.shape[1] == 0:
-                    logger.error(f"Invalid input_ids at index {idx}. Skipping this entry.")
-                    continue
-
-                  # Ensure 'last_hidden_state' is available
-                  if not hasattr(model_output, 'last_hidden_state'):
-                      logger.error(f"Invalid model output, missing 'last_hidden_state'. Skipping batch.")
-                      continue
-                  else:
-                      description_embeddings = model_output.last_hidden_state
-                      logger.info(f"Description embeddings shape: {description_embeddings.shape}")
-
-                  # Ensure valid sizes before proceeding
-                  if description_embeddings.size(0) == 0 or video.size(0) == 0:
-                      logger.warning(f"Invalid input size at batch {idx}. Skipping.")
-                      continue
-                  
-                  video = data['clip_features'].to(self.device)
-
-                  # Ensure valid sizes before proceeding
-                  if description_embeddings.size(0) == 0 or video.size(0) == 0:
-                      logger.warning(f"Invalid input size at batch {idx}. Skipping.")
-                      continue
-
-                  # Append embeddings for further processing
-                  text_embed_arr.append(description_embeddings.cpu())
-                  vid_embed_arr.append(video.cpu())
-                  for v_id in data['video_id']:
-                      all_vid_ids.append(v_id)
-
-              except Exception as e:
-                  logger.error(f"Error processing batch {idx}: {e}")
-                  continue
-
-          # If no valid data, return early
-          if not text_embed_arr or not vid_embed_arr:
-              logger.error("No valid data available for validation. Returning.")
-              return {}
-
-          # Concatenate embeddings
-          text_embeds = torch.cat(text_embed_arr)
-          vid_embeds = torch.cat(vid_embed_arr)
-
-          # Verify sizes before pooling
-          logger.info(f"text_embeds shape: {text_embeds.shape}, vid_embeds shape: {vid_embeds.shape}")
-
-          # Pool video embeddings based on video IDs
-          vid_embeds_per_video_id = {v_id: vid_embeds[idx] for idx, v_id in enumerate(all_vid_ids)}
-          vid_embeds = torch.stack([vid_embeds_per_video_id[v_id] for v_id in vid_embeds_per_video_id])
-
-          # Ensure embeddings are on the CPU before pooling
-          self.model.pool_frames.cpu()
-          vid_embeds_pooled = self.model.pool_frames(text_embeds, vid_embeds)
-          self.model.pool_frames.cuda()
-
-          # Prepare stochastic embeddings
-          self.model.stochastic.cpu()
-          text_embeds_stochastic_allpairs = torch.zeros(size=(vid_embeds.shape[0], text_embeds.shape[0], text_embeds.shape[1]))
-
-          for (idx_vid, single_vid), single_vid_embed_pooled in tqdm(zip(enumerate(vid_embeds), vid_embeds_pooled)):
-              single_vid_vec = single_vid.unsqueeze(0)
-              single_vid_repeat = single_vid_vec.tile((text_embeds.shape[0], 1, 1))  # [bs_t, #F, dim]
-
-              all_text_embed_stochastic = []
-              for trial in range(self.config.stochastic_trials):
-                  all_text_embed_stochastic, _, _ = self.model.stochastic(text_embeds, single_vid_repeat)  # [bs_t, dim]
-                  all_text_embed_stochastic.append(all_text_embed_stochastic)
-
-              all_text_embed_stochastic_arr = torch.stack(all_text_embed_stochastic, dim=0)  # [#trials, bs_t, dim]
-              all_text_embed_stochastic_arr = all_text_embed_stochastic_arr / all_text_embed_stochastic_arr.norm(dim=-1, keepdim=True)
-              single_vid_embed_pooled = single_vid_embed_pooled / single_vid_embed_pooled.norm(dim=-1, keepdim=True)
-
-              sim_select = torch.sum(torch.mul(all_text_embed_stochastic_arr, single_vid_embed_pooled), dim=-1)  # [#trial, bs_t]
-              max_indices = torch.argmax(sim_select, dim=0)  # [bs_t]
-
-              selected_plane = torch.ones((all_text_embed_stochastic_arr.shape[1], all_text_embed_stochastic_arr.shape[2]))
-              for i in range(all_text_embed_stochastic_arr.shape[1]):
-                  selected_plane[i, :] = all_text_embed_stochastic_arr[max_indices[i], i, :]
-              text_embeds_stochastic_allpairs[idx_vid, :, :] = selected_plane
-
-          self.model.stochastic.cuda()
-
-          # Generate embeddings per video ID
-          text_embeds_per_video_id, vid_embeds_pooled_per_video_id = generate_embeds_per_video_id_stochastic(
-              text_embeds_stochastic_allpairs, vid_embeds_pooled, all_vid_ids, self.pooling_type
-          )
-
-          # Compute similarity matrix
-          if self.config.save_memory_mode:
-              sims = sim_matrix_inference_stochastic_light_allops(
-                  text_embeds_per_video_id, vid_embeds_pooled_per_video_id, self.pooling_type, self.config.batch_size_split, self.config
-              )
-          else:
-              sims = sim_matrix_inference_stochastic(
-                  text_embeds_per_video_id, vid_embeds_pooled_per_video_id, self.pooling_type
-              )
-
-          total_val_loss = total_val_loss / len(self.valid_data_loader)
-          res = self.metrics(sims)
-
-          # Log results
-          for m in res:
-              self.window_metric[m].append(res[m])
-          for m in self.window_metric:
-              res[m + "-window"] = np.mean(self.window_metric[m])
-
-          msg = (f"-----Val Epoch: {epoch}, dl: {step}/{num_steps}-----\n"
-                f"R@1: {res['R1']} (window: {res['R1-window']})\n"
-                f"R@5: {res['R5']} (window: {res['R5-window']})\n"
-                f"R@10: {res['R10']} (window: {res['R10-window']})\n"
-                f"MedR: {res['MedR']} (window: {res['MedR-window']})\n"
-                f"MeanR: {res['MeanR']} (window: {res['MeanR-window']})\n")
-          gen_log(model_path=self.config.model_path, log_name='log_trntst', msg=msg)
-
-          res['loss_val'] = total_val_loss
-          return res
-
-
-    def _save_checkpoint(self, epoch, save_best=False):
-        checkpoint_path = os.path.join(self.config.model_path, f'checkpoint_epoch_{epoch}.pth')
-        torch.save(self.model.state_dict(), checkpoint_path)
-        print(f"Checkpoint saved at {checkpoint_path}")
-        if save_best:
-            best_checkpoint_path = os.path.join(self.config.model_path, 'best_model.pth')
-            torch.save(self.model.state_dict(), best_checkpoint_path)
-            print(f"Best model saved at {best_checkpoint_path}")
-
-    def log_loss_to_csv(self, epoch, train_loss, val_loss):
-        log_path = os.path.join(self.config.model_path, 'training_log.csv')
-        if not os.path.exists(log_path):
-            with open(log_path, 'w') as f:
-                f.write('epoch,train_loss,val_loss\n')
-        with open(log_path, 'a') as f:
-            f.write(f'{epoch},{train_loss},{val_loss}\n')
-
-def tokenize_text(description_text, tokenizer, max_length=256):
-    input_ids = tokenizer(description_text, return_tensors='pt', truncation=True, padding='max_length', max_length=max_length)
-    return input_ids
-
-
-import torch
-import logging
-
-# Logger setup
-logger = logging.getLogger(__name__)
-
-def pad_collate_fn(batch):
-   # Filter out 'None' data points
-    batch = [item for item in batch if item is not None]
+import os
+os.environ['TORCH_USE_CUDA_DSA'] = '1'
+
+# Set device to GPU if available, otherwise use CPU
+device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
+device = "cuda" 
+print(f'Using device: {device}')
+
+# Load CLIP model and ensure it runs on the chosen device (GPU or CPU)
+# clip_model, clip_preprocess = clip.load("ViT-B/32", device=device)
+# print("CLIP model loaded successfully!")
+
+from transformers import AutoTokenizer, AutoModel
+
+# Use cached tokenizers
+def initialize_phobert_tokenizer():
+    """Initialize the PhoBERT tokenizer with caching for faster loads."""
+    tokenizer = AutoTokenizer.from_pretrained("vinai/phobert-base-v2", cache_dir='./cache')
+    model = AutoModel.from_pretrained("vinai/phobert-base-v2", cache_dir='./cache')
+    return tokenizer, model
+
+# Initialize PhoBERT model and tokenizer
+phobert_tokenizer, phobert_model = initialize_phobert_tokenizer()
+
+
+class Config:
+    def __init__(self):
+        self.videos_dir = "/content/drive/MyDrive/AI_Hackkathon/Dataset/video"
+        self.keyframes_dir = "/content/drive/MyDrive/AI_Hackkathon/Dataset/keyframes"
+        self.metadata_dir = "/content/drive/MyDrive/AI_Hackkathon/Dataset/metadata"
+        self.map_keyframes_dir = "/content/drive/MyDrive/AI_Hackkathon/Dataset/map-keyframes"
+        self.output_dir = "/content/drive/MyDrive/AI_Hackkathon/output"  
+        
+        self.clip_arch = 'ViT-B/32'  # Model architecture
+        self.device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')  # Use GPU if available
+        self.input_res = 224  # Input resolution for images
+        self.num_frames = 16  # Number of frames to use
+        self.max_token_length = 256  # Set max token length for PhoBERT embeddings
+        self.seed = 24  # Define the seed here
+
+        print(f"Keyframes directory: {self.keyframes_dir}")
+        print(f"Metadata directory: {self.metadata_dir}")
+        print(f"Map-keyframes directory: {self.map_keyframes_dir}")
+        print(f"Using device: {self.device}")
     
-    if len(batch) == 0:
-      print("Warning: All items in the batch are None. Skipping this batch.")
-      return None  # Optionally, return None or raise an error
-      
-    return torch.utils.data.dataloader.default_collate(batch)
+# Create an instance of Config
+config = Config()
 
-  
+# Set seed for reproducibility
+torch.manual_seed(config.seed)  # Use instance attribute 'config.seed'
+if torch.cuda.is_available():
+    torch.cuda.manual_seed_all(config.seed)
+
+# Function to download transcription from YouTube
+import os
+import json
+import urllib.error
+from youtube_transcript_api import YouTubeTranscriptApi, CouldNotRetrieveTranscript
+from pytube import YouTube
+import torch
+from PIL import Image
+
+# Function to load already processed keyframes
+def load_processed_keyframes(processed_keyframes_file):
+    if os.path.exists(processed_keyframes_file):
+        with open(processed_keyframes_file, 'r') as f:
+            return set(json.load(f))  # Load as a set for faster lookups
+    else:
+        return set()
+
+# Function to save processed keyframe
+def save_processed_keyframe(keyframe_id, processed_keyframes_file, processed_keyframes):
+    processed_keyframes.add(keyframe_id)
+    with open(processed_keyframes_file, 'w') as f:
+        json.dump(list(processed_keyframes), f)
+
+def download_youtube_transcription_from_json(json_path, output_dir):
+    """Download a YouTube video transcription from a JSON file's 'watch_url' field."""
     try:
-        # Extract clip features, description embeddings, metadata, and video IDs
-        keyframe_images = [item['keyframe_image'] for item in batch if item is not None]
-        clip_features = [torch.tensor(item['clip_features']) for item in batch if item is not None]
-        description_embeddings = [torch.tensor(item['description_embeddings']) for item in batch if item is not None]
-        metadata = [item['metadata'] for item in batch if item is not None]
-        video_ids = [item['video_id'] for item in batch if item is not None]
+        # Check if the metadata file exists
+        if not os.path.exists(json_path):
+            raise FileNotFoundError(f"Metadata file does not exist: {json_path}")
+        
+        # Load the metadata JSON
+        with open(json_path, 'r', encoding='utf-8') as f:
+            metadata = json.load(f)
 
-        # Determine the maximum length for description embeddings and clip features
-        max_clip_len = max([feat.shape[0] for feat in clip_features])
-        max_desc_len = max([desc.shape[1] for desc in description_embeddings])
+        # Extract the YouTube URL from the 'watch_url' field
+        youtube_url = metadata.get('watch_url', None)
 
-        # Pad or truncate the clip features and description embeddings to the same length
-        padded_clip_features = [torch.nn.functional.pad(feat, (0, 0, 0, max_clip_len - feat.shape[0])) for feat in clip_features]
-        padded_description_embeddings = [torch.nn.functional.pad(desc, (0, 0, 0, max_desc_len - desc.shape[1])) for desc in description_embeddings]
+        if youtube_url is None:
+            raise ValueError(f"No 'watch_url' found in the metadata file: {json_path}")
+        
+        # Extract the video ID from the URL
+        video_id = youtube_url.split("v=")[-1]
 
-        # Stack all the tensors into batches
-        keyframe_images_batch = torch.stack(keyframe_images)
-        clip_features_batch = torch.stack(padded_clip_features)
-        description_embeddings_batch = torch.stack(padded_description_embeddings)
+        # Try downloading the official transcription using YouTubeTranscriptApi
+        try:
+            transcript = YouTubeTranscriptApi.get_transcript(video_id, languages=['vi'])
+            transcript_text = " ".join([t['text'] for t in transcript])
+            print(f"Transcription for {youtube_url} in Vietnamese: {transcript_text}")
 
-        # # Resize embeddings
-        # resized_clip_features = [resize_clip_features(feat, target_size=258) for feat in clip_features]
-        # resized_description_embeddings = [resize_text_embeddings(desc, target_size=258) for desc in description_embeddings]
+            # Save the transcription to a file
+            output_file = os.path.join(output_dir, f"{video_id}_transcription.txt")
+            with open(output_file, 'w', encoding='utf-8') as f:
+                f.write(transcript_text)
+            print(f"Transcription saved to {output_file}")
+            return transcript_text
 
-        # # Ensure description embeddings have the same shape by padding or truncating
-        # # max_len = max([emb.shape[1] for emb in description_embeddings])
-        # # description_embeddings = [torch.nn.functional.pad(emb, (0, 0, 0, max_len - emb.shape[1])) for emb in description_embeddings]
-        # # description_embeddings = torch.stack(description_embeddings)
+        except Exception as e:
+            if "age-restricted" in str(e).lower():
+                print(f"Skipping age-restricted video {video_id}: {youtube_url}")
+            else:
+                print(f"Error retrieving transcription: {e}")
+            return None
 
-        # # Stack all the tensors into batches
-        # keyframe_images = torch.stack(keyframe_images)
-        # clip_features_batch = torch.stack(resized_clip_features)        
-        # description_embeddings_batch = torch.stack(resized_description_embeddings)
+        except CouldNotRetrieveTranscript as transcript_error:
+            print(f"Error downloading transcription: {transcript_error}")
+            print(f"Attempting to download auto-generated captions...")
 
-        # Print the processed video IDs in the batch
-        print(f"Batch contains video IDs: {video_ids}")
+            # Fall back to auto-generated captions via pytube
+            try:
+                yt = YouTube(youtube_url)
+                # captions = yt.captions['vi']
+                captions = yt.captions.get_by_language_code('vi')
 
-        # Return the collated batch
-        return {
-            'video_ids': video_ids,
-            'keyframe_image': keyframe_images_batch,
-            'clip_features': clip_features_batch,
-            'metadata': metadata,
-            'description_embeddings': description_embeddings_batch,
-         
-        }
+                if 'vi' not in yt.captions:
+                  print(f"No auto-generated captions found for {youtube_url}")
+                  return None  # Skip this item as no captions are available
+
+                if captions:
+                    transcript_text = captions.generate_srt_captions()
+                    print(f"Auto-generated captions found for {youtube_url}.")
+                    
+                    # Save the auto-generated captions
+                    output_file = os.path.join(output_dir, f"{video_id}_auto_captions.txt")
+                    with open(output_file, 'w', encoding='utf-8') as f:
+                        f.write(transcript_text)
+                    print(f"Auto-generated captions saved to {output_file}")
+                    return transcript_text
+                else:
+                    print(f"No auto-generated captions found for {youtube_url}.")
+                    return None
+            except Exception as e:
+                print(f"Error downloading auto-generated captions: {e}")
+                return None
 
     except Exception as e:
-        # Log any errors that occur during the collation process
-        logger.error(f"Error during collation: {e}")
+        print(f"An error occurred while downloading transcription: {e}")
         return None
 
-def resize_clip_features(clip_features, target_size):
-    # Resize or truncate the clip features to the target size
-    current_size = clip_features.shape[0]
-    if current_size > target_size:
-        clip_features = clip_features[:target_size]  # Truncate
-    elif current_size < target_size:
-        padding_size = target_size - current_size
-        clip_features = F.pad(clip_features, (0, 0, 0, padding_size))  # Pad along the appropriate dimensions
-    return clip_features
 
-def resize_text_embeddings(text_embeddings, target_size):
-    # Resize or pad the text embeddings to the target size
-    current_size = text_embeddings.shape[1]
-    if current_size > target_size:
-        text_embeddings = text_embeddings[:, :target_size]  # Truncate
-    elif current_size < target_size:
-        padding_size = target_size - current_size
-        text_embeddings = F.pad(text_embeddings, (0, 0, 0, padding_size))  # Pad along the appropriate dimensions
-    return text_embeddings
+class CustomDataset(Dataset):
+    def __init__(self, config, split_type='train', img_transforms=None, clip_model_name="ViT-B/32"):
+        self.config = config
+        self.split_type = split_type
+        self.img_transforms = img_transforms        
+
+        # Load CLIP model and preprocess
+        self.device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')  # Set to GPU if available
+        print(f"Using device: {self.device}")
+
+        # Load the CLIP model and its preprocess function
+        self.clip_model, self.clip_preprocess = clip.load(clip_model_name, device=self.device)
+        print("CLIP model and preprocess function loaded.")
+        
+        # Load PhoBERT model and tokenizer
+        self.phobert_tokenizer = AutoTokenizer.from_pretrained("vinai/phobert-base-v2")
+        self.phobert_model = AutoModel.from_pretrained("vinai/phobert-base-v2")
+        
+        # Define directories for your dataset
+        self.keyframes_dir = config.keyframes_dir
+        self.metadata_dir = config.metadata_dir
+        self.map_keyframes_dir = config.map_keyframes_dir
+
+        # Load processed videos
+        self.processed_keyframes_file = os.path.join(config.output_dir, '/content/drive/MyDrive/AI_Hackkathon/save_processed_keyframes/processed_keyframes.json')  # Path to save processed keyframes
+        self.processed_keyframes = load_processed_keyframes(self.processed_keyframes_file)
+
+        # Automatically load keyframe list from the directory
+        self.video_list = self._load_keyframe_list()
+        print(f"Loaded {len(self.video_list)} keyframe sequences for split: {split_type}")
+        
+    def _load_keyframe_list(self):
+        keyframe_list = []
+        for subdir in os.listdir(self.keyframes_dir):
+            subdir_path = os.path.join(self.keyframes_dir, subdir)
+            if os.path.isdir(subdir_path):
+                for video_subdir in os.listdir(subdir_path):
+                    video_subdir_path = os.path.join(subdir_path, video_subdir)
+                    if os.path.isdir(video_subdir_path):
+                        keyframe_files = [f for f in os.listdir(video_subdir_path) if f.endswith(('.png', '.jpg'))]
+                        for keyframe_file in keyframe_files:
+                            keyframe_list.append((subdir, video_subdir, keyframe_file))
+
+        if len(keyframe_list) == 0:
+            print(f"No keyframe files found in directory: {self.keyframes_dir}")
+
+        return keyframe_list
+
+    def validate_tokens(self, input_ids):
+      """
+      Validate token IDs to ensure they are within the vocabulary range.
+      """
+      vocab_size = self.phobert_tokenizer.vocab_size  # Get the vocab size from the tokenizer
+      invalid_token_flag = False
+      for token in input_ids['input_ids'].view(-1):  # Access the 'input_ids' field in the dictionary
+          if token >= vocab_size or token < 0:
+              print(f"Invalid token {token} out of vocab size {vocab_size}")
+              invalid_token_flag = True
+      return not invalid_token_flag  # Return False if any invalid tokens are found
+
+      if not self.validate_tokens(input_ids):
+        raise ValueError(f"Invalid tokens found in input: {input_ids}")
+
+
+    def resize_embeddings(self, embeddings, target_size):
+        if embeddings.size(1) > target_size:
+            embeddings = embeddings[:, :target_size]
+        elif embeddings.size(1) < target_size:
+            padding_size = target_size - embeddings.size(1)
+            embeddings = F.pad(embeddings, (0, padding_size))
+        return embeddings
+
+    def resize_keyframe_images(self, keyframe_images, target_size=224):
+      """
+      Resize keyframe images to the target size expected by CLIP (224x224).
+      
+      Arguments:
+      - keyframe_images: The keyframe image tensor of shape [1, 3, H, W]
+      - target_size: The target size (height, width), default is 224 for CLIP.
+      
+      Returns:
+      - Resized keyframe image of shape [1, 3, target_size, target_size]
+      """
+      # If the target size is different from the current size, resize the image
+      resize_transform = transforms.Resize((target_size, target_size))
+      
+      # Apply the transformation to resize the image
+      resized_keyframe_images = resize_transform(keyframe_images.squeeze(0))  # Remove the batch dimension
+      
+      # Restore the batch dimension
+      resized_keyframe_images = resized_keyframe_images.unsqueeze(0)
+      
+      return resized_keyframe_images
+
+
+    
+    def validate_and_run_model(self, input_ids):
+        try:
+            # Validate token IDs
+            max_token_id = torch.max(input_ids['input_ids'])
+            vocab_size = self.phobert_tokenizer.vocab_size
+            print(f"Max token ID: {max_token_id}, Vocab size: {vocab_size}")
+            
+            if max_token_id >= vocab_size:
+                raise ValueError(f"Token ID {max_token_id} exceeds vocabulary size {vocab_size}")
+
+            # Validate sequence length
+            max_length = self.phobert_model.config.max_position_embeddings
+            print(f"Sequence length: {input_ids['input_ids'].size(1)}, Max length: {max_length}")
+            
+            if input_ids['input_ids'].size(1) > max_length:
+                raise ValueError(f"Sequence length {input_ids['input_ids'].size(1)} exceeds max length {max_length}")
+            
+            # Run model and get outputs
+            model_output = self.phobert_model(input_ids['input_ids'].to(self.device))
+            return model_output
+        
+        except Exception as e:
+            print(f"Error encountered: {e}")
+            return None
+
+    def __len__(self):
+        return len(self.video_list)
+
+    def __getitem__(self, index):
+      try:
+          start_time = time.time()
+          # Check if the data exists in the video_list or another attribute
+          if not hasattr(self, 'video_list'):
+              raise ValueError(f"No attribute 'video_list' found in dataset")
+              
+          subdir, video_subdir, keyframe_file = self.video_list[index]
+          # Check if the video has already been processed
+          if video_subdir in self.processed_keyframes:
+              print(f"Video {video_subdir} already processed. Skipping.")
+              return None
+
+          keyframe_path = os.path.join(self.keyframes_dir, subdir, video_subdir, keyframe_file)
+          
+          keyframe_image = Image.open(keyframe_path).convert('RGB')
+          # keyframe_image = keyframe_image.resize((256, 256))  # Resize to a fixed resolution
+          keyframe_image = self.clip_preprocess(keyframe_image).unsqueeze(0)
+
+          # Resize the keyframe image to the target size (256)
+          keyframe_image = self.resize_keyframe_images(keyframe_image, target_size=224)
+          
+
+          print(f"Shape of keyframe_image: {keyframe_image.shape}")
+          
+          try:
+              keyframe_image = keyframe_image.to(self.device)
+          except RuntimeError as e:
+              print(f"CUDA error during keyframe image processing: {e}")
+              raise
+
+
+          with torch.no_grad():
+              clip_features = self.clip_model.encode_image(keyframe_image).squeeze(0).cpu().numpy()
+
+          # Load metadata based on the correct video ID (use `video_subdir` instead of hardcoding)
+          metadata_path = os.path.join(self.metadata_dir, f"{video_subdir}.json")
+          # Load metadata
+          with open(metadata_path, 'r', encoding='utf-8') as f:
+              metadata = json.load(f)
+          
+          # Ensure the metadata file exists for this video
+          if not os.path.exists(metadata_path):
+            raise FileNotFoundError(f"Metadata file not found for video {video_subdir} at {metadata_path}")
+
+          description_text = download_youtube_transcription_from_json(metadata_path, self.config.output_dir)
+          if description_text is None:
+            print(f"Skipping item {index} due to missing transcription.")
+            raise ValueError(f"Could not retrieve transcription from {metadata_path}")
+            return None  # Skip this item if transcription is missing
+          
+
+          # Tokenize and validate tokens
+          input_ids = self.phobert_tokenizer(description_text, return_tensors='pt', 
+                                            truncation=True, padding='max_length', 
+                                            max_length=self.config.max_token_length)
+          print(f"Input token IDs: {input_ids['input_ids']}")
+
+          # Validate token IDs and ensure they are within the vocabulary
+          if not self.validate_tokens(input_ids):
+            raise ValueError(f"Invalid tokens found in transcription: {description_text}")
+          
+          # Validate tokens
+          for token in input_ids['input_ids'].view(-1):
+              if token >= self.phobert_tokenizer.vocab_size:
+                  raise ValueError(f"Invalid token ID {token} out of vocab range {self.phobert_tokenizer.vocab_size}")
+
+          input_ids = input_ids.to(self.device)
+          # Ensure the inputs and the model are on the same device
+          input_ids = {key: val.to(self.device) for key, val in input_ids.items()}
+          self.phobert_model = self.phobert_model.to(self.device)  # Move model to the correct device
+          print(f"Shape of input_ids['input_ids']: {input_ids['input_ids'].shape}")
+
+          
+          if not self.validate_tokens(input_ids):
+            raise ValueError(f"Invalid tokens found in description: {description_text}")
+
+          if input_ids['input_ids'].size(1) > self.phobert_model.config.max_position_embeddings:
+            logger.error(f"Input ID sequence is too long: {input_ids['input_ids'].size(1)}")
+
+          # Kiểm tra token ID có nằm trong phạm vi từ vựng của PhoBERT không
+          max_token_id = torch.max(input_ids['input_ids'])
+          vocab_size = self.phobert_tokenizer.vocab_size
+          if max_token_id >= vocab_size:
+              raise ValueError(f"Token ID {max_token_id} vượt quá kích thước từ vựng {vocab_size}")
+
+          # Kiểm tra chiều dài sequence có vượt quá giới hạn không
+          max_length = self.phobert_model.config.max_position_embeddings
+          if input_ids['input_ids'].size(1) > max_length:
+              raise ValueError(f"Chiều dài sequence {input_ids['input_ids'].size(1)} vượt quá giới hạn {max_length}")
+
+           # Get text embeddings
+          with torch.no_grad():
+              model_output = self.phobert_model(**input_ids)
+
+          if not hasattr(model_output, 'last_hidden_state'):
+              raise ValueError(f"Invalid model output at index {index}: {model_output}")
+
+          description_embeddings = model_output.last_hidden_state
+
+          # Resize the embeddings to the expected size
+          description_embeddings = self.resize_embeddings(description_embeddings, self.config.max_token_length)
+
+          print(f"Shape of description embeddings: {description_embeddings.shape}")
+
+          # Get text embeddings
+          # Validate tokens and run model
+          # model_output = self.validate_and_run_model(input_ids)
+          # if model_output is None:
+          #     raise ValueError(f"Invalid tokens or sequence at index {index}")
+
+
+          # # Ensure 'last_hidden_state' is available
+          # if not hasattr(model_output, 'last_hidden_state'):
+          #     logger.error(f"Invalid model output at index {index}: {model_output}")
+          #     return None  # Skip this sample
+          # else:
+          #     description_embeddings = model_output.last_hidden_state
+          #     logger.info(f"Description embeddings shape: {description_embeddings.shape}")
+
+          # Assuming you have keyframe images loaded as 'keyframe_image'
+          logger.info(f"Keyframe image shape: {keyframe_image.shape}")
+          logger.info(f"Input token IDs shape: {input_ids['input_ids'].shape}")
+          logger.info(f"Description embeddings shape: {description_embeddings.shape}")
+
+          # Resize the embeddings to the expected size
+          description_embeddings = self.resize_embeddings(description_embeddings, self.config.max_token_length)
+
+
+          # Get text embeddings
+          # Wrap your model forward pass with checkpoint
+          # description_embeddings = checkpoint(self.phobert_model, input_ids['input_ids'])
+
+          # Resize the embeddings to the expected size
+          # description_embeddings = self.resize_embeddings(description_embeddings, self.config.max_token_length)
+          print(f"Shape of description embeddings: {description_embeddings.shape}")
+
+          logger.info(f"Processing item {index}, input size: {input_ids['input_ids'].size()}, vocab size: {self.phobert_tokenizer.vocab_size}")
+
+           # Print the video ID being processed
+          print(f"Processing video ID: {video_subdir}, at index: {index}")
+
+          # Save processed keyframe ID
+          keyframe_id = f"{subdir}_{video_subdir}_{keyframe_file}"
+          save_processed_keyframe(keyframe_id, self.processed_keyframes_file, self.processed_keyframes)
+
+           # Log processing time
+          print(f"Processed item {index} in {time.time() - start_time:.2f} seconds.")
+
+          print(f"Loaded {len(self.processed_keyframes)} processed keyframes.")
+
+          print(f"Processing keyframe {keyframe_id}")
+          if keyframe_id in self.processed_keyframes:
+              print(f"Keyframe {keyframe_id} already processed. Skipping.")
+              return None  # Ensure it skips properly
+
+
+          return {
+              'video_id': video_subdir,
+              'keyframe_image': keyframe_image,
+              'clip_features': clip_features,
+              'metadata': metadata,
+              # 'description_embeddings': input_ids['input_ids']
+              'description_embeddings': description_embeddings,
+          }
+
+          print(f"Keyframe image shape: {keyframe_image.shape}")
+          print(f"Description embeddings shape: {description_embeddings.shape}")
+
+          
+
+      except Exception as e:
+          logger.error(f"Error processing item {index}: {e}", exc_info=True)
+          return None
 
 
 
-
+# Example usage:
 if __name__ == "__main__":
+    processed_keyframes_file = "/content/drive/MyDrive/AI_Hackkathon/save_processed_keyframes/processed_keyframes.json"
     config = Config()
 
-    # Ensure the model path exists
-    config.model_path = "/content/drive/MyDrive/AI_Hackkathon/output"
-    os.makedirs(config.model_path, exist_ok=True)
+    # Create dataset object
+    dataset = CustomDataset(config, split_type='train')
 
-    # Initialize datasets
-    train_dataset = CustomDataset(config, split_type='train', processed_keyframes_file="/content/drive/MyDrive/AI_Hackkathon/save_processed_keyframes/processed_keyframes.json")
-    valid_dataset = CustomDataset(config, split_type='valid', processed_keyframes_file="/content/drive/MyDrive/AI_Hackkathon/save_processed_keyframes/processed_keyframes.json")
+    print(f"Number of videos in dataset: {len(dataset)}")
 
-    # Create data loaders
-    train_loader = DataLoader(
-        train_dataset,
-        batch_size=config.batch_size,
-        shuffle=True,
-        num_workers=4,
-        collate_fn=pad_collate_fn,
-        pin_memory=True,
-        persistent_workers=True,
-        drop_last=True
-    )
+    # Load a few examples from the dataset
+    for i in range(min(5, len(dataset))):
+        data = dataset[i]
+        if data is None:
+            print(f"Warning: Data at index {i} is None.")
+        else:
+            print(f"Data at index {i} loaded successfully: {data['video_id']}")
 
-    valid_loader = DataLoader(
-        valid_dataset,
-        batch_size=config.batch_size,
-        shuffle=False,
-        num_workers=4,
-        collate_fn=pad_collate_fn,
-        pin_memory=True,
-        persistent_workers=True,
-        drop_last=True
-    )
-
-    # Initialize model, optimizer, and loss function
-    model = CLIPStochastic(config)
-    optimizer = torch.optim.Adam(model.parameters(), lr=3e-5)
-    criterion = torch.nn.CrossEntropyLoss()
-
-    # Initialize trainer
-    trainer = Trainer(
-        model=model,
-        loss=criterion,
-        metrics=None,
-        optimizer=optimizer,
-        config=config,
-        train_data_loader=train_loader,
-        valid_data_loader=valid_loader,
-        tokenizer=None
-    )
-
-    # Training loop
-    for epoch in range(config.num_epochs):
-        print(f"Training epoch {epoch}...")
-        train_loss = trainer._train_epoch(epoch)
-        val_loss = trainer._valid_epoch_step(epoch, 0, 1)
-        trainer.log_loss_to_csv(epoch, train_loss, val_loss)
-
-    # Save final checkpoint
-    final_checkpoint_path = os.path.join(config.model_path, 'final_checkpoint.pth')
-    torch.save(model.state_dict(), final_checkpoint_path)
-    print(f"Final model checkpoint saved at {final_checkpoint_path}")
-
+    
