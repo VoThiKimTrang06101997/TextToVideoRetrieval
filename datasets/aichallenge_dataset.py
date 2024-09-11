@@ -11,6 +11,9 @@ import torchvision.transforms as transforms
 
 from pytube import YouTube
 
+import time
+from tqdm import tqdm
+
 from torch.utils.checkpoint import checkpoint
 
 # Set up logger
@@ -194,7 +197,7 @@ class CustomDataset(Dataset):
 
         # Load processed videos
         self.processed_keyframes_file = os.path.join(config.output_dir, '/content/drive/MyDrive/AI_Hackkathon/save_processed_keyframes/processed_keyframes.json')  # Path to save processed keyframes
-        self.processed_videos = load_processed_keyframes(self.processed_keyframes_file)
+        self.processed_keyframes = load_processed_keyframes(self.processed_keyframes_file)
 
         # Automatically load keyframe list from the directory
         self.video_list = self._load_keyframe_list()
@@ -295,13 +298,14 @@ class CustomDataset(Dataset):
 
     def __getitem__(self, index):
       try:
+          start_time = time.time()
           # Check if the data exists in the video_list or another attribute
           if not hasattr(self, 'video_list'):
               raise ValueError(f"No attribute 'video_list' found in dataset")
               
           subdir, video_subdir, keyframe_file = self.video_list[index]
           # Check if the video has already been processed
-          if video_subdir in self.processed_videos:
+          if video_subdir in self.processed_keyframes:
               print(f"Video {video_subdir} already processed. Skipping.")
               return None
 
@@ -436,7 +440,18 @@ class CustomDataset(Dataset):
 
           # Save processed keyframe ID
           keyframe_id = f"{subdir}_{video_subdir}_{keyframe_file}"
-          save_processed_keyframe(keyframe_id, self.processed_keyframes_file, self.processed_videos)
+          save_processed_keyframe(keyframe_id, self.processed_keyframes_file, self.processed_keyframes)
+
+           # Log processing time
+          print(f"Processed item {index} in {time.time() - start_time:.2f} seconds.")
+
+          print(f"Loaded {len(self.processed_keyframes)} processed keyframes.")
+
+          print(f"Processing keyframe {keyframe_id}")
+          if keyframe_id in self.processed_keyframes:
+              print(f"Keyframe {keyframe_id} already processed. Skipping.")
+              return None  # Ensure it skips properly
+
 
           return {
               'video_id': video_subdir,
@@ -477,4 +492,3 @@ if __name__ == "__main__":
             print(f"Data at index {i} loaded successfully: {data['video_id']}")
 
     
-

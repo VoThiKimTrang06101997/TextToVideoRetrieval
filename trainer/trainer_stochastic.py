@@ -81,6 +81,7 @@ class Trainer(BaseTrainer):
             total_batches = len(self.train_data_loader)
 
             # Log progress
+            print(f"Processing batch {batch_idx}")
             print(f"Processing batch {batch_idx + 1}/{total_batches}")
 
             # Record time for each batch
@@ -122,6 +123,9 @@ class Trainer(BaseTrainer):
              # Calculate time taken for the batch
             batch_time = time.time() - start_time
             print(f"Batch {batch_idx} processed in {batch_time:.2f} seconds.")
+
+            if batch_idx % 100 == 0:
+              logging.info(f"Processed batch {batch_idx}/{total_batches}")
             
             try:
               # Forward pass
@@ -574,5 +578,4 @@ if __name__ == "__main__":
     final_checkpoint_path = os.path.join(config.model_path, 'final_checkpoint.pth')
     torch.save(model.state_dict(), final_checkpoint_path)
     print(f"Final model checkpoint saved at {final_checkpoint_path}")
-
 

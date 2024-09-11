@@ -89,7 +89,7 @@ class AllConfig(Config):
         parser.add_argument('--loss', type=str, default='clip')
         parser.add_argument('--clip_lr', type=float, default=1e-6, help='Learning rate used for CLIP params')
         parser.add_argument('--noclip_lr', type=float, default=1e-5, help='Learning rate used for new params')
-        parser.add_argument('--batch_size', type=int, default=16)
+        parser.add_argument('--batch_size', type=int, default=32)
         parser.add_argument('--num_epochs', type=int, default=5)
         parser.add_argument('--weight_decay', type=float, default=0.2, help='Weight decay')
         parser.add_argument('--warmup_proportion', type=float, default=0.1, help='Warmup proportion for learning rate schedule')
@@ -102,7 +102,7 @@ class AllConfig(Config):
         parser.add_argument('--transformer_dropout', type=float, default=0.3, help='Dropout prob. in the transformer pooling')
 
         # system parameters
-        parser.add_argument('--num_workers', type=int, default=2)
+        parser.add_argument('--num_workers', type=int, default=4)
         parser.add_argument('--seed', type=int, default=24, help='Random seed')
         parser.add_argument('--no_tensorboard', action='store_true', default=False)
         parser.add_argument('--tb_log_dir', type=str, default='logs')
