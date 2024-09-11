@@ -98,6 +98,14 @@
         "documentation": {}
     },
     {
+        "label": "Config",
+        "importPath": "config.base_config",
+        "description": "config.base_config",
+        "isExtraImport": true,
+        "detail": "config.base_config",
+        "documentation": {}
+    },
+    {
         "label": "mkdirp",
         "importPath": "modules.basic_utils",
         "description": "modules.basic_utils",
@@ -240,22 +248,6 @@
         "documentation": {}
     },
     {
-        "label": "Image",
-        "importPath": "PIL",
-        "description": "PIL",
-        "isExtraImport": true,
-        "detail": "PIL",
-        "documentation": {}
-    },
-    {
-        "label": "Image",
-        "importPath": "PIL",
-        "description": "PIL",
-        "isExtraImport": true,
-        "detail": "PIL",
-        "documentation": {}
-    },
-    {
         "label": "Dataset",
         "importPath": "torch.utils.data",
         "description": "torch.utils.data",
@@ -272,7 +264,7 @@
         "documentation": {}
     },
     {
-        "label": "Dataset",
+        "label": "DataLoader",
         "importPath": "torch.utils.data",
         "description": "torch.utils.data",
         "isExtraImport": true,
@@ -346,22 +338,6 @@
     },
     {
         "label": "CLIPModel",
-        "importPath": "transformers",
-        "description": "transformers",
-        "isExtraImport": true,
-        "detail": "transformers",
-        "documentation": {}
-    },
-    {
-        "label": "AutoTokenizer",
-        "importPath": "transformers",
-        "description": "transformers",
-        "isExtraImport": true,
-        "detail": "transformers",
-        "documentation": {}
-    },
-    {
-        "label": "AutoModel",
         "importPath": "transformers",
         "description": "transformers",
         "isExtraImport": true,
@@ -459,22 +435,6 @@
         "documentation": {}
     },
     {
-        "label": "YouTube",
-        "importPath": "pytube",
-        "description": "pytube",
-        "isExtraImport": true,
-        "detail": "pytube",
-        "documentation": {}
-    },
-    {
-        "label": "YouTube",
-        "importPath": "pytube",
-        "description": "pytube",
-        "isExtraImport": true,
-        "detail": "pytube",
-        "documentation": {}
-    },
-    {
         "label": "tqdm",
         "importPath": "tqdm",
         "description": "tqdm",
@@ -491,11 +451,11 @@
         "documentation": {}
     },
     {
-        "label": "checkpoint",
-        "importPath": "torch.utils.checkpoint",
-        "description": "torch.utils.checkpoint",
+        "label": "tqdm",
+        "importPath": "tqdm",
+        "description": "tqdm",
         "isExtraImport": true,
-        "detail": "torch.utils.checkpoint",
+        "detail": "tqdm",
         "documentation": {}
     },
     {
@@ -532,28 +492,20 @@
         "documentation": {}
     },
     {
-        "label": "YouTubeTranscriptApi",
-        "importPath": "youtube_transcript_api",
-        "description": "youtube_transcript_api",
-        "isExtraImport": true,
-        "detail": "youtube_transcript_api",
-        "documentation": {}
-    },
-    {
-        "label": "CouldNotRetrieveTranscript",
-        "importPath": "youtube_transcript_api",
-        "description": "youtube_transcript_api",
-        "isExtraImport": true,
-        "detail": "youtube_transcript_api",
-        "documentation": {}
-    },
-    {
         "label": "sys",
         "kind": 6,
         "isExtraImport": true,
         "importPath": "sys",
         "description": "sys",
         "detail": "sys",
+        "documentation": {}
+    },
+    {
+        "label": "CustomDataset",
+        "importPath": "datasets.aichallenge_dataset",
+        "description": "datasets.aichallenge_dataset",
+        "isExtraImport": true,
+        "detail": "datasets.aichallenge_dataset",
         "documentation": {}
     },
     {
@@ -637,6 +589,14 @@
         "description": "modules.tokenization_clip",
         "isExtraImport": true,
         "detail": "modules.tokenization_clip",
+        "documentation": {}
+    },
+    {
+        "label": "CLIPStochastic",
+        "importPath": "model.clip_stochastic",
+        "description": "model.clip_stochastic",
+        "isExtraImport": true,
+        "detail": "model.clip_stochastic",
         "documentation": {}
     },
     {
@@ -891,6 +851,30 @@
         "documentation": {}
     },
     {
+        "label": "defaultdict",
+        "importPath": "collections",
+        "description": "collections",
+        "isExtraImport": true,
+        "detail": "collections",
+        "documentation": {}
+    },
+    {
+        "label": "deque",
+        "importPath": "collections",
+        "description": "collections",
+        "isExtraImport": true,
+        "detail": "collections",
+        "documentation": {}
+    },
+    {
+        "label": "gen_log",
+        "importPath": "config.all_config",
+        "description": "config.all_config",
+        "isExtraImport": true,
+        "detail": "config.all_config",
+        "documentation": {}
+    },
+    {
         "label": "AllConfig",
         "importPath": "config.all_config",
         "description": "config.all_config",
@@ -923,35 +907,51 @@
         "documentation": {}
     },
     {
-        "label": "DataFactory",
-        "importPath": "datasets.data_factory",
-        "description": "datasets.data_factory",
+        "label": "BaseTrainer",
+        "importPath": "trainer.base_trainer",
+        "description": "trainer.base_trainer",
         "isExtraImport": true,
-        "detail": "datasets.data_factory",
+        "detail": "trainer.base_trainer",
         "documentation": {}
     },
     {
-        "label": "DataFactory",
-        "importPath": "datasets.data_factory",
-        "description": "datasets.data_factory",
+        "label": "sim_matrix_training",
+        "importPath": "modules.metrics",
+        "description": "modules.metrics",
         "isExtraImport": true,
-        "detail": "datasets.data_factory",
+        "detail": "modules.metrics",
         "documentation": {}
     },
     {
-        "label": "ModelFactory",
-        "importPath": "model.model_factory",
-        "description": "model.model_factory",
+        "label": "sim_matrix_inference_stochastic",
+        "importPath": "modules.metrics",
+        "description": "modules.metrics",
         "isExtraImport": true,
-        "detail": "model.model_factory",
+        "detail": "modules.metrics",
         "documentation": {}
     },
     {
-        "label": "ModelFactory",
-        "importPath": "model.model_factory",
-        "description": "model.model_factory",
+        "label": "sim_matrix_inference_stochastic_light_allops",
+        "importPath": "modules.metrics",
+        "description": "modules.metrics",
         "isExtraImport": true,
-        "detail": "model.model_factory",
+        "detail": "modules.metrics",
+        "documentation": {}
+    },
+    {
+        "label": "generate_embeds_per_video_id_stochastic",
+        "importPath": "modules.metrics",
+        "description": "modules.metrics",
+        "isExtraImport": true,
+        "detail": "modules.metrics",
+        "documentation": {}
+    },
+    {
+        "label": "np_softmax",
+        "importPath": "modules.metrics",
+        "description": "modules.metrics",
+        "isExtraImport": true,
+        "detail": "modules.metrics",
         "documentation": {}
     },
     {
@@ -984,38 +984,6 @@
         "description": "modules.metrics",
         "isExtraImport": true,
         "detail": "modules.metrics",
-        "documentation": {}
-    },
-    {
-        "label": "LossFactory",
-        "importPath": "modules.loss",
-        "description": "modules.loss",
-        "isExtraImport": true,
-        "detail": "modules.loss",
-        "documentation": {}
-    },
-    {
-        "label": "LossFactory",
-        "importPath": "modules.loss",
-        "description": "modules.loss",
-        "isExtraImport": true,
-        "detail": "modules.loss",
-        "documentation": {}
-    },
-    {
-        "label": "Trainer",
-        "importPath": "trainer.trainer_stochastic",
-        "description": "trainer.trainer_stochastic",
-        "isExtraImport": true,
-        "detail": "trainer.trainer_stochastic",
-        "documentation": {}
-    },
-    {
-        "label": "Trainer",
-        "importPath": "trainer.trainer_stochastic",
-        "description": "trainer.trainer_stochastic",
-        "isExtraImport": true,
-        "detail": "trainer.trainer_stochastic",
         "documentation": {}
     },
     {
@@ -1025,6 +993,79 @@
         "importPath": "torch.multiprocessing",
         "description": "torch.multiprocessing",
         "detail": "torch.multiprocessing",
+        "documentation": {}
+    },
+    {
+        "label": "glob",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "glob",
+        "description": "glob",
+        "detail": "glob",
+        "documentation": {}
+    },
+    {
+        "label": "DataFactory",
+        "importPath": "datasets.data_factory",
+        "description": "datasets.data_factory",
+        "isExtraImport": true,
+        "detail": "datasets.data_factory",
+        "documentation": {}
+    },
+    {
+        "label": "DataFactory",
+        "importPath": "datasets.data_factory",
+        "description": "datasets.data_factory",
+        "isExtraImport": true,
+        "detail": "datasets.data_factory",
+        "documentation": {}
+    },
+    {
+        "label": "ModelFactory",
+        "importPath": "model.model_factory",
+        "description": "model.model_factory",
+        "isExtraImport": true,
+        "detail": "model.model_factory",
+        "documentation": {}
+    },
+    {
+        "label": "ModelFactory",
+        "importPath": "model.model_factory",
+        "description": "model.model_factory",
+        "isExtraImport": true,
+        "detail": "model.model_factory",
+        "documentation": {}
+    },
+    {
+        "label": "LossFactory",
+        "importPath": "modules.loss",
+        "description": "modules.loss",
+        "isExtraImport": true,
+        "detail": "modules.loss",
+        "documentation": {}
+    },
+    {
+        "label": "LossFactory",
+        "importPath": "modules.loss",
+        "description": "modules.loss",
+        "isExtraImport": true,
+        "detail": "modules.loss",
+        "documentation": {}
+    },
+    {
+        "label": "Trainer",
+        "importPath": "trainer.trainer_stochastic",
+        "description": "trainer.trainer_stochastic",
+        "isExtraImport": true,
+        "detail": "trainer.trainer_stochastic",
+        "documentation": {}
+    },
+    {
+        "label": "Trainer",
+        "importPath": "trainer.trainer_stochastic",
+        "description": "trainer.trainer_stochastic",
+        "isExtraImport": true,
+        "detail": "trainer.trainer_stochastic",
         "documentation": {}
     },
     {
@@ -1575,56 +1616,74 @@
         "documentation": {}
     },
     {
-        "label": "Config",
+        "label": "Trainer",
         "kind": 6,
         "importPath": "trainer.trainer_stochastic",
         "description": "trainer.trainer_stochastic",
-        "peekOfCode": "class Config:\n    def __init__(self):\n        self.videos_dir = \"/content/drive/MyDrive/AI_Hackkathon/Dataset/video\"\n        self.keyframes_dir = \"/content/drive/MyDrive/AI_Hackkathon/Dataset/keyframes\"\n        self.metadata_dir = \"/content/drive/MyDrive/AI_Hackkathon/Dataset/metadata\"\n        self.map_keyframes_dir = \"/content/drive/MyDrive/AI_Hackkathon/Dataset/map-keyframes\"\n        self.output_dir = \"/content/drive/MyDrive/AI_Hackkathon/output\"  \n        self.clip_arch = 'ViT-B/32'  # Model architecture\n        self.device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')  # Use GPU if available\n        self.input_res = 224  # Input resolution for images",
+        "peekOfCode": "class Trainer(BaseTrainer):\n    \"\"\"\n    Trainer class\n    Note:\n        Inherited from BaseTrainer.\n    \"\"\"\n    def __init__(self, model, loss, metrics, optimizer, config: Config, train_data_loader,\n                 valid_data_loader, tokenizer=None, lr_scheduler=None, writer=None):\n        super().__init__(model, loss, metrics, optimizer, config, writer)\n        self.train_data_loader = train_data_loader",
         "detail": "trainer.trainer_stochastic",
         "documentation": {}
     },
     {
-        "label": "CustomDataset",
-        "kind": 6,
-        "importPath": "trainer.trainer_stochastic",
-        "description": "trainer.trainer_stochastic",
-        "peekOfCode": "class CustomDataset(Dataset):\n    def __init__(self, config, split_type='train', img_transforms=None, clip_model_name=\"ViT-B/32\"):\n        self.config = config\n        self.split_type = split_type\n        self.img_transforms = img_transforms        \n        # Load CLIP model and preprocess\n        self.device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')  # Set to GPU if available\n        print(f\"Using device: {self.device}\")\n        # Load the CLIP model and its preprocess function\n        self.clip_model, self.clip_preprocess = clip.load(clip_model_name, device=self.device)",
-        "detail": "trainer.trainer_stochastic",
-        "documentation": {}
-    },
-    {
-        "label": "initialize_phobert_tokenizer",
+        "label": "tokenize_text",
         "kind": 2,
         "importPath": "trainer.trainer_stochastic",
         "description": "trainer.trainer_stochastic",
-        "peekOfCode": "def initialize_phobert_tokenizer():\n    \"\"\"Initialize the PhoBERT tokenizer with caching for faster loads.\"\"\"\n    tokenizer = AutoTokenizer.from_pretrained(\"vinai/phobert-base-v2\", cache_dir='./cache')\n    model = AutoModel.from_pretrained(\"vinai/phobert-base-v2\", cache_dir='./cache')\n    return tokenizer, model\n# Initialize PhoBERT model and tokenizer\nphobert_tokenizer, phobert_model = initialize_phobert_tokenizer()\nclass Config:\n    def __init__(self):\n        self.videos_dir = \"/content/drive/MyDrive/AI_Hackkathon/Dataset/video\"",
+        "peekOfCode": "def tokenize_text(description_text, tokenizer, max_length=256):\n    input_ids = tokenizer(description_text, return_tensors='pt', truncation=True, padding='max_length', max_length=max_length)\n    return input_ids\nimport torch\nimport logging\n# Logger setup\nlogger = logging.getLogger(__name__)\ndef pad_collate_fn(batch):\n   # Filter out 'None' data points\n    batch = [item for item in batch if item is not None]",
         "detail": "trainer.trainer_stochastic",
         "documentation": {}
     },
     {
-        "label": "load_processed_keyframes",
+        "label": "pad_collate_fn",
         "kind": 2,
         "importPath": "trainer.trainer_stochastic",
         "description": "trainer.trainer_stochastic",
-        "peekOfCode": "def load_processed_keyframes(processed_keyframes_file):\n    if os.path.exists(processed_keyframes_file):\n        with open(processed_keyframes_file, 'r') as f:\n            return set(json.load(f))  # Load as a set for faster lookups\n    else:\n        return set()\n# Function to save processed keyframe\ndef save_processed_keyframe(keyframe_id, processed_keyframes_file, processed_keyframes):\n    processed_keyframes.add(keyframe_id)\n    with open(processed_keyframes_file, 'w') as f:",
+        "peekOfCode": "def pad_collate_fn(batch):\n   # Filter out 'None' data points\n    batch = [item for item in batch if item is not None]\n    if len(batch) == 0:\n      print(\"Warning: All items in the batch are None. Skipping this batch.\")\n      return None  # Optionally, return None or raise an error\n    return torch.utils.data.dataloader.default_collate(batch)\n    try:\n        # Extract clip features, description embeddings, metadata, and video IDs\n        keyframe_images = [item['keyframe_image'] for item in batch if item is not None]",
         "detail": "trainer.trainer_stochastic",
         "documentation": {}
     },
     {
-        "label": "save_processed_keyframe",
+        "label": "resize_clip_features",
         "kind": 2,
         "importPath": "trainer.trainer_stochastic",
         "description": "trainer.trainer_stochastic",
-        "peekOfCode": "def save_processed_keyframe(keyframe_id, processed_keyframes_file, processed_keyframes):\n    processed_keyframes.add(keyframe_id)\n    with open(processed_keyframes_file, 'w') as f:\n        json.dump(list(processed_keyframes), f)\ndef download_youtube_transcription_from_json(json_path, output_dir):\n    \"\"\"Download a YouTube video transcription from a JSON file's 'watch_url' field.\"\"\"\n    try:\n        # Check if the metadata file exists\n        if not os.path.exists(json_path):\n            raise FileNotFoundError(f\"Metadata file does not exist: {json_path}\")",
+        "peekOfCode": "def resize_clip_features(clip_features, target_size):\n    # Resize or truncate the clip features to the target size\n    current_size = clip_features.shape[0]\n    if current_size > target_size:\n        clip_features = clip_features[:target_size]  # Truncate\n    elif current_size < target_size:\n        padding_size = target_size - current_size\n        clip_features = F.pad(clip_features, (0, 0, 0, padding_size))  # Pad along the appropriate dimensions\n    return clip_features\ndef resize_text_embeddings(text_embeddings, target_size):",
         "detail": "trainer.trainer_stochastic",
         "documentation": {}
     },
     {
-        "label": "download_youtube_transcription_from_json",
+        "label": "resize_text_embeddings",
         "kind": 2,
         "importPath": "trainer.trainer_stochastic",
         "description": "trainer.trainer_stochastic",
-        "peekOfCode": "def download_youtube_transcription_from_json(json_path, output_dir):\n    \"\"\"Download a YouTube video transcription from a JSON file's 'watch_url' field.\"\"\"\n    try:\n        # Check if the metadata file exists\n        if not os.path.exists(json_path):\n            raise FileNotFoundError(f\"Metadata file does not exist: {json_path}\")\n        # Load the metadata JSON\n        with open(json_path, 'r', encoding='utf-8') as f:\n            metadata = json.load(f)\n        # Extract the YouTube URL from the 'watch_url' field",
+        "peekOfCode": "def resize_text_embeddings(text_embeddings, target_size):\n    # Resize or pad the text embeddings to the target size\n    current_size = text_embeddings.shape[1]\n    if current_size > target_size:\n        text_embeddings = text_embeddings[:, :target_size]  # Truncate\n    elif current_size < target_size:\n        padding_size = target_size - current_size\n        text_embeddings = F.pad(text_embeddings, (0, 0, 0, padding_size))  # Pad along the appropriate dimensions\n    return text_embeddings\nimport glob",
+        "detail": "trainer.trainer_stochastic",
+        "documentation": {}
+    },
+    {
+        "label": "load_checkpoint",
+        "kind": 2,
+        "importPath": "trainer.trainer_stochastic",
+        "description": "trainer.trainer_stochastic",
+        "peekOfCode": "def load_checkpoint(model, optimizer, checkpoint_dir):\n    # Find the latest checkpoint in the checkpoint directory\n    checkpoint_files = glob.glob(os.path.join(checkpoint_dir, 'checkpoint_epoch_*.pth'))\n    if not checkpoint_files:\n        print(f\"No checkpoint found in {checkpoint_dir}. Starting from scratch.\")\n        return 0\n    # Sort checkpoints by epoch number and load the latest one\n    checkpoint_files.sort(key=lambda x: int(x.split('_')[-1].split('.pth')[0]))\n    latest_checkpoint = checkpoint_files[-1]\n    print(f\"Loading checkpoint from {latest_checkpoint}\")",
+        "detail": "trainer.trainer_stochastic",
+        "documentation": {}
+    },
+    {
+        "label": "start_time",
+        "kind": 5,
+        "importPath": "trainer.trainer_stochastic",
+        "description": "trainer.trainer_stochastic",
+        "peekOfCode": "start_time = time.time()\nimport logging\nfrom torch.utils.data import DataLoader\nimport torch.multiprocessing as mp\nmp.set_start_method('spawn', force=True)\nimport os\nos.environ[\"CUDA_LAUNCH_BLOCKING\"] = \"1\"\n# Set up logger\nlogger = logging.getLogger(__name__)\nlogging.basicConfig(level=logging.INFO)",
+        "detail": "trainer.trainer_stochastic",
+        "documentation": {}
+    },
+    {
+        "label": "os.environ[\"CUDA_LAUNCH_BLOCKING\"]",
+        "kind": 5,
+        "importPath": "trainer.trainer_stochastic",
+        "description": "trainer.trainer_stochastic",
+        "peekOfCode": "os.environ[\"CUDA_LAUNCH_BLOCKING\"] = \"1\"\n# Set up logger\nlogger = logging.getLogger(__name__)\nlogging.basicConfig(level=logging.INFO)\n# Load PhoBERT tokenizer\nphobert_tokenizer = AutoTokenizer.from_pretrained(\"vinai/phobert-base-v2\")\nclass Trainer(BaseTrainer):\n    \"\"\"\n    Trainer class\n    Note:",
         "detail": "trainer.trainer_stochastic",
         "documentation": {}
     },
@@ -1633,43 +1692,25 @@
         "kind": 5,
         "importPath": "trainer.trainer_stochastic",
         "description": "trainer.trainer_stochastic",
-        "peekOfCode": "logger = logging.getLogger(__name__)\nlogging.basicConfig(level=logging.INFO)\nimport os\nos.environ['TORCH_USE_CUDA_DSA'] = '1'\n# Set device to GPU if available, otherwise use CPU\ndevice = torch.device('cuda' if torch.cuda.is_available() else 'cpu')\ndevice = \"cuda\" \nprint(f'Using device: {device}')\n# Load CLIP model and ensure it runs on the chosen device (GPU or CPU)\n# clip_model, clip_preprocess = clip.load(\"ViT-B/32\", device=device)",
+        "peekOfCode": "logger = logging.getLogger(__name__)\nlogging.basicConfig(level=logging.INFO)\n# Load PhoBERT tokenizer\nphobert_tokenizer = AutoTokenizer.from_pretrained(\"vinai/phobert-base-v2\")\nclass Trainer(BaseTrainer):\n    \"\"\"\n    Trainer class\n    Note:\n        Inherited from BaseTrainer.\n    \"\"\"",
         "detail": "trainer.trainer_stochastic",
         "documentation": {}
     },
     {
-        "label": "os.environ['TORCH_USE_CUDA_DSA']",
+        "label": "phobert_tokenizer",
         "kind": 5,
         "importPath": "trainer.trainer_stochastic",
         "description": "trainer.trainer_stochastic",
-        "peekOfCode": "os.environ['TORCH_USE_CUDA_DSA'] = '1'\n# Set device to GPU if available, otherwise use CPU\ndevice = torch.device('cuda' if torch.cuda.is_available() else 'cpu')\ndevice = \"cuda\" \nprint(f'Using device: {device}')\n# Load CLIP model and ensure it runs on the chosen device (GPU or CPU)\n# clip_model, clip_preprocess = clip.load(\"ViT-B/32\", device=device)\n# print(\"CLIP model loaded successfully!\")\nfrom transformers import AutoTokenizer, AutoModel\n# Use cached tokenizers",
+        "peekOfCode": "phobert_tokenizer = AutoTokenizer.from_pretrained(\"vinai/phobert-base-v2\")\nclass Trainer(BaseTrainer):\n    \"\"\"\n    Trainer class\n    Note:\n        Inherited from BaseTrainer.\n    \"\"\"\n    def __init__(self, model, loss, metrics, optimizer, config: Config, train_data_loader,\n                 valid_data_loader, tokenizer=None, lr_scheduler=None, writer=None):\n        super().__init__(model, loss, metrics, optimizer, config, writer)",
         "detail": "trainer.trainer_stochastic",
         "documentation": {}
     },
     {
-        "label": "device",
+        "label": "logger",
         "kind": 5,
         "importPath": "trainer.trainer_stochastic",
         "description": "trainer.trainer_stochastic",
-        "peekOfCode": "device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')\ndevice = \"cuda\" \nprint(f'Using device: {device}')\n# Load CLIP model and ensure it runs on the chosen device (GPU or CPU)\n# clip_model, clip_preprocess = clip.load(\"ViT-B/32\", device=device)\n# print(\"CLIP model loaded successfully!\")\nfrom transformers import AutoTokenizer, AutoModel\n# Use cached tokenizers\ndef initialize_phobert_tokenizer():\n    \"\"\"Initialize the PhoBERT tokenizer with caching for faster loads.\"\"\"",
-        "detail": "trainer.trainer_stochastic",
-        "documentation": {}
-    },
-    {
-        "label": "device",
-        "kind": 5,
-        "importPath": "trainer.trainer_stochastic",
-        "description": "trainer.trainer_stochastic",
-        "peekOfCode": "device = \"cuda\" \nprint(f'Using device: {device}')\n# Load CLIP model and ensure it runs on the chosen device (GPU or CPU)\n# clip_model, clip_preprocess = clip.load(\"ViT-B/32\", device=device)\n# print(\"CLIP model loaded successfully!\")\nfrom transformers import AutoTokenizer, AutoModel\n# Use cached tokenizers\ndef initialize_phobert_tokenizer():\n    \"\"\"Initialize the PhoBERT tokenizer with caching for faster loads.\"\"\"\n    tokenizer = AutoTokenizer.from_pretrained(\"vinai/phobert-base-v2\", cache_dir='./cache')",
-        "detail": "trainer.trainer_stochastic",
-        "documentation": {}
-    },
-    {
-        "label": "config",
-        "kind": 5,
-        "importPath": "trainer.trainer_stochastic",
-        "description": "trainer.trainer_stochastic",
-        "peekOfCode": "config = Config()\n# Set seed for reproducibility\ntorch.manual_seed(config.seed)  # Use instance attribute 'config.seed'\nif torch.cuda.is_available():\n    torch.cuda.manual_seed_all(config.seed)\n# Function to download transcription from YouTube\nimport os\nimport json\nimport urllib.error\nfrom youtube_transcript_api import YouTubeTranscriptApi, CouldNotRetrieveTranscript",
+        "peekOfCode": "logger = logging.getLogger(__name__)\ndef pad_collate_fn(batch):\n   # Filter out 'None' data points\n    batch = [item for item in batch if item is not None]\n    if len(batch) == 0:\n      print(\"Warning: All items in the batch are None. Skipping this batch.\")\n      return None  # Optionally, return None or raise an error\n    return torch.utils.data.dataloader.default_collate(batch)\n    try:\n        # Extract clip features, description embeddings, metadata, and video IDs",
         "detail": "trainer.trainer_stochastic",
         "documentation": {}
     },
